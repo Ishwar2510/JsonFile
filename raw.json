@@ -24,7 +24,16 @@
               "errorColumn": ""
             }
           },
-          "data_source_name": "Apica Monitoring"
+          "data_source_name": "Apica Monitoring",
+          "alert" : {
+            "active": "True",
+            "name" : "My_ALERT",
+            "options": {
+              "trackDuration": 10,
+              "value": 2,
+            },
+            "rearm": 300,
+          }
         },
         {
           "query": "round(avg(sum by (hostname) (round(100 - system_cpu_utilization_ratio{ostype=~'linux',state=~'idle',hostname=~'.*'}*100, 0.1))), 0.01)",
