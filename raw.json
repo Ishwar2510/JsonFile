@@ -7,7 +7,7 @@
             "type": "metrics",
             "queriesList": [
                 {
-                    "query": "sum by (hostname) (target_info{ostype=~'linux',hostname=~'.*'})",
+                    "query": "go_gc_duration_seconds_sum",
                     "chart_type": "Table",
                     "name": "Atom Status",
                     "schema": "target_info",
