@@ -8,7 +8,7 @@
             "queriesList": [
                 {
                     "query": "go_gc_duration_seconds_sum",
-                    "chart_type": "gauge",
+                    "chart_type": "counter",
                     "name": "Atom Status",
                     "schema": "target_info",
                     "options": {
