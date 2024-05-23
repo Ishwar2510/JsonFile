@@ -8,7 +8,7 @@
             "queriesList": [
                 {
                     "query": "go_gc_duration_seconds_sum",
-                    "chart_type": "Table",
+                    "chart_type": "disk",
                     "name": "Atom Status",
                     "schema": "target_info",
                     "options": {
