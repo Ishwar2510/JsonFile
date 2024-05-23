@@ -4,7 +4,7 @@
             "key": "overview",
             "title": "Overview",
             "order": "1",
-            "type": "metrics",
+            "type": "metrics", 
             "queriesList": [
                 {
                     "query": "go_gc_duration_seconds_sum",
