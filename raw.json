@@ -232,7 +232,8 @@
               "x" : "Timestamp",
               "y": ["value"],
               "groupBy": "hostname",
-              "errorColumn": ""
+              "errorColumn": "",
+              "referenceLine": 3
             }
           },
           "data_source_name": "Apica Monitoring"
@@ -251,7 +252,8 @@
               "x" : "Timestamp",
               "y": ["value"],
               "groupBy": "hostname",
-              "errorColumn": ""
+              "errorColumn": "",
+              "referenceLine": 5
             }
           },
           "data_source_name": "Apica Monitoring"
@@ -270,7 +272,8 @@
               "x" : "Timestamp",
               "y": ["value"],
               "groupBy": "hostname",
-              "errorColumn": ""
+              "errorColumn": "",
+              "referenceLine": 20
             }
           },
           "data_source_name": "Apica Monitoring"
@@ -289,7 +292,8 @@
               "x" : "Timestamp",
               "y": ["value"],
               "groupBy": "hostname",
-              "errorColumn": ""
+              "errorColumn": "",
+              "referenceLine": 20
             }
           },
           "data_source_name": "Apica Monitoring"
@@ -308,7 +312,8 @@
               "x" : "Timestamp",
               "y": ["value"],
               "groupBy": "hostname",
-              "errorColumn": ""
+              "errorColumn": "",
+              "referenceLine": 3
             }
           },
           "data_source_name": "Apica Monitoring"
