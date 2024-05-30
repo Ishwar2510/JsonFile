@@ -39,7 +39,8 @@
                             "timeColumn": "",
                             "muted": false,
                             "trackDuration": 10,
-                            "value": 2
+                            "value": 2,
+                            "severityType": "high"
                         },
                         "rearm": 300
                     }
