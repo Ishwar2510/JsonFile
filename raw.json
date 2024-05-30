@@ -26,7 +26,23 @@
               "referenceLine": 3
             }
           },
-          "data_source_name": "Apica Monitoring"
+          "data_source_name": "Apica Monitoring",
+          "alert": {
+                        "active": "True",
+                        "name": "My_ALERT",
+                        "options": {
+                            "alertType": "simple alert",
+                            "anomalySwitch": false,
+                            "column": "value",
+                            "op": ">",
+                            "selectionCondition": "",
+                            "timeColumn": "",
+                            "muted": false,
+                            "trackDuration": 10,
+                            "value": 2
+                        },
+                        "rearm": 300
+                    }
         },
         {
           "query": "round((1-(avg_over_time(system_cpu_utilization_ratio{ostype=~'linux',state=~'idle',hostname=~'.*'}[5m])))*100,0.01)&duration=1.000h&step=1m",
