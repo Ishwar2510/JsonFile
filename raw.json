@@ -26,7 +26,24 @@
               "referenceLine": 3
             }
           },
-          "data_source_name": "Apica Monitoring"
+          "data_source_name": "Apica Monitoring",
+           "alert": {
+                        "active": "True",
+                        "name": "My_ALERT",
+                        "options": {
+                            "alertType": "simple alert",
+                            "anomalySwitch": false,
+                            "column": "value",
+                            "op": ">",
+                            "selectionCondition": "",
+                            "timeColumn": "",
+                            "muted": false,
+                            "trackDuration": 10,
+                            "value": 2,
+                            "severityType": "high"
+                        },
+                        "rearm": 300
+                    }
          
         },
         {
