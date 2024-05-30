@@ -1,0 +1,46 @@
+{
+    "tabs": [
+        {
+            "key": "overview",
+            "title": "Overview",
+            "order": "1",
+            "type": "metrics",
+            "queriesList": [
+                {
+                    "query": "go_gc_duration_seconds_sum",
+                    "chart_type": "Table",
+                    "name": "Atom Status",
+                    "schema": "target_info",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring",
+                    "alert": {
+                        "active": "True",
+                        "name": "My_ALERT",
+                        "options": {
+                            "alertType": "simple alert",
+                            "anomalySwitch": false,
+                            "column": "value",
+                            "op": ">",
+                            "selectionCondition": "",
+                            "timeColumn": "",
+                            "muted": false,
+                            "trackDuration": 10,
+                            "value": 2
+                        },
+                        "rearm": 300
+                    }
+                }
