@@ -521,7 +521,7 @@
               "x" : "Timestamp",
               "y": ["value"],
               "groupBy": "hostname",
-              "errorColumn": "",
+              "errorColumn": ""
             }
           },
           "data_source_name": "Apica Monitoring"
