@@ -40,7 +40,7 @@
                             "muted": false,
                             "trackDuration": 10,
                             "value": 2,
-                            "severityType": "high"
+                            "severityType": "warning"
                         },
                         "rearm": 300
                     }
