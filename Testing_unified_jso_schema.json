@@ -342,18 +342,38 @@
            "alert": {
                         "active": "True",
                         "name": "Alert1",
-                        "options": {
-                            "alertType": "simple alert",
-                            "anomalySwitch": false,
-                            "column": "value",
-                            "op": ">",
-                            "selectionCondition": "",
-                            "timeColumn": "",
-                            "muted": false,
-                            "trackDuration": 10,
-                            "value": 2,
-                            "severityType": "warning"
+                        "options": [
+                        {
+                            "label": "Actual",
+                            "order": 1,
+                            "description": "Atom Status",
+                            "plot": {
+                                "xLabel": "Timestamp",
+                                "yLabel": "value",
+                                "x": "Timestamp",
+                                "y": [
+                                    "value"
+                                ],
+                                "groupBy": "",
+                                "errorColumn": ""
+                            }
                         },
+                        {
+                            "label": "Actual",
+                            "order": 1,
+                            "description": "Atom Status",
+                            "plot": {
+                                "xLabel": "Timestamp",
+                                "yLabel": "value",
+                                "x": "Timestamp",
+                                "y": [
+                                    "value"
+                                ],
+                                "groupBy": "",
+                                "errorColumn": ""
+                            }
+                        }
+                    ],
                         "rearm": 300
                     }
          
