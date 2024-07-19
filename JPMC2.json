@@ -1,0 +1,713 @@
+{
+    "tabs": [
+      {
+        "key": "State Metric V2",
+        "title": "State Metric V2",
+        "type": "metrics",
+        "order": "3",
+        "queriesList": [
+          {
+            "query": "kube_node_status_condition{condition=~'PIDPressure'}==1&duration=1h&step=5m",
+            "chart_type": "area",
+            "name": "Node Pressure",
+            "schema": "kube_node_status_condition",
+            "options": {
+              "label": "",
+              "order": 1,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "sum(kube_pod_container_status_waiting{})&duration=1h&step=5m",
+            "chart_type": "counter",
+            "name": "Containers Waiting",
+            "schema": "kube_pod_container_status_waiting",
+            "options": {
+              "label": "Containers Waiting",
+              "order": 2,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "%",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "sum(kube_pod_info{}) / sum(kube_node_status_allocatable{resource='pods'})&duration=1h&step=5m",
+            "chart_type": "counter",
+            "name": "Cluster Pod Requested",
+            "schema": "kube_pod_info",
+            "options": {
+              "label": "Cluster Pod Requested",
+              "order": 3,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "sum(kube_node_info{})&duration=1h&step=5m",
+            "chart_type": "bar",
+            "name": "node number",
+            "schema": "kube_node_info",
+            "options": {
+              "label": "Count",
+              "order": 4,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "kube_persistentvolumeclaim_resource_requests_storage_bytes/1024/1024/1024&duration=1h&step=5m",
+            "chart_type": "Table",
+            "name": "pvc",
+            "schema": "kube_persistentvolumeclaim_resource_requests_storage_bytes",
+            "options": {
+              "label": "Bytes/sec",
+              "order": 5,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "Bytes/sec",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "hostname",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "kube_statefulset_status_replicas_ready{}/kube_statefulset_status_replicas{}*100&duration=1h&step=5m",
+            "chart_type": "line",
+            "name": "Statefulset replicas ",
+            "schema": "kube_statefulset_status_replicas_ready",
+            "options": {
+              "label": "Bytes/sec",
+              "order": 6,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "statefulset",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "sum(kube_deployment_status_replicas{})&duration=1h&step=5m",
+            "chart_type": "counter",
+            "name": "Deployment Replicas",
+            "schema": "kube_deployment_status_replicas",
+            "options": {
+              "label": "Deployment Replicas",
+              "order": 7,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "Bytes/sec",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "hostname",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "sum(kube_pod_container_status_running{})&duration=1h&step=5m",
+            "chart_type": "counter",
+            "name": "Container Running",
+            "schema": "kube_pod_container_status_running",
+            "options": {
+              "label": "Container Running",
+              "order": 8,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "Bytes/sec",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "hostname",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "sum(kube_node_info{})&duration=1h&step=5m",
+            "chart_type": "counter",
+            "name": "Number of Nodes",
+            "schema": "kube_node_info",
+            "options": {
+              "label": "Number of Nodes",
+              "order": 9,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "Bytes/sec",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "hostname",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "sum(kube_node_spec_unschedulable{})&duration=1h&step=5m",
+            "chart_type": "counter",
+            "name": "Nodes Unavailable",
+            "schema": "kube_node_spec_unschedulable",
+            "options": {
+              "label": "Nodes Unavailable",
+              "order": 10,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "%",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "hostname",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "kube_node_status_condition{condition='MemoryPressure'}==1&duration=1h&step=5m",
+            "chart_type": "area",
+            "name": "Node Pressure",
+            "schema": "kube_node_status_condition",
+            "options": {
+              "label": "",
+              "order": 11,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "condition",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "sum(kube_node_info{})&duration=1h&step=5m",
+            "chart_type": "line",
+            "name": "Node Number",
+            "schema": "kube_node_info",
+            "options": {
+              "label": "",
+              "order": 12,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "hostname",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "changes(kube_pod_container_status_restarts_total{}[30m])>1&duration=1h&step=5m",
+            "chart_type": "Table",
+            "name": "Pods restart in 30 min",
+            "schema": "kube_pod_container_status_restarts_total",
+            "options": {
+              "label": "",
+              "order": 13,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "hostname",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "sum(kube_job_status_succeeded{})&duration=1h&step=5m",
+            "chart_type": "counter",
+            "name": "Jobs Succeeded",
+            "schema": "kube_job_status_succeeded",
+            "options": {
+              "label": "Jobs Succeeded",
+              "order": 14,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "hostname",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "sum(kube_job_status_active{})&duration=1h&step=5m",
+            "chart_type": "counter",
+            "name": "Jobs Active",
+            "schema": "kube_job_status_active",
+            "options": {
+              "label": "Jobs Active",
+              "order": 15,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "hostname",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          },
+          {
+            "query": "sum(kube_job_status_failed{})&duration=1h&step=5m",
+            "chart_type": "counter",
+            "name": "Jobs Failed",
+            "schema": "kube_job_status_failed",
+            "options": {
+              "label": "Jobs Failed",
+              "order": 15,
+              "plot": {
+                "xLabel": "Timestamp",
+                "yLabel": "",
+                "x": "Timestamp",
+                "y": [
+                  "value"
+                ],
+                "groupBy": "hostname",
+                "errorColumn": ""
+              }
+            },
+            "data_source_name": "Apica Monitoring"
+          }
+        ]
+      },
+      {
+        "key": "Cluster (Prometheus)",
+        "title": "Cluster (Prometheus)",
+        "order": "4",
+        "type": "metrics",
+        "queriesList": [
+            {
+                "query": "kube_deployment_status_replicas{}&duration=1h&step=5m",
+                "chart_type": "Table",
+                "name": "Deployment Replicas - Up To Date",
+                "schema": "kube_deployment_status_replicas",
+                "options": {
+                  "label": "Jobs Failed",
+                  "order": 1,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_deployment_status_replicas{})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Deployment Replicas ",
+                "schema": "kube_deployment_status_replicas",
+                "options": {
+                  "label": "Deployment Replicas",
+                  "order": 2,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_deployment_status_replicas_updated{})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Deployment Replicas - Updated ",
+                "schema": "kube_deployment_status_replicas_updated",
+                "options": {
+                  "label": "Deployment Replicas - Updated ",
+                  "order": 3,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_deployment_status_replicas_unavailable{})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Deployment Replicas - Unavailable",
+                "schema": "kube_job_status_failed",
+                "options": {
+                  "label": "Deployment Replicas - Unavailable",
+                  "order": 4,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_node_info{})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Number of Nodes",
+                "schema": "kube_node_info",
+                "options": {
+                  "label": "Number of Nodes",
+                  "order": 5,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_node_spec_unschedulable{})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Nodes Unavailable",
+                "schema": "kube_node_spec_unschedulable",
+                "options": {
+                  "label": "Nodes Unavailable",
+                  "order": 6,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_pod_status_phase{ phase='Running'})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Pods Running",
+                "schema": "kube_pod_status_phase",
+                "options": {
+                  "label": "Pods Running",
+                  "order": 7,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_pod_status_phase{ phase='Pending'})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Pods Pending",
+                "schema": "kube_pod_status_phase",
+                "options": {
+                  "label": "Pods Pending",
+                  "order": 8,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_pod_status_phase{ phase='Failed'})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Pods Failed",
+                "schema": "kube_pod_status_phase",
+                "options": {
+                  "label": "Pods Failed",
+                  "order": 9,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_pod_status_phase{ phase='Succeeded'})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Pods Succeeded",
+                "schema": "kube_pod_status_phase",
+                "options": {
+                  "label": "Pods Succeeded",
+                  "order": 10,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_pod_status_phase{ phase='Unknown'})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Pods Unknown",
+                "schema": "kube_pod_status_phase",
+                "options": {
+                  "label": "Pods Unknown",
+                  "order": 11,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_pod_container_status_running{})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Container Running",
+                "schema": "kube_pod_container_status_running",
+                "options": {
+                  "label": "Container Running",
+                  "order": 12,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_pod_container_status_waiting{})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Containers Waiting",
+                "schema": "kube_pod_container_status_waiting",
+                "options": {
+                  "label": "Containers Waiting",
+                  "order": 13,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_pod_container_status_terminated{})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Containers Terminated",
+                "schema": "kube_pod_container_status_terminated",
+                "options": {
+                  "label": "Containers Terminated",
+                  "order": 14,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_job_status_succeeded{})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Jobs Succeeded",
+                "schema": "kube_job_status_succeeded",
+                "options": {
+                  "label": "Jobs Succeeded",
+                  "order": 15,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_job_status_active{})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Jobs Active",
+                "schema": "kube_job_status_active",
+                "options": {
+                  "label": "Jobs Active",
+                  "order": 16,
+                  "plot": {
+                    "xLabel": "Timestamp",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              },
+              {
+                "query": "sum(kube_job_status_failed{})&duration=1h&step=5m",
+                "chart_type": "counter",
+                "name": "Jobs Failed",
+                "schema": "kube_job_status_failed",
+                "options": {
+                  "label": "Jobs Failed",
+                  "order": 17,
+                  "plot": {
+                    "xLabel": "",
+                    "yLabel": "",
+                    "x": "Timestamp",
+                    "y": [
+                      "value"
+                    ],
+                    "groupBy": "hostname",
+                    "errorColumn": ""
+                  }
+                },
+                "data_source_name": "Apica Monitoring"
+              }
+        ]
+    }
+    ]
+  }
