@@ -986,7 +986,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_job_status_failed{})&duration=1h&step={{step}",
+            "query": "sum(kube_job_status_failed{})&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Jobs Failed",
             "schema": "kube_job_status_failed",
