@@ -7,7 +7,7 @@
         "order": "1",
         "queriesList": [
           {
-            "query": "(((count(count(node_cpu_seconds_total{instance=~'.*',job='node-exporter'}) by (cpu))) - avg(sum by (mode)(rate(node_cpu_seconds_total{mode='idle',instance=~'.*',job='node-exporter'}[{{interval}}])))) * 100) / count(count(node_cpu_seconds_total{instance=~'.*',job='node-exporter'}) by (cpu))&duration={{duration}}&step={{step}}",
+            "query": "(((count(count(node_cpu_seconds_total{instance=~'.*',job='node-exporter'}) by (cpu))) - avg(sum by (mode)(rate(node_cpu_seconds_total{mode='idle',instance=~'.*',job='node-exporter'}[{{interval}}])))) * 100) / count(count(node_cpu_seconds_total{instance=~'.*',job='node-exporter'}) by (cpu))&duration=1h&step=5m",
             "chart_type": "gauge",
             "name": "CPU Busy",
             "schema": "node_cpu_seconds_total",
@@ -32,7 +32,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "avg(node_load15{instance=~'.*',job='node-exporter'}) /  count(count(node_cpu_seconds_total{instance=~'.*',job='node-exporter'}) by (cpu)) * 100&duration={{duration}}&step={{step}}",
+            "query": "avg(node_load15{instance=~'.*',job='node-exporter'}) /  count(count(node_cpu_seconds_total{instance=~'.*',job='node-exporter'}) by (cpu)) * 100&duration=1h&step=5m",
             "chart_type": "gauge",
             "name": "Sys Load (15m avg)",
             "schema": "node_load15",
@@ -59,7 +59,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "((node_memory_SwapTotal_bytes{instance=~'.*,job='node-exporter'} - node_memory_SwapFree_bytes{instance=~'.*,job='node-exporter'}) / (node_memory_SwapTotal_bytes{instance=~'.*,job='node-exporter'} )) * 100&duration={{duration}}&step={{step}}",
+            "query": "((node_memory_SwapTotal_bytes{instance=~'.*,job='node-exporter'} - node_memory_SwapFree_bytes{instance=~'.*,job='node-exporter'}) / (node_memory_SwapTotal_bytes{instance=~'.*,job='node-exporter'} )) * 100&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Swap Used",
             "schema": "node_memory_SwapTotal_bytes",
@@ -84,7 +84,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "100 - ((node_memory_MemAvailable_bytes{instance=~'.*',job='node-exporter'} * 100) / node_memory_MemTotal_bytes{instance=~'.*',job='node-exporter'})&duration={{duration}}&step={{step}}",
+            "query": "100 - ((node_memory_MemAvailable_bytes{instance=~'.*',job='node-exporter'} * 100) / node_memory_MemTotal_bytes{instance=~'.*',job='node-exporter'})&duration=1h&step=5m",
             "chart_type": "gauge",
             "name": "Ram Used",
             "schema": "kube_node_info",
@@ -109,7 +109,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "((node_memory_MemTotal_bytes{instance=~'.*',job='node-exporter'} - node_memory_MemFree_bytes{instance=~'.*',job='node-exporter'}) / (node_memory_MemTotal_bytes{instance=~'.*',job='node-exporter'} )) * 100&duration={{duration}}&step={{step}}",
+            "query": "((node_memory_MemTotal_bytes{instance=~'.*',job='node-exporter'} - node_memory_MemFree_bytes{instance=~'.*',job='node-exporter'}) / (node_memory_MemTotal_bytes{instance=~'.*',job='node-exporter'} )) * 100&duration=1h&step=5m",
             "chart_type": "gauge",
             "name": "Ram Used",
             "schema": "node_memory_MemTotal_bytes",
