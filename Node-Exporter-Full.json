@@ -19,7 +19,7 @@
                 "danger": 80
               },
               "plot": {
-                "xLabel": "Timestamp",
+                "xLabel": "",
                 "yLabel": "",
                 "x": "Timestamp",
                 "y": [
