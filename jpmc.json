@@ -1359,7 +1359,7 @@
                   "label": "Jobs Failed",
                   "order": 17,
                   "plot": {
-                    "xLabel": "Timestamp",
+                    "xLabel": "",
                     "yLabel": "",
                     "x": "Timestamp",
                     "y": [
