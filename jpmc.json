@@ -557,7 +557,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum (rate (container_cpu_usage_seconds_total{image!='',name!~'^k8s_.*'}[5m])) by (node, name, image)&duration={{duration}}&step={{step}}",
+            "query": "sum (rate (container_cpu_usage_seconds_total{image!='',name!~'^k8s_.*'}[5m])) by (node, name, image)&duration=1h&step=5m",
             "chart_type": "line",
             "name": "Containers CPU usage (5m avg) - docker",
             "schema": "container_cpu_usage_seconds_total",
@@ -578,7 +578,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_pod_status_phase{namespace=~'.*', phase='Running'})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_pod_status_phase{namespace=~'.*', phase='Running'})&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Pods Running",
             "schema": "",
@@ -599,7 +599,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_node_info{})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_node_info{})&duration=1h&step=5m",
             "chart_type": "line",
             "name": "Numbers - Total",
             "schema": "kube_node_info",
@@ -620,7 +620,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_pod_status_phase{namespace=~'.*', phase='Failed'})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_pod_status_phase{namespace=~'.*', phase='Failed'})&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Pods Failed",
             "schema": "kube_pod_status_phase",
@@ -641,7 +641,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_node_status_condition{condition='DiskPressure' status!='false'})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_node_status_condition{condition='DiskPressure' status!='false'})&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Disk Pressure",
             "schema": "kube_node_status_condition",
@@ -671,7 +671,7 @@
         "order": "3",
         "queriesList": [
           {
-            "query": "kube_node_status_condition{condition=~'PIDPressure'}==1&duration={{duration}}&step={{step}}",
+            "query": "kube_node_status_condition{condition=~'PIDPressure'}==1&duration=1h&step=5m",
             "chart_type": "line",
             "name": "Node Pressure",
             "schema": "kube_node_status_condition",
@@ -692,7 +692,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_pod_container_status_waiting{})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_pod_container_status_waiting{})&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Containers Waiting",
             "schema": "kube_pod_container_status_waiting",
@@ -713,7 +713,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_pod_info{}) / sum(kube_node_status_allocatable{resource='pods'})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_pod_info{}) / sum(kube_node_status_allocatable{resource='pods'})&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Cluster Pod Requested",
             "schema": "kube_pod_info",
@@ -734,7 +734,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_node_info{})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_node_info{})&duration=1h&step=5m",
             "chart_type": "line",
             "name": "node number",
             "schema": "kube_node_info",
@@ -755,7 +755,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "kube_persistentvolumeclaim_resource_requests_storage_bytes/1024/1024/1024&duration={{duration}}&step={{step}}",
+            "query": "kube_persistentvolumeclaim_resource_requests_storage_bytes/1024/1024/1024&duration=1h&step=5m",
             "chart_type": "Table",
             "name": "pvc",
             "schema": "kube_persistentvolumeclaim_resource_requests_storage_bytes",
@@ -776,7 +776,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "kube_statefulset_status_replicas_ready{}/kube_statefulset_status_replicas{}*100&duration={{duration}}&step={{step}}",
+            "query": "kube_statefulset_status_replicas_ready{}/kube_statefulset_status_replicas{}*100&duration=1h&step=5m",
             "chart_type": "line",
             "name": "Statefulset replicas ",
             "schema": "kube_statefulset_status_replicas_ready",
@@ -797,7 +797,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_deployment_status_replicas{})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_deployment_status_replicas{})&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Deployment Replicas",
             "schema": "kube_deployment_status_replicas",
@@ -818,7 +818,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_pod_container_status_running{})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_pod_container_status_running{})&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Container Running",
             "schema": "kube_pod_container_status_running",
@@ -839,7 +839,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_node_info{})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_node_info{})&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Number of Nodes",
             "schema": "kube_node_info",
@@ -860,7 +860,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_node_spec_unschedulable{})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_node_spec_unschedulable{})&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Nodes Unavailable",
             "schema": "kube_node_spec_unschedulable",
@@ -881,7 +881,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "kube_node_status_condition{condition='MemoryPressure'}==1&duration={{duration}}&step={{step}}",
+            "query": "kube_node_status_condition{condition='MemoryPressure'}==1&duration=1h&step=5m",
             "chart_type": "line",
             "name": "Node Pressure",
             "schema": "kube_node_status_condition",
@@ -902,7 +902,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_node_info{})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_node_info{})&duration=1h&step=5m",
             "chart_type": "line",
             "name": "Node Number",
             "schema": "kube_node_info",
@@ -923,7 +923,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "changes(kube_pod_container_status_restarts_total{}[30m])>1&duration={{duration}}&step={{step}}",
+            "query": "changes(kube_pod_container_status_restarts_total{}[30m])>1&duration=1h&step=5m",
             "chart_type": "Table",
             "name": "Pods restart in 30 min",
             "schema": "kube_pod_container_status_restarts_total",
@@ -944,7 +944,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_job_status_succeeded{})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_job_status_succeeded{})&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Jobs Succeeded",
             "schema": "kube_job_status_succeeded",
@@ -965,7 +965,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_job_status_active{})&duration={{duration}}&step={{step}}",
+            "query": "sum(kube_job_status_active{})&duration=1h&step=5m",
             "chart_type": "counter",
             "name": "Jobs Active",
             "schema": "kube_job_status_active",
@@ -986,7 +986,7 @@
             "data_source_name": "Apica Monitoring"
           },
           {
-            "query": "sum(kube_job_status_failed{})&duration={{duration}}&step={{step}",
+            "query": "sum(kube_job_status_failed{})&duration=1h&step={{step}",
             "chart_type": "counter",
             "name": "Jobs Failed",
             "schema": "kube_job_status_failed",
