@@ -2084,6 +2084,449 @@
                     "data_source_name": "Apica Monitoring"
                 }
             ]
+        },
+        {
+            "key": "Network Sockstat",
+            "title": "Network Sockstat",
+            "type": "metrics",
+            "order": "11",
+            "queriesList": [
+                {
+                    "query": "node_sockstat_TCP_alloc{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat TCP - TCP alloc Allocated sockets",
+                    "schema": "node_sockstat_TCP_alloc",
+                    "options": {
+                        "label": "",
+                        "order": 1,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_TCP_inuse{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat TCP - TCP inuse Tcp sockets currently in use",
+                    "schema": "node_sockstat_TCP_inuse",
+                    "options": {
+                        "label": "",
+                        "upperLimit": "",
+                        "order": 2,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "description": "",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_TCP_mem{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat TCP - TCP mem Used memory for tcp",
+                    "schema": "node_sockstat_TCP_mem",
+                    "options": {
+                        "label": "",
+                        "order": 3,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_TCP_orphan{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat TCP - TCP orphan Orphan sockets",
+                    "schema": "node_sockstat_TCP_orphan",
+                    "options": {
+                        "label": "",
+                        "order": 4,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_TCP_tw{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat TCP - TCP tw Sockets wating close",
+                    "schema": "node_sockstat_TCP_tw",
+                    "options": {
+                        "label": "",
+                        "order": 5,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_UDPLITE_inuse{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat UDP - UDPLITE inuse Udplite sockets currently in use",
+                    "schema": "node_sockstat_UDPLITE_inuse",
+                    "options": {
+                        "label": "",
+                        "order": 6,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_UDP_inuse{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat UDP - UDP inuse Udp sockets currently in use",
+                    "schema": "node_sockstat_UDP_inuse",
+                    "options": {
+                        "label": "",
+                        "order": 7,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_UDP_mem{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat UDP - UDP mem Used memory for udp",
+                    "schema": "node_sockstat_UDP_mem",
+                    "options": {
+                        "label": "",
+                        "order": 8,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_FRAG_inuse{instance=~'.*',job=~'.*'}&&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat FRAG / RAW - FRAG inuse Frag sockets currently in use",
+                    "schema": "node_sockstat_FRAG_inuse",
+                    "options": {
+                        "label": "",
+                        "order": 9,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_RAW_inuse{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat FRAG / RAW - RAW inuse Raw sockets currently in use",
+                    "schema": "node_sockstat_RAW_inuse",
+                    "options": {
+                        "label": "",
+                        "order": 10,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_TCP_mem_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat Memory Size - mem bytes TCP sockets in that state",
+                    "schema": "node_sockstat_TCP_mem_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 11,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_UDP_mem_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat Memory Size - mem bytes UDP sockets in that state",
+                    "schema": "node_sockstat_UDP_mem_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 12,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_FRAG_memory{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat Memory Size - FRAG memory Used memory for frag",
+                    "schema": "rnode_sockstat_FRAG_memory",
+                    "options": {
+                        "label": "",
+                        "order": 13,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_sockstat_sockets_used{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Sockstat Used - Sockets used Sockets currently in use",
+                    "schema": "node_sockstat_sockets_used",
+                    "options": {
+                        "label": "",
+                        "order": 14,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                }
+            ]
+        },
+        {
+            "key": "Node Eporter",
+            "title": "Node Eporter",
+            "type": "metrics",
+            "order": "11",
+            "queriesList": [
+                {
+                    "query": "node_scrape_collector_duration_seconds{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Node Exporter Scrape Time - Scrape duration",
+                    "schema": "node_scrape_collector_duration_seconds",
+                    "options": {
+                        "label": "",
+                        "order": 1,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "collector",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_scrape_collector_success{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Node Exporter Scrape - Scrape success  ",
+                    "schema": "nnode_scrape_collector_success",
+                    "options": {
+                        "label": "",
+                        "order": 2,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "collector",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_textfile_scrape_error{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Node Exporter Scrape - Scrape textfile error 1 true",
+                    "schema": "node_scrape_collector_duration_seconds",
+                    "options": {
+                        "label": "",
+                        "order": 1,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                }
+            ]
         }
     ]
 }
