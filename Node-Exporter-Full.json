@@ -1,140 +1,2089 @@
 {
     "tabs": [
-      {
-        "key": "Quick CPU/MEM/Disk",
-        "title": "Quick CPU/MEM/Disk",
-        "type": "metrics",
-        "order": "1",
-        "queriesList": [
-          {
-            "query": "(((count(count(node_cpu_seconds_total{instance=~'.*',job='node-exporter'}) by (cpu))) - avg(sum by (mode)(rate(node_cpu_seconds_total{mode='idle',instance=~'.*',job='node-exporter'}[{{interval}}])))) * 100) / count(count(node_cpu_seconds_total{instance=~'.*',job='node-exporter'}) by (cpu))&duration=1h&step=5m",
-            "chart_type": "gauge",
-            "name": "CPU Busy",
-            "schema": "node_cpu_seconds_total",
-            "options": {
-              "label": "percent",
-              "order": 1,
-              "zone": {
-                "alert": 60,
-                "danger": 80
-              },
-              "plot": {
-                "xLabel": "",
-                "yLabel": "",
-                "x": "Timestamp",
-                "y": [
-                  "value"
-                ],
-                "groupBy": "",
-                "errorColumn": ""
-              }
-            },
-            "data_source_name": "Apica Monitoring"
-          },
-          {
-            "query": "avg(node_load15{instance=~'.*',job='node-exporter'}) /  count(count(node_cpu_seconds_total{instance=~'.*',job='node-exporter'}) by (cpu)) * 100&duration=1h&step=5m",
-            "chart_type": "gauge",
-            "name": "Sys Load (15m avg)",
-            "schema": "node_load15",
-            "options": {
-              "label": "percent",
-              "upperLimit": "",
-              "order": 2,
-              "zone": {
-                "alert": 60,
-                "danger": 80
-              },
-              "description": "CPU Utilization",
-              "plot": {
-                "xLabel": "Timestamp",
-                "yLabel": "value",
-                "x": "Timestamp",
-                "y": [
-                  "value"
-                ],
-                "groupBy": "",
-                "errorColumn": ""
-              }
-            },
-            "data_source_name": "Apica Monitoring"
-          },
-          {
-            "query": "((node_memory_SwapTotal_bytes{instance=~'.*,job='node-exporter'} - node_memory_SwapFree_bytes{instance=~'.*,job='node-exporter'}) / (node_memory_SwapTotal_bytes{instance=~'.*,job='node-exporter'} )) * 100&duration=1h&step=5m",
-            "chart_type": "counter",
-            "name": "Swap Used",
-            "schema": "node_memory_SwapTotal_bytes",
-            "options": {
-              "label": "percent",
-              "order": 3,
-              "zone": {
-                "alert": 60,
-                "danger": 80
-              },
-              "plot": {
-                "xLabel": "Timestamp",
-                "yLabel": "",
-                "x": "Timestamp",
-                "y": [
-                  "value"
-                ],
-                "groupBy": "",
-                "errorColumn": ""
-              }
-            },
-            "data_source_name": "Apica Monitoring"
-          },
-          {
-            "query": "100 - ((node_memory_MemAvailable_bytes{instance=~'.*',job='node-exporter'} * 100) / node_memory_MemTotal_bytes{instance=~'.*',job='node-exporter'})&duration=1h&step=5m",
-            "chart_type": "gauge",
-            "name": "Ram Used",
-            "schema": "kube_node_info",
-            "options": {
-              "label": "Count",
-              "order": 4,
-              "zone": {
-                "alert": 60,
-                "danger": 80
-              },
-              "plot": {
-                "xLabel": "Timestamp",
-                "yLabel": "",
-                "x": "Timestamp",
-                "y": [
-                  "value"
-                ],
-                "groupBy": "",
-                "errorColumn": ""
-              }
-            },
-            "data_source_name": "Apica Monitoring"
-          },
-          {
-            "query": "((node_memory_MemTotal_bytes{instance=~'.*',job='node-exporter'} - node_memory_MemFree_bytes{instance=~'.*',job='node-exporter'}) / (node_memory_MemTotal_bytes{instance=~'.*',job='node-exporter'} )) * 100&duration=1h&step=5m",
-            "chart_type": "gauge",
-            "name": "Ram Used",
-            "schema": "node_memory_MemTotal_bytes",
-            "options": {
-              "label": "percent",
-              "order": 5,
-              "zone": {
-                "alert": 60,
-                "danger": 80
-              },
-              "plot": {
-                "xLabel": "Timestamp",
-                "yLabel": "Bytes/sec",
-                "x": "Timestamp",
-                "y": [
-                  "value"
-                ],
-                "groupBy": "hostname",
-                "errorColumn": ""
-              }
-            },
-            "data_source_name": "Apica Monitoring"
-          }
-        ]
-      }
-
+        {
+            "key": "Quick CPU/MEM/Disk",
+            "title": "Quick CPU/MEM/Disk",
+            "type": "metrics",
+            "order": "1",
+            "queriesList": [
+                {
+                    "query": "(((count(count(node_cpu_seconds_total{instance=~'.*',job=~'.*'}) by (cpu))) - avg(sum by (mode)(rate(node_cpu_seconds_total{mode='idle',instance=~'.*',job=~'.*'}[1h])))) * 100) / count(count(node_cpu_seconds_total{instance=~'.*',job=~'.*'}) by (cpu))&duration=1h&step=5m",
+                    "chart_type": "gauge",
+                    "name": "CPU Busy",
+                    "schema": "node_cpu_seconds_total",
+                    "options": {
+                        "label": "percent",
+                        "order": 1,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "avg(node_load15{instance=~'.*',job=~'.*'}) /  count(count(node_cpu_seconds_total{instance=~'.*',job=~'.*'}) by (cpu)) * 100&duration=1h&step=5m",
+                    "chart_type": "gauge",
+                    "name": "Sys Load (15m avg)",
+                    "schema": "node_load15",
+                    "options": {
+                        "label": "percent",
+                        "upperLimit": "",
+                        "order": 2,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "description": "CPU Utilization",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "((node_memory_SwapTotal_bytes{instance=~'.*',job=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*',job=~'.*'}) / (node_memory_SwapTotal_bytes{instance=~'.*',job=~'.*'} )) * 100&duration=1h&step=5m",
+                    "chart_type": "counter",
+                    "name": "Swap Used",
+                    "schema": "node_memory_SwapTotal_bytes",
+                    "options": {
+                        "label": "percent",
+                        "order": 3,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "100 - ((node_memory_MemAvailable_bytes{instance=~'.*',job=~'.*'} * 100) / node_memory_MemTotal_bytes{instance=~'.*',job=~'.*'})&duration=1h&step=5m",
+                    "chart_type": "gauge",
+                    "name": "Ram Used",
+                    "schema": "kube_node_info",
+                    "options": {
+                        "label": "Count",
+                        "order": 4,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "((node_memory_MemTotal_bytes{instance=~'.*',job=~'.*'} - node_memory_MemFree_bytes{instance=~'.*',job=~'.*'}) / (node_memory_MemTotal_bytes{instance=~'.*',job=~'.*'} )) * 100&duration=1h&step=5m",
+                    "chart_type": "gauge",
+                    "name": "Ram Used",
+                    "schema": "node_memory_MemTotal_bytes",
+                    "options": {
+                        "label": "percent",
+                        "order": 5,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "hostname",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "avg(node_load5{instance=~'.*',job=~'.*'}) /  count(count(node_cpu_seconds_total{instance=~'.*',job=~'.*'}) by (cpu)) * 100&duration=1h&step=5m",
+                    "chart_type": "gauge",
+                    "name": "Sys Load (5m Avg)",
+                    "schema": "node_load5",
+                    "options": {
+                        "label": "percent",
+                        "order": 6,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "hostname",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "100 - ((node_filesystem_avail_bytes{instance=~'.*',job=~'.*',mountpoint='/',fstype!='rootfs'} * 100) / node_filesystem_size_bytes{instance=~'.*',job=~'.*',mountpoint='/',fstype!='rootfs'})&duration=1h&step=5m",
+                    "chart_type": "gauge",
+                    "name": "Root FS used",
+                    "schema": "node_filesystem_avail_bytes",
+                    "options": {
+                        "label": "percent",
+                        "order": 8,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "hostname",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "count(count(node_cpu_seconds_total{instance=~'.*',job=~'.*'}) by (cpu))&duration=1h&step=5m",
+                    "chart_type": "counter",
+                    "name": "Cpu cores",
+                    "schema": "node_filesystem_avail_bytes",
+                    "options": {
+                        "label": "Cpu Cores",
+                        "order": 9,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "hostname",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_time_seconds{instance=~'.*',job=~'.*'} - node_boot_time_seconds{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "counter",
+                    "name": "Uptime",
+                    "schema": "node_time_seconds",
+                    "options": {
+                        "label": "Uptime",
+                        "order": 10,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "hostname",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_filesystem_size_bytes{instance=~'.*',job=~'.*',mountpoint='/',fstype!='rootfs'}&duration=1h&step=5m",
+                    "chart_type": "counter",
+                    "name": "RootFS Total",
+                    "schema": "node_filesystem_size_bytes",
+                    "options": {
+                        "label": "RootFS Total",
+                        "order": 11,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "hostname",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_memory_MemTotal_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "counter",
+                    "name": "RAM Total",
+                    "schema": "node_memory_MemTotal_bytes",
+                    "options": {
+                        "label": "RAM Total",
+                        "order": 12,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "hostname",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_memory_SwapTotal_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "counter",
+                    "name": "SWAP Total",
+                    "schema": "node_memory_SwapTotal_bytes",
+                    "options": {
+                        "label": "SWAP Total",
+                        "order": 13,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "hostname",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                }
+            ]
+        },
+        {
+            "key": "CPU / Memory / Net / Disk",
+            "title": "CPU / Memory / Net / Disk",
+            "type": "metrics",
+            "order": "3",
+            "queriesList": [
+                {
+                    "query": "sum by (mode)(rate(node_cpu_seconds_total{mode='system',instance=~'.*',job=~'.*'}[5m])) * 100&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "CPU - System Processes executing in kernel mode",
+                    "schema": "node_cpu_seconds_total",
+                    "options": {
+                        "label": "percent",
+                        "order": 1,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "sum by (mode)(rate(node_cpu_seconds_total{mode='user',instance=~'.*',job=~'.*'}[5m])) * 100&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "CPU - User Normal processes executing in user mode",
+                    "schema": "node_cpu_seconds_total",
+                    "options": {
+                        "label": "percent",
+                        "upperLimit": "",
+                        "order": 2,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "description": "",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "sum by (mode)(rate(node_cpu_seconds_total{mode='nice',instance=~'.*',job=~'.*'}[5m])) * 100&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "CPU - Nice Niced processes executing in user mode",
+                    "schema": "node_cpu_seconds_total",
+                    "options": {
+                        "label": "percent",
+                        "order": 3,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "sum by (mode)(rate(node_cpu_seconds_total{mode='iowait',instance=~'.*',job=~'.*'}[5m])) * 100&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "CPU - Iowait Waiting for I O to complete",
+                    "schema": "node_cpu_seconds_total",
+                    "options": {
+                        "label": "",
+                        "order": 4,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "sum by (mode)(rate(node_cpu_seconds_total{mode='irq',instance=~'.*',job=~'.*'}[5m])) * 100&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "CPU - Irq Servicing interrupts",
+                    "schema": "node_cpu_seconds_total",
+                    "options": {
+                        "label": "percent",
+                        "order": 5,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "sum by (mode)(rate(node_cpu_seconds_total{mode='softirq',instance=~'.*',job=~'.*'}[5m])) * 100&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "CPU - Softirq Servicing softirqs",
+                    "schema": "node_cpu_seconds_total",
+                    "options": {
+                        "label": "percent",
+                        "order": 6,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "sum by (mode)(rate(node_cpu_seconds_total{mode='steal',instance=~'.*',job=~'.*'}[5m])) * 100&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "CPU - Steal Time spent in other operating systems when running in a virtualized environment",
+                    "schema": "node_cpu_seconds_total",
+                    "options": {
+                        "label": "",
+                        "order": 8,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_memory_MemTotal_bytes{instance=~'.*',job=~'.*'} - node_memory_MemFree_bytes{instance=~'.*',job=~'.*'} - node_memory_Buffers_bytes{instance=~'.*',job=~'.*'} - node_memory_Cached_bytes{instance=~'.*',job=~'.*'} - node_memory_Slab_bytes{instance=~'.*',job=~'.*'} - node_memory_PageTables_bytes{instance=~'.*',job=~'.*'} - node_memory_SwapCached_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Stack - Apps Memory used by user space applications",
+                    "schema": "node_memory_MemTotal_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 9,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',instance=~'.*',job=~'.*'}[5m])) * 100&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "CPU - Idle Waiting for something to happen",
+                    "schema": "node_cpu_seconds_total",
+                    "options": {
+                        "label": "Uptime",
+                        "order": 10,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_memory_SwapCached_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Stack - SwapCache   Memory that keeps track of pages that have been fetched from swap but not yet been modified",
+                    "schema": "node_memory_SwapCached_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 11,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_memory_PageTables_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Stack - PageTables   Memory used to map between virtual and physical memory addresses",
+                    "schema": "node_memory_PageTables_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 12,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_memory_Cached_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Stack - Cache Parked file data file content cache",
+                    "schema": "node_memory_Cached_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 13,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_memory_Slab_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Stack - Slab   Memory used by the kernel to cache data structures for its own use  caches like inode  dentry  etc",
+                    "schema": "node_memory_Slab_bytes",
+                    "options": {
+                        "label": "SWAP Total",
+                        "order": 14,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_memory_MemFree_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Stack - Unused   Free memory unassigned",
+                    "schema": "node_memory_MemFree_bytes",
+                    "options": {
+                        "label": "SWAP Total",
+                        "order": 15,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_memory_Buffers_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Stack - Buffers Block device e g harddisk cache",
+                    "schema": "node_memory_Buffers_bytes",
+                    "options": {
+                        "label": "SWAP Total",
+                        "order": 16,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_memory_HardwareCorrupted_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Stack - Hardware Corrupted Amount of RAM that the kernel identified as corrupted not working",
+                    "schema": "node_memory_HardwareCorrupted_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 17,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "(node_memory_SwapTotal_bytes{instance=~'.*',job=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*',job=~'.*'})&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Stack - Swap Swap space used",
+                    "schema": "node_memory_SwapTotal_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 18,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_network_transmit_bytes_total{instance=~'.*',job=~'.*'}[5m])*8&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Network Traffic - Transmit",
+                    "schema": "node_network_transmit_bytes_total",
+                    "options": {
+                        "label": "",
+                        "order": 19,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_network_receive_bytes_total{instance=~'.*',job=~'.*'}[5m])*8&duration=1h}&step=5m",
+                    "chart_type": "line",
+                    "name": "Network Traffic - Receive",
+                    "schema": "node_network_receive_bytes_total",
+                    "options": {
+                        "label": "Network Traffic - Receive",
+                        "order": 20,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_reads_completed_total{instance=~'.*',job=~'.*',device=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "counter",
+                    "name": "Disk IOps - Reads completed",
+                    "schema": "node_disk_reads_completed_total",
+                    "options": {
+                        "label": "",
+                        "order": 21,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_filesystem_size_bytes{instance=~'.*',job=~'.*',device!~'rootfs'} - node_filesystem_avail_bytes{instance=~'.*',job=~'.*',device!~'rootfs'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Disk Space Used",
+                    "schema": "node_filesystem_size_bytes",
+                    "options": {
+                        "label": "Disk Space Used",
+                        "order": 22,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "mountpoint",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_read_bytes_total{instance=~'.*',job=~'.*',device=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "I/O Usage Read / Write - Successfully read bytes",
+                    "schema": "node_disk_read_bytes_total",
+                    "options": {
+                        "label": "SWAP Total",
+                        "order": 23,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_writes_completed_total{instance=~'.*',job=~'.*',device=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Disk IOps - Writes completed",
+                    "schema": "node_disk_writes_completed_total",
+                    "options": {
+                        "label": "",
+                        "order": 24,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_io_time_seconds_total{instance=~'.*',job=~'.*',device=~'.*'} [5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "I/O Utilization",
+                    "schema": "node_disk_io_time_seconds_total",
+                    "options": {
+                        "label": "",
+                        "order": 25,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_written_bytes_total{instance=~'.*',job=~'.*',device=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "I/O Usage Read / Write - Successfully written bytes",
+                    "schema": "node_disk_written_bytes_total",
+                    "options": {
+                        "label": "SWAP Total",
+                        "order": 26,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "hostname",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                }
+            ]
+        },
+        {
+            "key": "Memory Vmstat",
+            "title": "Memory Vmstat",
+            "type": "metrics",
+            "order": "3",
+            "queriesList": [
+                {
+                    "query": "rate(node_vmstat_pgpgin{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Pages In / Out - Pagesin   Page in operations",
+                    "schema": "node_vmstat_pgpgin",
+                    "options": {
+                        "label": "",
+                        "order": 1,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_vmstat_pgpgout{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Pages In / Out - Pagesout Page out operations",
+                    "schema": "node_vmstat_pgpgout",
+                    "options": {
+                        "label": "",
+                        "upperLimit": "",
+                        "order": 2,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "description": "",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_vmstat_pswpin{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Pages Swap In / Out - Pswpin Pages swapped in",
+                    "schema": "node_vmstat_pswpin",
+                    "options": {
+                        "label": "",
+                        "order": 3,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_vmstat_pswpout{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Pages Swap In / Out - Pswpout Pages swapped out",
+                    "schema": "node_vmstat_pswpout",
+                    "options": {
+                        "label": "",
+                        "order": 4,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_vmstat_pgfault{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Page Faults - Pgfault Page major and minor fault operations",
+                    "schema": "node_vmstat_pgfault",
+                    "options": {
+                        "label": "",
+                        "order": 5,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_vmstat_pgmajfault{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Page Faults - Pgmajfault Major page fault operations",
+                    "schema": "node_vmstat_pgmajfault",
+                    "options": {
+                        "label": "percent",
+                        "order": 6,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_vmstat_pgfault{instance=~'.*',job=~'.*'}[5m])  - rate(node_vmstat_pgmajfault{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Memory Page Faults - Pgminfault Minor page fault operations",
+                    "schema": "node_vmstat_pgfault",
+                    "options": {
+                        "label": "",
+                        "order": 8,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_vmstat_oom_kill{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "OOM Killer - oom killer invocations",
+                    "schema": "node_memory_MemTotal_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 9,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                }
+            ]
+        },
+        {
+            "key": "System Processes",
+            "title": "System Processes",
+            "type": "metrics",
+            "order": "3",
+            "queriesList": [
+                {
+                    "query": "node_procs_blocked{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Processes Status - Processes blocked waiting for I O to complete",
+                    "schema": "node_procs_blocked",
+                    "options": {
+                        "label": "",
+                        "order": 1,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_procs_running{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Processes Status - Processes in runnable state",
+                    "schema": "node_procs_running",
+                    "options": {
+                        "label": "",
+                        "upperLimit": "",
+                        "order": 2,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "description": "",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_processes_state{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Processes State",
+                    "schema": "node_processes_state",
+                    "options": {
+                        "label": "",
+                        "order": 3,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_forks_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Processes Forks - Processes forks second",
+                    "schema": "node_forks_total",
+                    "options": {
+                        "label": "",
+                        "order": 4,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(process_virtual_memory_bytes{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Processes Memory - Processes virtual memory size in bytes",
+                    "schema": "process_virtual_memory_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 5,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "process_resident_memory_max_bytes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Processes Memory - Maximum amount of virtual memory available in bytes",
+                    "schema": "process_resident_memory_max_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 6,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(process_virtual_memory_bytes{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Processes Memory - Processes virtual memory size in bytes",
+                    "schema": "process_virtual_memory_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 8,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(process_virtual_memory_max_bytes{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Processes Memory - Maximum amount of virtual memory available in bytes",
+                    "schema": "process_virtual_memory_max_bytes",
+                    "options": {
+                        "label": "",
+                        "order": 9,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_processes_pids{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Processes Memory - Maximum amount of virtual memory available in bytes",
+                    "schema": "node_processes_pids",
+                    "options": {
+                        "label": "",
+                        "order": 10,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_processes_max_processes{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "PIDs Number and Limit - PIDs limit",
+                    "schema": "node_processes_max_processes",
+                    "options": {
+                        "label": "",
+                        "order": 11,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_schedstat_running_seconds_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Process schedule stats Running / Waiting - CPU seconds spent running a process",
+                    "schema": "node_schedstat_running_seconds_total",
+                    "options": {
+                        "label": "",
+                        "order": 12,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_schedstat_waiting_seconds_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Process schedule stats Running / Waiting - CPU seconds spent by processing waiting for this CPU",
+                    "schema": "node_schedstat_waiting_seconds_total",
+                    "options": {
+                        "label": "",
+                        "order": 13,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_processes_threads{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Threads Number and Limit - Allocated threads",
+                    "schema": "node_processes_threads",
+                    "options": {
+                        "label": "",
+                        "order": 14,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_processes_max_threads{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Threads Number and Limit - Threads limit",
+                    "schema": "node_processes_max_threads",
+                    "options": {
+                        "label": "",
+                        "order": 15,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                }
+            ]
+        },
+        {
+            "key": "Hardware Misc",
+            "title": "Hardware Misc",
+            "type": "metrics",
+            "order": "3",
+            "queriesList": [
+                {
+                    "query": "node_hwmon_temp_celsius{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Hardware temperature monitor - temp",
+                    "schema": "node_hwmon_temp_celsius",
+                    "options": {
+                        "label": "",
+                        "order": 1,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_hwmon_temp_crit_alarm_celsius{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Hardware temperature monitor - Critical Alarm",
+                    "schema": "node_hwmon_temp_crit_alarm_celsius",
+                    "options": {
+                        "label": "",
+                        "upperLimit": "",
+                        "order": 2,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "description": "",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_hwmon_temp_crit_celsius{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Hardware temperature monitor - Critical",
+                    "schema": "node_hwmon_temp_crit_celsius",
+                    "options": {
+                        "label": "",
+                        "order": 3,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_hwmon_temp_crit_hyst_celsius{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Hardware temperature monitor - Critical Historical",
+                    "schema": "node_hwmon_temp_crit_hyst_celsius",
+                    "options": {
+                        "label": "",
+                        "order": 4,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_hwmon_temp_max_celsius{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Hardware temperature monitor - Max",
+                    "schema": "node_hwmon_temp_max_celsius",
+                    "options": {
+                        "label": "",
+                        "order": 5,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_cooling_device_cur_state{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Throttle cooling device - Current in",
+                    "schema": "node_cooling_device_cur_state",
+                    "options": {
+                        "label": "",
+                        "order": 6,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_cooling_device_max_state{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Throttle cooling device - Max in",
+                    "schema": "node_cooling_device_max_state",
+                    "options": {
+                        "label": "",
+                        "order": 7,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_power_supply_online{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Power supply - online",
+                    "schema": "node_power_supply_online",
+                    "options": {
+                        "label": "",
+                        "order": 8,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                }
+            ]
+        },
+        {
+            "key": "Storage Disk",
+            "title": "Storage Disk",
+            "type": "metrics",
+            "order": "3",
+            "queriesList": [
+                {
+                    "query": "rate(node_disk_reads_completed_total{instance=~'.*',job=~'.*'}[5m])&&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Disk IOps Completed - Reads completed  ",
+                    "schema": "node_disk_reads_completed_total",
+                    "options": {
+                        "label": "",
+                        "order": 1,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_writes_completed_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Disk IOps Completed - Writes completed",
+                    "schema": "node_disk_writes_completed_total",
+                    "options": {
+                        "label": "",
+                        "upperLimit": "",
+                        "order": 2,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "description": "",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_written_bytes_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Disk R/W Data - Written bytes",
+                    "schema": "node_disk_written_bytes_total",
+                    "options": {
+                        "label": "",
+                        "order": 3,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_read_bytes_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Disk R/W Data - Read bytes",
+                    "schema": "node_disk_read_bytes_total",
+                    "options": {
+                        "label": "",
+                        "order": 4,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_read_time_seconds_total{instance=~'.*',job=~'.*'}[5m]) / rate(node_disk_reads_completed_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Disk Average Wait Time - Read wait time avg",
+                    "schema": "node_disk_read_time_seconds_total",
+                    "options": {
+                        "label": "",
+                        "order": 5,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_write_time_seconds_total{instance=~'.*',job=~'.*'}[5m]) / rate(node_disk_writes_completed_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Disk Average Wait Time - Write wait time avg",
+                    "schema": "node_disk_write_time_seconds_total",
+                    "options": {
+                        "label": "",
+                        "order": 6,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_io_time_weighted_seconds_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Average Queue Size",
+                    "schema": "node_disk_io_time_weighted_seconds_total",
+                    "options": {
+                        "label": "",
+                        "order": 7,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_reads_merged_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Disk R/W Merged - Read merged",
+                    "schema": "node_disk_reads_merged_total",
+                    "options": {
+                        "label": "",
+                        "order": 8,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_writes_merged_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Disk R/W Merged - Write merged",
+                    "schema": "node_disk_writes_merged_total",
+                    "options": {
+                        "label": "",
+                        "order": 9,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_io_time_seconds_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Time Spent Doing I/Os - IO",
+                    "schema": "node_disk_io_time_seconds_total",
+                    "options": {
+                        "label": "",
+                        "order": 10,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "Bytes/sec",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_discard_time_seconds_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Time Spent Doing I/Os - discard",
+                    "schema": "node_disk_discard_time_seconds_total",
+                    "options": {
+                        "label": "",
+                        "order": 11,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "node_disk_io_now{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Instantaneous Queue Size - IO now",
+                    "schema": "node_disk_io_now",
+                    "options": {
+                        "label": "",
+                        "order": 12,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_discards_completed_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Disk IOps Discards completed / merged - Discards completed",
+                    "schema": "node_disk_discards_completed_total",
+                    "options": {
+                        "label": "",
+                        "order": 13,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                },
+                {
+                    "query": "rate(node_disk_discards_merged_total{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
+                    "chart_type": "line",
+                    "name": "Disk IOps Discards completed / merged - Discards merged",
+                    "schema": "node_disk_discards_merged_total",
+                    "options": {
+                        "label": "",
+                        "order": 14,
+                        "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "device",
+                            "errorColumn": ""
+                        }
+                    },
+                    "data_source_name": "Apica Monitoring"
+                }
+            ]
+        }
     ]
-  }
+}
