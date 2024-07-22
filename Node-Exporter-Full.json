@@ -949,7 +949,7 @@
             "key": "Memory Vmstat",
             "title": "Memory Vmstat",
             "type": "metrics",
-            "order": "3",
+            "order": "5",
             "queriesList": [
                 {
                     "query": "rate(node_vmstat_pgpgin{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
@@ -1159,7 +1159,7 @@
             "key": "System Processes",
             "title": "System Processes",
             "type": "metrics",
-            "order": "3",
+            "order": "7",
             "queriesList": [
                 {
                     "query": "node_procs_blocked{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
@@ -1519,7 +1519,7 @@
             "key": "Hardware Misc",
             "title": "Hardware Misc",
             "type": "metrics",
-            "order": "3",
+            "order": "9",
             "queriesList": [
                 {
                     "query": "node_hwmon_temp_celsius{instance=~'.*',job=~'.*'}&duration=1h&step=5m",
@@ -1729,7 +1729,7 @@
             "key": "Storage Disk",
             "title": "Storage Disk",
             "type": "metrics",
-            "order": "3",
+            "order": "11",
             "queriesList": [
                 {
                     "query": "rate(node_disk_reads_completed_total{instance=~'.*',job=~'.*'}[5m])&&duration=1h&step=5m",
