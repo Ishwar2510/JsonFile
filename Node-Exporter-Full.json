@@ -87,7 +87,7 @@
                     "query": "100 - ((node_memory_MemAvailable_bytes{instance=~'.*',job=~'.*'} * 100) / node_memory_MemTotal_bytes{instance=~'.*',job=~'.*'})&duration=1h&step=5m",
                     "chart_type": "gauge",
                     "name": "Ram Used",
-                    "schema": "kube_node_info",
+                    "schema": "node_memory_MemAvailable_bytes",
                     "options": {
                         "label": "Count",
                         "order": 4,
@@ -187,7 +187,7 @@
                     "query": "count(count(node_cpu_seconds_total{instance=~'.*',job=~'.*'}) by (cpu))&duration=1h&step=5m",
                     "chart_type": "counter",
                     "name": "Cpu cores",
-                    "schema": "node_filesystem_avail_bytes",
+                    "schema": "node_cpu_seconds_total",
                     "options": {
                         "label": "Cpu Cores",
                         "order": 9,
@@ -1132,7 +1132,7 @@
                     "query": "rate(node_vmstat_oom_kill{instance=~'.*',job=~'.*'}[5m])&duration=1h&step=5m",
                     "chart_type": "line",
                     "name": "OOM Killer - oom killer invocations",
-                    "schema": "node_memory_MemTotal_bytes",
+                    "schema": "node_vmstat_oom_kill",
                     "options": {
                         "label": "",
                         "order": 9,
