@@ -1872,7 +1872,7 @@
         "dateTimeRange": true,
         "dropdowns": [
             {
-                "atoms": {
+                "atom": {
                     "query": "sum by (hostname) (target_info{ostype=~'linux|windows',runtime=~'.*'})",
                     "name": "Atom Selection",
                     "data_source_name": "Apica Monitoring",
@@ -1882,17 +1882,7 @@
                 }
             },
             {
-                "runtimes": {
-                    "query": "sum by (runtime) (target_info{ostype=~'linux|windows'})",
-                    "name": "Runtime selection",
-                    "data_source_name": "Apica Monitoring",
-                    "options":{
-                        "replace_label":"runtime"
-                    }
-                }
-            },
-            {
-                "runtimes2": {
+                "runtime": {
                     "query": "sum by (runtime) (target_info{ostype=~'linux|windows'})",
                     "name": "Runtime selection",
                     "data_source_name": "Apica Monitoring",
@@ -1901,6 +1891,7 @@
                     }
                 }
             }
+            
         ]
     }
 }
