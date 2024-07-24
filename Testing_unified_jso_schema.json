@@ -1892,7 +1892,7 @@
                 }
             },
              {
-                "runtimes": {
+                "value": {
                     "query": "sum by (runtime) (target_info{ostype=~'linux|windows'})",
                     "name": "Runtime selection",
                     "data_source_name": "Apica Monitoring",
