@@ -23,6 +23,10 @@
                     "options": {
                         "description": "Pressure - CPU query",
                         "order": 1,
+                         "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
                         "plot": {
                             "errorColumn": "",
                             "groupBy": "",
@@ -45,6 +49,10 @@
                     "options": {
                         "description": "Pressure - Mem query",
                         "order": 2,
+                         "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
                         "plot": {
                             "errorColumn": "",
                             "groupBy": "",
@@ -67,6 +75,10 @@
                     "options": {
                         "description": "Pressure - I O query",
                         "order": 3,
+                         "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
                         "plot": {
                             "errorColumn": "",
                             "groupBy": "",
@@ -89,6 +101,10 @@
                     "options": {
                         "description": "CPU Busy query",
                         "order": 4,
+                         "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
                         "plot": {
                             "errorColumn": "",
                             "groupBy": "",
@@ -111,6 +127,10 @@
                     "options": {
                         "description": "Sys Load query",
                         "order": 5,
+                         "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
                         "plot": {
                             "errorColumn": "",
                             "groupBy": "",
@@ -133,6 +153,10 @@
                     "options": {
                         "description": "RAM Used query",
                         "order": 6,
+                         "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
                         "plot": {
                             "errorColumn": "",
                             "groupBy": "",
@@ -155,6 +179,10 @@
                     "options": {
                         "description": "RAM Used query",
                         "order": 7,
+                         "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
                         "plot": {
                             "errorColumn": "",
                             "groupBy": "",
@@ -177,6 +205,10 @@
                     "options": {
                         "description": "SWAP Used query",
                         "order": 8,
+                         "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
                         "plot": {
                             "errorColumn": "",
                             "groupBy": "",
@@ -199,6 +231,10 @@
                     "options": {
                         "description": "Root FS Used query",
                         "order": 9,
+                         "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
                         "plot": {
                             "errorColumn": "",
                             "groupBy": "",
