@@ -1,7 +1,32 @@
 {
     "header": {
         "dateTimeRange": true,
-        "dropdowns": []
+        "dropdowns": [
+            {
+                "instance": {
+                    "query": "sum by (instance) (node_disk_info{})",
+                    "name": "Atom Selection",
+                    "data_source_name": "Apica Monitoring",
+                
+                }
+            },
+            {
+                "device": {
+                    "query": "sum by (device) (node_disk_info{instance=~'.*'})",
+                    "name": "Atom Selection",
+                    "data_source_name": "Apica Monitoring",
+                    
+                }
+            },
+             {
+                "major": {
+                    "query": "sum by (major) (node_disk_info{})",
+                    "name": "Atom Selection",
+                    "data_source_name": "Apica Monitoring",
+                    
+                }
+            }
+        ]
     },
     "tabs": [
         {
