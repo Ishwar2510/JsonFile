@@ -22,18 +22,16 @@
                 "major": {
                     "query": "sum by (major) (node_disk_info{})",
                     "name": "Atom Selection",
-                    "data_source_name": "Apica Monitoring",
-                    "query_type": "input"
+                    "data_source_name": "Apica Monitoring"
                 }
             },
             {
                 "minor": {
                     "query": "",
                     "name": "Atom Selection",
-                    "data_source_name": "Apica Monitoring"
-                    
-                    
-                }
+                    "data_source_name": "Apica Monitoring",
+                     "query_type": "input"
+                  }
             }
             
         ]
