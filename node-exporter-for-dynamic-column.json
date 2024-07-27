@@ -15,7 +15,6 @@
                     "query": "sum by (device) (node_disk_info{instance=~'.*'})",
                     "name": "Atom Selection",
                     "data_source_name": "Apica Monitoring"
-                    
                 }
             },
              {
@@ -33,7 +32,6 @@
                      "query_type": "input"
                   }
             }
-            
         ]
     },
     "tabs": [
