@@ -112,6 +112,10 @@
                     "options": {
                         "description": "CPU Busy query",
                         "order": 4,
+                          "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
                         "plot": {
                              "zone": {
                             "alert": 60,
