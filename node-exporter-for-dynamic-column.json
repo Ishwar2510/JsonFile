@@ -113,6 +113,10 @@
                         "description": "CPU Busy query",
                         "order": 4,
                         "plot": {
+                             "zone": {
+                            "alert": 60,
+                            "danger": 80
+                        },
                             "errorColumn": "",
                             "groupBy": "",
                             "x": "Timestamp",
