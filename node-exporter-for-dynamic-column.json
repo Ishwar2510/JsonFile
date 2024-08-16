@@ -62,7 +62,7 @@
                     "schema": ""
                 },
                 {
-                    "chart_type": "gauge",
+                    "chart_type": "size",
                     "data_source_name": "Apica Monitoring",
                     "name": "Pressure - Mem query",
                     "options": {
@@ -70,6 +70,7 @@
                         "order": 2,
                         "plot": {
                             "errorColumn": "",
+                            "datatype": "mb",
                             "groupBy": "",
                             "x": "Timestamp",
                             "xLabel": "Timestamp",
