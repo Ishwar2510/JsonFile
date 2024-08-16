@@ -84,7 +84,7 @@
                     "schema": ""
                 },
                 {
-                    "chart_type": "gauge",
+                    "chart_type": "datetime",
                     "data_source_name": "Apica Monitoring",
                     "name": "Pressure - I O query",
                     "options": {
@@ -102,11 +102,11 @@
                         },
                         "upperLimit": ""
                     },
-                    "query": "irate(node_pressure_io_waiting_seconds_total{}[1h])&duration=1h&step=5m",
+                    "query": "(time() - node_boot_time_seconds)",
                     "schema": ""
                 },
                 {
-                    "chart_type": "gauge",
+                    "chart_type": "status",
                     "data_source_name": "Apica Monitoring",
                     "name": "CPU Busy query",
                     "options": {
@@ -129,7 +129,7 @@
                         },
                         "upperLimit": ""
                     },
-                    "query": "100 * (1 - avg(rate(node_cpu_seconds_total{mode='idle'}[1h])))&duration=1h&step=5m",
+                    "query": "up{job='node'}",
                     "schema": ""
                 },
                 {
