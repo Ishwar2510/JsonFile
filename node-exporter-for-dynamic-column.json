@@ -134,7 +134,7 @@
                     "schema": ""
                 },
                 {
-                    "chart_type": "gauge",
+                    "chart_type": "stat",
                     "data_source_name": "Apica Monitoring",
                     "name": "Sys Load query",
                     "options": {
