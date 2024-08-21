@@ -8,28 +8,6 @@
           "name": "Atom Selection",
           "data_source_name": "Apica Monitoring"
         }
-      },
-      {
-        "device": {
-          "query": "sum by (device) (node_disk_info{instance=~'.*'})",
-          "name": "Atom Selection",
-          "data_source_name": "Apica Monitoring"
-        }
-      },
-      {
-        "major": {
-          "query": "sum by (major) (node_disk_info{})",
-          "name": "Atom Selection",
-          "data_source_name": "Apica Monitoring"
-        }
-      },
-      {
-        "minor": {
-          "query": "",
-          "name": "Atom Selection",
-          "data_source_name": "Apica Monitoring",
-          "query_type": "input"
-        }
       }
     ]
   },
@@ -57,7 +35,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_pressure_cpu_waiting_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_pressure_cpu_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_pressure_cpu_waiting_seconds_total"
         },
         {
@@ -80,7 +58,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_pressure_memory_waiting_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_pressure_memory_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_pressure_memory_waiting_seconds_total"
         },
         {
@@ -102,8 +80,8 @@
             },
             "upperLimit": ""
           },
-          "query": "(time() - node_boot_time_seconds)",
-          "schema": "time"
+          "query": "(time() - node_boot_time_seconds{instance=~'.*'})",
+          "schema": "node_boot_time_seconds"
         },
         {
           "chart_type": "status",
@@ -128,7 +106,7 @@
             },
             "upperLimit": ""
           },
-          "query": "up{job='node',instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}",
+          "query": "up{job='node',instance=~'.*'}",
           "schema": "up"
         },
         {
@@ -150,7 +128,7 @@
             },
             "upperLimit": ""
           },
-          "query": "scalar(node_load1{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) * 100 / count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu))&duration=1h&step=5m",
+          "query": "scalar(node_load1{instance=~'.*'}) * 100 / count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu))&duration=1h&step=5m",
           "schema": "node_load1"
         },
         {
@@ -172,7 +150,7 @@
             },
             "upperLimit": ""
           },
-          "query": "((node_memory_MemTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_memory_MemFree_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) / node_memory_MemTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) * 100&duration=1h&step=5m",
+          "query": "((node_memory_MemTotal_bytes{instance=~'.*'} - node_memory_MemFree_bytes{instance=~'.*'}) / node_memory_MemTotal_bytes{instance=~'.*'}) * 100&duration=1h&step=5m",
           "schema": "node_memory_MemTotal_bytes"
         },
         {
@@ -194,7 +172,7 @@
             },
             "upperLimit": ""
           },
-          "query": "(1 - (node_memory_MemAvailable_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} / node_memory_MemTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'})) * 100&duration=1h&step=5m",
+          "query": "(1 - (node_memory_MemAvailable_bytes{instance=~'.*'} / node_memory_MemTotal_bytes{instance=~'.*'})) * 100&duration=1h&step=5m",
           "schema": "node_memory_MemAvailable_bytes"
         },
         {
@@ -216,7 +194,7 @@
             },
             "upperLimit": ""
           },
-          "query": "((node_memory_SwapTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) / (node_memory_SwapTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'})) * 100&duration=1h&step=5m",
+          "query": "((node_memory_SwapTotal_bytes{instance=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*'}) / (node_memory_SwapTotal_bytes{instance=~'.*'})) * 100&duration=1h&step=5m",
           "schema": "node_memory_SwapTotal_bytes"
         },
         {
@@ -238,7 +216,7 @@
             },
             "upperLimit": ""
           },
-          "query": "100 - ((node_filesystem_avail_bytes{fstype!='rootfs',instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} * 100) / node_filesystem_size_bytes{fstype!='rootfs',instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'})&duration=1h&step=5m",
+          "query": "100 - ((node_filesystem_avail_bytes{fstype!='rootfs',instance=~'.*'} * 100) / node_filesystem_size_bytes{fstype!='rootfs',instance=~'.*'})&duration=1h&step=5m",
           "schema": "node_filesystem_avail_bytes"
         },
         {
@@ -261,7 +239,7 @@
             },
             "upperLimit": ""
           },
-          "query": "count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu))&duration=1h&step=5m",
+          "query": "count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -284,7 +262,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_time_seconds{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_boot_time_seconds{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_time_seconds{instance=~'.*'} - node_boot_time_seconds{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_time_seconds"
         },
         {
@@ -307,7 +285,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_filesystem_size_bytes{fstype!='rootfs',instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_filesystem_size_bytes{fstype!='rootfs',instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_filesystem_size_bytes"
         },
         {
@@ -330,7 +308,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_MemTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_MemTotal_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_MemTotal_bytes"
         },
         {
@@ -353,7 +331,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_SwapTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_SwapTotal_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_SwapTotal_bytes"
         }
       ],
@@ -385,7 +363,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -407,7 +385,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -429,7 +407,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -451,7 +429,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -473,7 +451,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -495,7 +473,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -517,7 +495,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_MemTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_MemTotal_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_MemTotal_bytes"
         },
         {
@@ -539,7 +517,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_MemTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_memory_MemFree_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - (node_memory_Cached_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} + node_memory_Buffers_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} + node_memory_SReclaimable_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'})&duration=1h&step=5m",
+          "query": "node_memory_MemTotal_bytes{instance=~'.*'} - node_memory_MemFree_bytes{instance=~'.*'} - (node_memory_Cached_bytes{instance=~'.*'} + node_memory_Buffers_bytes{instance=~'.*'} + node_memory_SReclaimable_bytes{instance=~'.*'})&duration=1h&step=5m",
           "schema": "node_memory_MemTotal_bytes"
         },
         {
@@ -561,7 +539,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Cached_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} + node_memory_Buffers_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} + node_memory_SReclaimable_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Cached_bytes{instance=~'.*'} + node_memory_Buffers_bytes{instance=~'.*'} + node_memory_SReclaimable_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Cached_bytes"
         },
         {
@@ -583,7 +561,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_MemFree_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_MemFree_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_MemFree_bytes"
         },
         {
@@ -605,7 +583,7 @@
             },
             "upperLimit": ""
           },
-          "query": "(node_memory_SwapTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'})&duration=1h&step=5m",
+          "query": "(node_memory_SwapTotal_bytes{instance=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*'})&duration=1h&step=5m",
           "schema": "node_memory_SwapTotal_bytes"
         },
         {
@@ -627,7 +605,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_receive_bytes_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])*8&duration=1h&step=5m",
+          "query": "irate(node_network_receive_bytes_total{instance=~'.*'}[1h])*8&duration=1h&step=5m",
           "schema": "node_network_receive_bytes_total"
         },
         {
@@ -649,7 +627,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_transmit_bytes_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])*8&duration=1h&step=5m",
+          "query": "irate(node_network_transmit_bytes_total{instance=~'.*'}[1h])*8&duration=1h&step=5m",
           "schema": "node_network_transmit_bytes_total"
         },
         {
@@ -671,7 +649,7 @@
             },
             "upperLimit": ""
           },
-          "query": "100 - ((node_filesystem_avail_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} * 100) / node_filesystem_size_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'})&duration=1h&step=5m",
+          "query": "100 - ((node_filesystem_avail_bytes{instance=~'.*'} * 100) / node_filesystem_size_bytes{instance=~'.*'})&duration=1h&step=5m",
           "schema": "node_filesystem_avail_bytes"
         }
       ]
@@ -699,7 +677,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -721,7 +699,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -743,7 +721,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -765,7 +743,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum by(instance) (irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum by(instance) (irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -787,7 +765,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -809,7 +787,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -831,7 +809,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -853,7 +831,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
           "schema": "node_cpu_seconds_total"
         },
         {
@@ -875,7 +853,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_MemTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_memory_MemFree_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_memory_Buffers_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_memory_Cached_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_memory_Slab_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_memory_PageTables_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_memory_SwapCached_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_MemTotal_bytes{instance=~'.*'} - node_memory_MemFree_bytes{instance=~'.*'} - node_memory_Buffers_bytes{instance=~'.*'} - node_memory_Cached_bytes{instance=~'.*'} - node_memory_Slab_bytes{instance=~'.*'} - node_memory_PageTables_bytes{instance=~'.*'} - node_memory_SwapCached_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_MemTotal_bytes"
         },
         {
@@ -897,7 +875,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_PageTables_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_PageTables_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_PageTables_bytes"
         },
         {
@@ -919,7 +897,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_SwapCached_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_SwapCached_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_SwapCached_bytes"
         },
         {
@@ -941,7 +919,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Slab_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Slab_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Slab_bytes"
         },
         {
@@ -963,7 +941,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Cached_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Cached_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Cached_bytes"
         },
         {
@@ -985,7 +963,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Buffers_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Buffers_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Buffers_bytes"
         },
         {
@@ -1007,7 +985,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_MemFree_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_MemFree_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_MemFree_bytes"
         },
         {
@@ -1029,7 +1007,7 @@
             },
             "upperLimit": ""
           },
-          "query": "(node_memory_SwapTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'})&duration=1h&step=5m",
+          "query": "(node_memory_SwapTotal_bytes{instance=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*'})&duration=1h&step=5m",
           "schema": "node_memory_SwapTotal_bytes"
         },
         {
@@ -1051,7 +1029,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_HardwareCorrupted_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_HardwareCorrupted_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_HardwareCorrupted_bytes"
         },
         {
@@ -1073,7 +1051,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_receive_bytes_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])*8&duration=1h&step=5m",
+          "query": "irate(node_network_receive_bytes_total{instance=~'.*'}[1h])*8&duration=1h&step=5m",
           "schema": "node_network_receive_bytes_total"
         },
         {
@@ -1095,7 +1073,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_transmit_bytes_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])*8&duration=1h&step=5m",
+          "query": "irate(node_network_transmit_bytes_total{instance=~'.*'}[1h])*8&duration=1h&step=5m",
           "schema": "node_network_transmit_bytes_total"
         },
         {
@@ -1117,7 +1095,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_filesystem_size_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} - node_filesystem_avail_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_filesystem_size_bytes{instance=~'.*'} - node_filesystem_avail_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_filesystem_size_bytes"
         },
         {
@@ -1139,7 +1117,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_reads_completed_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_reads_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_reads_completed_total"
         },
         {
@@ -1161,7 +1139,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_writes_completed_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_writes_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_writes_completed_total"
         },
         {
@@ -1183,7 +1161,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_read_bytes_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_read_bytes_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_read_bytes_total"
         },
         {
@@ -1205,7 +1183,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_written_bytes_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_written_bytes_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_written_bytes_total"
         },
         {
@@ -1227,7 +1205,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_io_time_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} [1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_io_time_seconds_total{instance=~'.*'} [1h])&duration=1h&step=5m",
           "schema": "node_disk_io_time_seconds_total"
         },
         {
@@ -1249,7 +1227,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum by(instance) (irate(node_cpu_guest_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1m])))&duration=1h&step=5m",
+          "query": "sum by(instance) (irate(node_cpu_guest_seconds_total{instance=~'.*'}[1m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{instance=~'.*'}[1m])))&duration=1h&step=5m",
           "schema": "node_cpu_guest_seconds_total"
         },
         {
@@ -1271,7 +1249,7 @@
             },
             "upperLimit": ""
           },
-          "query": "sum by(instance) (irate(node_cpu_guest_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1m])))&duration=1h&step=5m",
+          "query": "sum by(instance) (irate(node_cpu_guest_seconds_total{instance=~'.*'}[1m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{instance=~'.*'}[1m])))&duration=1h&step=5m",
           "schema": "node_cpu_guest_seconds_total"
         }
       ],
@@ -1301,7 +1279,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Inactive_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Inactive_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Inactive_bytes"
         },
         {
@@ -1323,7 +1301,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Active_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Active_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Active_bytes"
         },
         {
@@ -1345,7 +1323,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Committed_AS_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Committed_AS_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Committed_AS_bytes"
         },
         {
@@ -1367,7 +1345,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_CommitLimit_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_CommitLimit_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_CommitLimit_bytes"
         },
         {
@@ -1389,7 +1367,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Inactive_file_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Inactive_file_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Inactive_file_bytes"
         },
         {
@@ -1411,7 +1389,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Inactive_anon_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Inactive_anon_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Inactive_anon_bytes"
         },
         {
@@ -1433,7 +1411,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Active_file_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Active_file_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Active_file_bytes"
         },
         {
@@ -1455,7 +1433,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Active_anon_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Active_anon_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Active_anon_bytes"
         },
         {
@@ -1477,7 +1455,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Writeback_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Writeback_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Writeback_bytes"
         },
         {
@@ -1499,7 +1477,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_WritebackTmp_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_WritebackTmp_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_WritebackTmp_bytes"
         },
         {
@@ -1521,7 +1499,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Dirty_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Dirty_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Dirty_bytes"
         },
         {
@@ -1543,7 +1521,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Mapped_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Mapped_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Mapped_bytes"
         },
         {
@@ -1565,7 +1543,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Shmem_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Shmem_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Shmem_bytes"
         },
         {
@@ -1587,7 +1565,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_ShmemHugePages_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_ShmemHugePages_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_ShmemHugePages_bytes"
         },
         {
@@ -1609,7 +1587,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_ShmemPmdMapped_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_ShmemPmdMapped_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_ShmemPmdMapped_bytes"
         },
         {
@@ -1631,7 +1609,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_SUnreclaim_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_SUnreclaim_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_SUnreclaim_bytes"
         },
         {
@@ -1653,7 +1631,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_SReclaimable_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_SReclaimable_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_SReclaimable_bytes"
         },
         {
@@ -1675,7 +1653,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_VmallocChunk_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_VmallocChunk_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_VmallocChunk_bytes"
         },
         {
@@ -1697,7 +1675,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_VmallocTotal_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_VmallocTotal_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_VmallocTotal_bytes"
         },
         {
@@ -1719,7 +1697,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_VmallocUsed_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_VmallocUsed_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_VmallocUsed_bytes"
         },
         {
@@ -1741,7 +1719,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Bounce_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Bounce_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Bounce_bytes"
         },
         {
@@ -1763,7 +1741,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_AnonHugePages_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_AnonHugePages_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_AnonHugePages_bytes"
         },
         {
@@ -1785,7 +1763,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_AnonPages_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_AnonPages_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_AnonPages_bytes"
         },
         {
@@ -1807,7 +1785,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_KernelStack_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_KernelStack_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_KernelStack_bytes"
         },
         {
@@ -1829,7 +1807,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Percpu_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Percpu_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Percpu_bytes"
         },
         {
@@ -1851,7 +1829,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_HugePages_Free{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_HugePages_Free{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_HugePages_Free"
         },
         {
@@ -1873,7 +1851,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_HugePages_Rsvd{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_HugePages_Rsvd{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_HugePages_Rsvd"
         },
         {
@@ -1895,7 +1873,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_HugePages_Surp{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_HugePages_Surp{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_HugePages_Surp"
         },
         {
@@ -1917,7 +1895,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_HugePages_Total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_HugePages_Total{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_HugePages_Total"
         },
         {
@@ -1939,7 +1917,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Hugepagesize_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Hugepagesize_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Hugepagesize_bytes"
         },
         {
@@ -1961,7 +1939,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_DirectMap1G_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_DirectMap1G_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_DirectMap1G_bytes"
         },
         {
@@ -1983,7 +1961,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_DirectMap2M_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_DirectMap2M_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_DirectMap2M_bytes"
         },
         {
@@ -2005,7 +1983,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_DirectMap4k_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_DirectMap4k_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_DirectMap4k_bytes"
         },
         {
@@ -2027,7 +2005,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Unevictable_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Unevictable_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Unevictable_bytes"
         },
         {
@@ -2049,7 +2027,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_Mlocked_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_Mlocked_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_Mlocked_bytes"
         },
         {
@@ -2071,7 +2049,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_memory_NFS_Unstable_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_memory_NFS_Unstable_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_memory_NFS_Unstable_bytes"
         }
       ],
@@ -2101,7 +2079,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_vmstat_pgpgin{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_vmstat_pgpgin{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_vmstat_pgpgin"
         },
         {
@@ -2123,7 +2101,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_vmstat_pgpgout{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_vmstat_pgpgout{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_vmstat_pgpgout"
         },
         {
@@ -2145,7 +2123,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_vmstat_pswpin{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_vmstat_pswpin{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_vmstat_pswpin"
         },
         {
@@ -2167,7 +2145,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_vmstat_pswpout{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_vmstat_pswpout{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_vmstat_pswpout"
         },
         {
@@ -2189,7 +2167,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_vmstat_pgfault{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_vmstat_pgfault{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_vmstat_pgfault"
         },
         {
@@ -2211,7 +2189,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_vmstat_pgmajfault{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_vmstat_pgmajfault{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_vmstat_pgmajfault"
         },
         {
@@ -2233,7 +2211,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_vmstat_pgfault{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])  - irate(node_vmstat_pgmajfault{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_vmstat_pgfault{instance=~'.*'}[1h])  - irate(node_vmstat_pgmajfault{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_vmstat_pgfault"
         },
         {
@@ -2255,7 +2233,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_vmstat_oom_kill{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_vmstat_oom_kill{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_vmstat_oom_kill"
         }
       ],
@@ -2285,7 +2263,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_timex_estimated_error_seconds{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_timex_estimated_error_seconds{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_timex_estimated_error_seconds"
         },
         {
@@ -2307,7 +2285,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_timex_offset_seconds{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_timex_offset_seconds{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_timex_offset_seconds"
         },
         {
@@ -2329,7 +2307,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_timex_maxerror_seconds{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_timex_maxerror_seconds{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_timex_maxerror_seconds"
         },
         {
@@ -2351,7 +2329,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_timex_loop_time_constant{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_timex_loop_time_constant{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_timex_loop_time_constant"
         },
         {
@@ -2373,7 +2351,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_timex_sync_status{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_timex_sync_status{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_timex_sync_status"
         },
         {
@@ -2395,7 +2373,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_timex_frequency_adjustment_ratio{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_timex_frequency_adjustment_ratio{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_timex_frequency_adjustment_ratio"
         },
         {
@@ -2417,7 +2395,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_timex_tick_seconds{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_timex_tick_seconds{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_timex_tick_seconds"
         },
         {
@@ -2439,7 +2417,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_timex_tai_offset_seconds{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_timex_tai_offset_seconds{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_timex_tai_offset_seconds"
         }
       ],
@@ -2469,7 +2447,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_procs_blocked{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_procs_blocked{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_procs_blocked"
         },
         {
@@ -2491,7 +2469,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_procs_running{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_procs_running{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_procs_running"
         },
         {
@@ -2513,7 +2491,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_processes_state{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_processes_state{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_processes_state"
         },
         {
@@ -2535,7 +2513,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_forks_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_forks_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_forks_total"
         },
         {
@@ -2557,7 +2535,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(process_virtual_memory_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(process_virtual_memory_bytes{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "process_virtual_memory_bytes"
         },
         {
@@ -2579,7 +2557,7 @@
             },
             "upperLimit": ""
           },
-          "query": "process_resident_memory_max_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "process_resident_memory_max_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "process_resident_memory_max_bytes"
         },
         {
@@ -2601,7 +2579,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(process_virtual_memory_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(process_virtual_memory_bytes{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "process_virtual_memory_bytes"
         },
         {
@@ -2623,7 +2601,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(process_virtual_memory_max_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(process_virtual_memory_max_bytes{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "process_virtual_memory_max_bytes"
         },
         {
@@ -2645,7 +2623,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_processes_pids{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_processes_pids{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_processes_pids"
         },
         {
@@ -2667,7 +2645,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_processes_max_processes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_processes_max_processes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_processes_max_processes"
         },
         {
@@ -2689,7 +2667,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_schedstat_running_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_schedstat_running_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_schedstat_running_seconds_total"
         },
         {
@@ -2711,7 +2689,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_schedstat_waiting_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_schedstat_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_schedstat_waiting_seconds_total"
         },
         {
@@ -2733,7 +2711,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_processes_threads{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_processes_threads{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_processes_threads"
         },
         {
@@ -2755,7 +2733,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_processes_max_threads{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_processes_max_threads{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_processes_max_threads"
         }
       ],
@@ -2785,7 +2763,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_context_switches_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_context_switches_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_context_switches_total"
         },
         {
@@ -2807,7 +2785,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_intr_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_intr_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_intr_total"
         },
         {
@@ -2829,7 +2807,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_load1{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_load1{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_load1"
         },
         {
@@ -2851,7 +2829,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_load5{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_load5{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_load5"
         },
         {
@@ -2873,7 +2851,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_load15{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_load15{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_load15"
         },
         {
@@ -2895,7 +2873,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_cpu_scaling_frequency_hertz{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_cpu_scaling_frequency_hertz{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_cpu_scaling_frequency_hertz"
         },
         {
@@ -2917,7 +2895,7 @@
             },
             "upperLimit": ""
           },
-          "query": "avg(node_cpu_scaling_frequency_max_hertz{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'})&duration=1h&step=5m",
+          "query": "avg(node_cpu_scaling_frequency_max_hertz{instance=~'.*'})&duration=1h&step=5m",
           "schema": "node_cpu_scaling_frequency_max_hertz"
         },
         {
@@ -2939,7 +2917,7 @@
             },
             "upperLimit": ""
           },
-          "query": "avg(node_cpu_scaling_frequency_min_hertz{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'})&duration=1h&step=5m",
+          "query": "avg(node_cpu_scaling_frequency_min_hertz{instance=~'.*'})&duration=1h&step=5m",
           "schema": "node_cpu_scaling_frequency_min_hertz"
         },
         {
@@ -2961,7 +2939,7 @@
             },
             "upperLimit": ""
           },
-          "query": "rate(node_pressure_cpu_waiting_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "rate(node_pressure_cpu_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_pressure_cpu_waiting_seconds_total"
         },
         {
@@ -2983,7 +2961,7 @@
             },
             "upperLimit": ""
           },
-          "query": "rate(node_pressure_memory_waiting_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "rate(node_pressure_memory_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_pressure_memory_waiting_seconds_total"
         },
         {
@@ -3005,7 +2983,7 @@
             },
             "upperLimit": ""
           },
-          "query": "rate(node_pressure_memory_stalled_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "rate(node_pressure_memory_stalled_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_pressure_memory_stalled_seconds_total"
         },
         {
@@ -3027,7 +3005,7 @@
             },
             "upperLimit": ""
           },
-          "query": "rate(node_pressure_io_waiting_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "rate(node_pressure_io_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_pressure_io_waiting_seconds_total"
         },
         {
@@ -3049,7 +3027,7 @@
             },
             "upperLimit": ""
           },
-          "query": "rate(node_pressure_io_stalled_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "rate(node_pressure_io_stalled_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_pressure_io_stalled_seconds_total"
         },
         {
@@ -3071,7 +3049,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_interrupts_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_interrupts_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_interrupts_total"
         },
         {
@@ -3093,7 +3071,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_schedstat_timeslices_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_schedstat_timeslices_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_schedstat_timeslices_total"
         },
         {
@@ -3115,7 +3093,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_entropy_available_bits{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_entropy_available_bits{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_entropy_available_bits"
         },
         {
@@ -3137,7 +3115,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(process_cpu_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(process_cpu_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "process_cpu_seconds_total"
         },
         {
@@ -3159,7 +3137,7 @@
             },
             "upperLimit": ""
           },
-          "query": "process_max_fds{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "process_max_fds{instance=~'.*'}&duration=1h&step=5m",
           "schema": "process_max_fds"
         },
         {
@@ -3181,7 +3159,7 @@
             },
             "upperLimit": ""
           },
-          "query": "process_open_fds{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "process_open_fds{instance=~'.*'}&duration=1h&step=5m",
           "schema": "process_open_fds"
         }
       ],
@@ -3211,7 +3189,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_hwmon_temp_celsius{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_hwmon_temp_celsius{instance=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_hwmon_temp_celsius"
         },
         {
@@ -3233,7 +3211,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_hwmon_temp_crit_alarm_celsius{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_hwmon_temp_crit_alarm_celsius{instance=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_hwmon_temp_crit_alarm_celsius"
         },
         {
@@ -3255,7 +3233,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_hwmon_temp_crit_celsius{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_hwmon_temp_crit_celsius{instance=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_hwmon_temp_crit_celsius"
         },
         {
@@ -3277,7 +3255,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_hwmon_temp_crit_hyst_celsius{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_hwmon_temp_crit_hyst_celsius{instance=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_hwmon_temp_crit_hyst_celsius"
         },
         {
@@ -3299,7 +3277,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_hwmon_temp_max_celsius{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_hwmon_temp_max_celsius{instance=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_hwmon_temp_max_celsius"
         },
         {
@@ -3321,7 +3299,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_cooling_device_cur_state{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_cooling_device_cur_state{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_cooling_device_cur_state"
         },
         {
@@ -3343,7 +3321,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_cooling_device_max_state{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_cooling_device_max_state{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_cooling_device_max_state"
         },
         {
@@ -3365,7 +3343,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_power_supply_online{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_power_supply_online{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_power_supply_online"
         }
       ],
@@ -3397,7 +3375,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_systemd_socket_accepted_connections_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_systemd_socket_accepted_connections_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_systemd_socket_accepted_connections_total"
         },
         {
@@ -3419,7 +3397,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_systemd_units{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_systemd_units{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_systemd_units"
         },
         {
@@ -3441,7 +3419,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_systemd_units{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_systemd_units{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_systemd_units"
         },
         {
@@ -3463,7 +3441,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_systemd_units{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_systemd_units{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_systemd_units"
         },
         {
@@ -3485,7 +3463,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_systemd_units{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_systemd_units{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_systemd_units"
         },
         {
@@ -3507,7 +3485,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_systemd_units{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_systemd_units{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_systemd_units"
         }
       ]
@@ -3537,7 +3515,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_reads_completed_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_reads_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_reads_completed_total"
         },
         {
@@ -3559,7 +3537,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_writes_completed_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_writes_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_writes_completed_total"
         },
         {
@@ -3581,7 +3559,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_read_bytes_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_read_bytes_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_read_bytes_total"
         },
         {
@@ -3603,7 +3581,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_written_bytes_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_written_bytes_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_written_bytes_total"
         },
         {
@@ -3625,7 +3603,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_read_time_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h]) / irate(node_disk_reads_completed_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_read_time_seconds_total{instance=~'.*'}[1h]) / irate(node_disk_reads_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_read_time_seconds_total"
         },
         {
@@ -3647,7 +3625,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_write_time_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h]) / irate(node_disk_writes_completed_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_write_time_seconds_total{instance=~'.*'}[1h]) / irate(node_disk_writes_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_write_time_seconds_total"
         },
         {
@@ -3669,7 +3647,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_io_time_weighted_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_io_time_weighted_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_io_time_weighted_seconds_total"
         },
         {
@@ -3691,7 +3669,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_reads_merged_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_reads_merged_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_reads_merged_total"
         },
         {
@@ -3713,7 +3691,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_writes_merged_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_writes_merged_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_writes_merged_total"
         },
         {
@@ -3735,7 +3713,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_io_time_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_io_time_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_io_time_seconds_total"
         },
         {
@@ -3757,7 +3735,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_discard_time_seconds_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_discard_time_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_discard_time_seconds_total"
         },
         {
@@ -3779,7 +3757,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_disk_io_now{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_disk_io_now{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_disk_io_now"
         },
         {
@@ -3801,7 +3779,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_discards_completed_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_discards_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_discards_completed_total"
         },
         {
@@ -3823,7 +3801,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_disk_discards_merged_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_disk_discards_merged_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_disk_discards_merged_total"
         }
       ]
@@ -3853,7 +3831,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_filesystem_avail_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_filesystem_avail_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_filesystem_avail_bytes"
         },
         {
@@ -3875,7 +3853,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_filesystem_free_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_filesystem_free_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_filesystem_free_bytes"
         },
         {
@@ -3897,7 +3875,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_filesystem_size_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_filesystem_size_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_filesystem_size_bytes"
         },
         {
@@ -3919,7 +3897,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_filesystem_files_free{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_filesystem_files_free{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_filesystem_files_free"
         },
         {
@@ -3941,7 +3919,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_filefd_maximum{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_filefd_maximum{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_filefd_maximum"
         },
         {
@@ -3963,7 +3941,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_filefd_allocated{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_filefd_allocated{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_filefd_allocated"
         },
         {
@@ -3985,7 +3963,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_filesystem_files{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_filesystem_files{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_filesystem_files"
         },
         {
@@ -4007,7 +3985,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_filesystem_readonly{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_filesystem_readonly{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_filesystem_readonly"
         },
         {
@@ -4029,7 +4007,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_filesystem_device_error{fstype!~'tmpfs',instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_filesystem_device_error{fstype!~'tmpfs',,instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_filesystem_device_error"
         }
       ]
@@ -4059,7 +4037,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_receive_packets_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_receive_packets_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_receive_packets_total"
         },
         {
@@ -4081,7 +4059,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_transmit_packets_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_transmit_packets_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_transmit_packets_total"
         },
         {
@@ -4103,7 +4081,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_receive_errs_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_receive_errs_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_receive_errs_total"
         },
         {
@@ -4125,7 +4103,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_transmit_errs_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_transmit_errs_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_transmit_errs_total"
         },
         {
@@ -4147,7 +4125,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_receive_drop_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_receive_drop_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_receive_drop_total"
         },
         {
@@ -4169,7 +4147,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_transmit_drop_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_transmit_drop_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_transmit_drop_total"
         },
         {
@@ -4191,7 +4169,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_receive_compressed_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_receive_compressed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_receive_compressed_total"
         },
         {
@@ -4213,7 +4191,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_transmit_compressed_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_transmit_compressed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_transmit_compressed_total"
         },
         {
@@ -4235,7 +4213,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_receive_multicast_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_receive_multicast_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_receive_multicast_total"
         },
         {
@@ -4257,7 +4235,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_receive_fifo_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_receive_fifo_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_receive_fifo_total"
         },
         {
@@ -4279,7 +4257,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_transmit_fifo_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_transmit_fifo_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_transmit_fifo_total"
         },
         {
@@ -4301,7 +4279,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_receive_frame_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_receive_frame_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_receive_frame_total"
         },
         {
@@ -4323,7 +4301,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_transmit_carrier_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_transmit_carrier_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_transmit_carrier_total"
         },
         {
@@ -4345,7 +4323,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_network_transmit_colls_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_network_transmit_colls_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_network_transmit_colls_total"
         },
         {
@@ -4367,7 +4345,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_nf_conntrack_entries{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_nf_conntrack_entries{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_nf_conntrack_entries"
         },
         {
@@ -4389,7 +4367,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_nf_conntrack_entries_limit{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_nf_conntrack_entries_limit{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_nf_conntrack_entries_limit"
         },
         {
@@ -4411,7 +4389,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_arp_entries{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_arp_entries{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_arp_entries"
         },
         {
@@ -4433,7 +4411,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_network_mtu_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_network_mtu_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_network_mtu_bytes"
         },
         {
@@ -4455,7 +4433,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_network_speed_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_network_speed_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_network_speed_bytes"
         },
         {
@@ -4477,7 +4455,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_network_transmit_queue_length{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_network_transmit_queue_length{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_network_transmit_queue_length"
         },
         {
@@ -4499,7 +4477,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_softnet_processed_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_softnet_processed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_softnet_processed_total"
         },
         {
@@ -4521,7 +4499,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_softnet_dropped_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_softnet_dropped_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_softnet_dropped_total"
         },
         {
@@ -4543,7 +4521,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_softnet_times_squeezed_total{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_softnet_times_squeezed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_softnet_times_squeezed_total"
         },
         {
@@ -4565,7 +4543,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_network_up{operstate='up',instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_network_up{operstate='up',,instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_network_up"
         },
         {
@@ -4587,7 +4565,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_network_carrier{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_network_carrier{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_network_carrier"
         }
       ]
@@ -4617,7 +4595,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_TCP_alloc{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_TCP_alloc{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_TCP_alloc"
         },
         {
@@ -4639,7 +4617,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_TCP_inuse{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_TCP_inuse{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_TCP_inuse"
         },
         {
@@ -4661,7 +4639,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_TCP_mem{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_TCP_mem{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_TCP_mem"
         },
         {
@@ -4683,7 +4661,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_TCP_orphan{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_TCP_orphan{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_TCP_orphan"
         },
         {
@@ -4705,7 +4683,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_TCP_tw{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_TCP_tw{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_TCP_tw"
         },
         {
@@ -4727,7 +4705,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_UDPLITE_inuse{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_UDPLITE_inuse{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_UDPLITE_inuse"
         },
         {
@@ -4749,7 +4727,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_UDP_inuse{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_UDP_inuse{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_UDP_inuse"
         },
         {
@@ -4771,7 +4749,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_UDP_mem{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_UDP_mem{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_UDP_mem"
         },
         {
@@ -4793,7 +4771,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_FRAG_inuse{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_FRAG_inuse{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_FRAG_inuse"
         },
         {
@@ -4815,7 +4793,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_RAW_inuse{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_RAW_inuse{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_RAW_inuse"
         },
         {
@@ -4837,7 +4815,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_TCP_mem_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_TCP_mem_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_TCP_mem_bytes"
         },
         {
@@ -4859,7 +4837,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_UDP_mem_bytes{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_UDP_mem_bytes{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_UDP_mem_bytes"
         },
         {
@@ -4881,7 +4859,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_FRAG_memory{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_FRAG_memory{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_FRAG_memory"
         },
         {
@@ -4903,7 +4881,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_sockstat_sockets_used{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_sockstat_sockets_used{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_sockstat_sockets_used"
         }
       ]
@@ -4933,7 +4911,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_IpExt_InOctets{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_IpExt_InOctets{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_IpExt_InOctets"
         },
         {
@@ -4955,7 +4933,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_IpExt_OutOctets{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_IpExt_OutOctets{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_IpExt_OutOctets"
         },
         {
@@ -4977,7 +4955,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Ip_Forwarding{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Ip_Forwarding{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Ip_Forwarding"
         },
         {
@@ -4999,7 +4977,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Icmp_InMsgs{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Icmp_InMsgs{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Icmp_InMsgs"
         },
         {
@@ -5021,7 +4999,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Icmp_OutMsgs{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Icmp_OutMsgs{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Icmp_OutMsgs"
         },
         {
@@ -5043,7 +5021,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Icmp_InErrors{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Icmp_InErrors{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Icmp_InErrors"
         },
         {
@@ -5065,7 +5043,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Udp_InDatagrams{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Udp_InDatagrams{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Udp_InDatagrams"
         },
         {
@@ -5087,7 +5065,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Udp_OutDatagrams{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Udp_OutDatagrams{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Udp_OutDatagrams"
         },
         {
@@ -5109,7 +5087,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Udp_InErrors{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Udp_InErrors{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Udp_InErrors"
         },
         {
@@ -5131,7 +5109,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Udp_NoPorts{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Udp_NoPorts{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Udp_NoPorts"
         },
         {
@@ -5153,7 +5131,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_UdpLite_InErrors{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_UdpLite_InErrors{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_UdpLite_InErrors"
         },
         {
@@ -5175,7 +5153,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Udp_RcvbufErrors{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Udp_RcvbufErrors{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Udp_RcvbufErrors"
         },
         {
@@ -5197,7 +5175,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Udp_SndbufErrors{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Udp_SndbufErrors{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Udp_SndbufErrors"
         },
         {
@@ -5219,7 +5197,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Tcp_InSegs{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Tcp_InSegs{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Tcp_InSegs"
         },
         {
@@ -5241,7 +5219,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Tcp_OutSegs{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Tcp_OutSegs{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Tcp_OutSegs"
         },
         {
@@ -5263,7 +5241,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_TcpExt_ListenOverflows{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_TcpExt_ListenOverflows{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_TcpExt_ListenOverflows"
         },
         {
@@ -5285,7 +5263,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_TcpExt_ListenDrops{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_TcpExt_ListenDrops{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_TcpExt_ListenDrops"
         },
         {
@@ -5307,7 +5285,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_TcpExt_TCPSynRetrans{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_TcpExt_TCPSynRetrans{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_TcpExt_TCPSynRetrans"
         },
         {
@@ -5329,7 +5307,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Tcp_RetransSegs{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Tcp_RetransSegs{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Tcp_RetransSegs"
         },
         {
@@ -5351,7 +5329,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Tcp_InErrs{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Tcp_InErrs{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Tcp_InErrs"
         },
         {
@@ -5373,7 +5351,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Tcp_OutRsts{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Tcp_OutRsts{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Tcp_OutRsts"
         },
         {
@@ -5395,7 +5373,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_TcpExt_TCPRcvQDrop{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_TcpExt_TCPRcvQDrop{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_TcpExt_TCPRcvQDrop"
         },
         {
@@ -5417,7 +5395,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_TcpExt_TCPOFOQueue{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_TcpExt_TCPOFOQueue{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_TcpExt_TCPOFOQueue"
         },
         {
@@ -5439,7 +5417,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_netstat_Tcp_CurrEstab{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_netstat_Tcp_CurrEstab{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_netstat_Tcp_CurrEstab"
         },
         {
@@ -5461,7 +5439,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_netstat_Tcp_MaxConn{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_netstat_Tcp_MaxConn{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_netstat_Tcp_MaxConn"
         },
         {
@@ -5483,7 +5461,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_TcpExt_SyncookiesFailed{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_TcpExt_SyncookiesFailed{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_TcpExt_SyncookiesFailed"
         },
         {
@@ -5505,7 +5483,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_TcpExt_SyncookiesRecv{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_TcpExt_SyncookiesRecv{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_TcpExt_SyncookiesRecv"
         },
         {
@@ -5527,7 +5505,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_TcpExt_SyncookiesSent{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_TcpExt_SyncookiesSent{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_TcpExt_SyncookiesSent"
         },
         {
@@ -5549,7 +5527,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Tcp_ActiveOpens{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Tcp_ActiveOpens{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Tcp_ActiveOpens"
         },
         {
@@ -5571,7 +5549,7 @@
             },
             "upperLimit": ""
           },
-          "query": "irate(node_netstat_Tcp_PassiveOpens{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}[1h])&duration=1h&step=5m",
+          "query": "irate(node_netstat_Tcp_PassiveOpens{instance=~'.*'}[1h])&duration=1h&step=5m",
           "schema": "node_netstat_Tcp_PassiveOpens"
         },
         {
@@ -5593,7 +5571,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_tcp_connection_states{state='established',instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_tcp_connection_states{state='established',,instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_tcp_connection_states"
         },
         {
@@ -5615,7 +5593,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_tcp_connection_states{state='fin_wait2',instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_tcp_connection_states{state='fin_wait2',,instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_tcp_connection_states"
         },
         {
@@ -5637,7 +5615,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_tcp_connection_states{state='listen',instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_tcp_connection_states{state='listen',,instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_tcp_connection_states"
         },
         {
@@ -5659,7 +5637,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_tcp_connection_states{state='time_wait',instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_tcp_connection_states{state='time_wait',,instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_tcp_connection_states"
         }
       ]
@@ -5689,7 +5667,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_scrape_collector_duration_seconds{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_scrape_collector_duration_seconds{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_scrape_collector_duration_seconds"
         },
         {
@@ -5711,7 +5689,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_scrape_collector_success{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_scrape_collector_success{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_scrape_collector_success"
         },
         {
@@ -5733,7 +5711,7 @@
             },
             "upperLimit": ""
           },
-          "query": "node_textfile_scrape_error{instance=~'.*',device=~'.*',major=~'.*',minor=~'.*'}&duration=1h&step=5m",
+          "query": "node_textfile_scrape_error{instance=~'.*'}&duration=1h&step=5m",
           "schema": "node_textfile_scrape_error"
         }
       ]
