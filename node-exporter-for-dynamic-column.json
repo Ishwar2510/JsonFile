@@ -64,9 +64,9 @@
         {
           "chart_type": "datetime",
           "data_source_name": "Apica Monitoring",
-          "name": "Pressure - I O query",
+          "name": "Up Time",
           "options": {
-            "description": "Pressure - I O query",
+            "description": "UP time",
             "order": 3,
             "plot": {
               "errorColumn": "",
@@ -86,7 +86,7 @@
         {
           "chart_type": "status",
           "data_source_name": "Apica Monitoring",
-          "name": "CPU Busy query",
+          "name": "Check Status",
           "options": {
             "description": "CPU Busy query",
             "order": 4,
