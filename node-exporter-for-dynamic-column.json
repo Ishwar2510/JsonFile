@@ -20,6 +20,20 @@
   },
   "tabs": [
     {
+        "key": "alerts",
+        "title": "Alerts",
+        "order": "20",
+        "type": "alerts"
+      },
+      {
+        "key": "logs",
+        "title": "Logs",
+        "order": "10",
+        "type": "logs",
+        "namespace": "default_namespace",
+        "app_name": "finite-test-engine"
+      },
+    {
       "key": "Quick CPU / Mem / Disk",
       "order": "1",
       "queriesList": [
