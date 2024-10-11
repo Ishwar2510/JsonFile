@@ -11,22 +11,6 @@
           "chart_type": "Table",
           "name": "Dashboards",
           "options": {
-            "parameters": {
-              "0": {
-                "title": "dash",
-                "name": "dash",
-                "type": "text",
-                "global": false,
-                "value": "dashboards"
-              },
-              "1": {
-                "title": "id",
-                "name": "id",
-                "type": "text",
-                "global": false,
-                "value": 1
-              }
-            },
             "label": "Actual",
             "order": 1,
             "description": "Atom Status",
@@ -39,6 +23,22 @@
               "errorColumn": ""
             }
           },
+          "parameters": {
+            "0": {
+              "title": "dash",
+              "name": "dash",
+              "type": "text",
+              "global": false,
+              "value": "dashboards"
+            },
+            "1": {
+              "title": "id",
+              "name": "id",
+              "type": "text",
+              "global": false,
+              "value": 1
+            }
+          },
           "data_source_name": "postgres"
         },
         {
@@ -46,22 +46,6 @@
           "chart_type": "line",
           "name": "Dashboards 2",
           "options": {
-            "parameters": {
-              "0": {
-                "title": "dash",
-                "name": "dash",
-                "type": "text",
-                "global": false,
-                "value": "dashboards"
-              },
-              "1": {
-                "title": "id",
-                "name": "id",
-                "type": "text",
-                "global": false,
-                "value": 1
-              }
-            },
             "label": "Actual",
             "order": 1,
             "description": "Atom Status",
@@ -72,6 +56,22 @@
               "y": ["value"],
               "groupBy": "",
               "errorColumn": ""
+            }
+          },
+          "parameters": {
+            "0": {
+              "title": "dash",
+              "name": "dash",
+              "type": "text",
+              "global": false,
+              "value": "dashboards"
+            },
+            "1": {
+              "title": "id",
+              "name": "id",
+              "type": "text",
+              "global": false,
+              "value": 1
             }
           },
           "data_source_name": "postgres"
