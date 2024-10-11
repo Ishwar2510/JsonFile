@@ -1,1 +1,99 @@
-
+{
+  "tabs": [
+    {
+      "key": "Testing",
+      "title": "TEsting Title",
+      "order": "1",
+      "type": "metrics",
+      "queriesList": [
+        {
+          "query": "select * from {{dash}} where id={{id}}",
+          "chart_type": "Table",
+          "name": "Dashboards",
+          "options": {
+            "parameters": {
+              "0": {
+                "title": "dash",
+                "name": "dash",
+                "type": "text",
+                "global": false,
+                "value": "dashboards"
+              },
+              "1": {
+                "title": "id",
+                "name": "id",
+                "type": "text",
+                "global": false,
+                "value": 1
+              }
+            },
+            "label": "Actual",
+            "order": 1,
+            "description": "Atom Status",
+            "plot": {
+              "xLabel": "Timestamp",
+              "yLabel": "value",
+              "x": "Timestamp",
+              "y": ["value"],
+              "groupBy": "",
+              "errorColumn": ""
+            }
+          },
+          "data_source_name": "postgres"
+        },
+        {
+          "query": "select * from {{dash}} where id={{id}}",
+          "chart_type": "line",
+          "name": "Dashboards 2",
+          "options": {
+            "parameters": {
+              "0": {
+                "title": "dash",
+                "name": "dash",
+                "type": "text",
+                "global": false,
+                "value": "dashboards"
+              },
+              "1": {
+                "title": "id",
+                "name": "id",
+                "type": "text",
+                "global": false,
+                "value": 1
+              }
+            },
+            "label": "Actual",
+            "order": 1,
+            "description": "Atom Status",
+            "plot": {
+              "xLabel": "Timestamp",
+              "yLabel": "value",
+              "x": "Timestamp",
+              "y": ["value"],
+              "groupBy": "",
+              "errorColumn": ""
+            }
+          },
+          "data_source_name": "postgres"
+        }
+      ]
+    }
+  ],
+  "header": {
+    "dateTimeRange": false,
+    "dropdowns": [
+      {
+        "dash": {
+          "query_type": "input"
+        }
+      },
+      {
+        "id": {
+          "query": "select distinct id from dashboards order by id",
+          "name": "Runtime selection",
+          "data_source_name": "postgres"
+        }
+      }
+    ]
+  }
+}
