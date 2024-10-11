@@ -23,22 +23,22 @@
               "errorColumn": ""
             }
           },
-          "parameters": {
-            "0": {
+          "parameters": [
+            {
               "title": "dash",
               "name": "dash",
               "type": "text",
               "global": false,
               "value": "dashboards"
             },
-            "1": {
+            {
               "title": "id",
               "name": "id",
               "type": "text",
               "global": false,
               "value": 1
             }
-          },
+          ],
           "data_source_name": "postgres"
         },
         {
@@ -58,22 +58,22 @@
               "errorColumn": ""
             }
           },
-          "parameters": {
-            "0": {
+          "parameters": [
+            {
               "title": "dash",
               "name": "dash",
               "type": "text",
               "global": false,
               "value": "dashboards"
             },
-            "1": {
+            {
               "title": "id",
               "name": "id",
               "type": "text",
               "global": false,
               "value": 1
             }
-          },
+          ],
           "data_source_name": "postgres"
         }
       ]
