@@ -93,6 +93,13 @@
           "name": "Runtime selection",
           "data_source_name": "postgres"
         }
+      },
+      {
+        "mera_id": {
+          "query": "select distinct id from dashboards order by id",
+          "name": "Runtime selection",
+          "data_source_name": "postgres"
+        }
       }
     ]
   }
