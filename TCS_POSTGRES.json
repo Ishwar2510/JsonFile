@@ -5,11 +5,11 @@
       "title": "TEsting Title",
       "order": "1",
       "type": "metrics",
-      "queriesList": [dashboard_id
+      "queriesList": [
         {
           "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
           "chart_type": "Table",
-          "name": "Dashboards",dashboard_id
+          "name": "Dashboards",
           "options": {
             "label": "Actual",
             "order": 1,
