@@ -5,11 +5,11 @@
       "title": "TEsting Title",
       "order": "1",
       "type": "metrics",
-      "queriesList": [
+      "queriesList": [dashboard_id
         {
           "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
           "chart_type": "Table",
-          "name": "Dashboards",
+          "name": "Dashboards",dashboard_id
           "options": {
             "label": "Actual",
             "order": 1,
@@ -95,7 +95,7 @@
         }
       },
       {
-        "dashboard_id": {
+        "q_id": {
           "query": "select distinct id from dashboards order by id",
           "name": "Runtime selection",
           "data_source_name": "postgres"
