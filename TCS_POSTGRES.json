@@ -7,7 +7,7 @@
       "type": "metrics",
       "queriesList": [
         {
-          "query": "select * from {{dash}} where id={{id}}",
+          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
           "chart_type": "Table",
           "name": "Dashboards",
           "options": {
@@ -89,13 +89,13 @@
       },
       {
         "id": {
-          "query": "select distinct id from dashboards order by id",
+          "query": "select distinct id from queries order by id",
           "name": "Runtime selection",
           "data_source_name": "postgres"
         }
       },
       {
-        "mera_id": {
+        "dashboard_id": {
           "query": "select distinct id from dashboards order by id",
           "name": "Runtime selection",
           "data_source_name": "postgres"
