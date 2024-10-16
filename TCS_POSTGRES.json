@@ -95,8 +95,8 @@
         }
       },
       {
-        "d_id": {
-          "query": "select distinct id as d_id from dashboards order by id",
+        "dashboard_id": {
+          "query": "select distinct id as dashboard_id from dashboards order by id",
           "name": "Runtime selection",
           "data_source_name": "postgres"
         }
