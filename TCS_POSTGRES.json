@@ -96,7 +96,7 @@
       },
       {
         "q_id": {
-          "query": "select distinct id from dashboards order by id",
+          "query": "select distinct id as q_id from queries order by id",
           "name": "Runtime selection",
           "data_source_name": "postgres"
         }
