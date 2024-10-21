@@ -82,11 +82,7 @@
   "header": {
     "dateTimeRange": false,
     "dropdowns": [
-      {
-        "dash": {
-          "query_type": "input"
-        }
-      },
+      
       {
         "id": {
           "query": "select distinct id from queries order by id",
