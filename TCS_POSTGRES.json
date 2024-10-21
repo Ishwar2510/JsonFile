@@ -42,7 +42,7 @@
           "data_source_name": "postgres"
         },
         {
-          "query": "select * from dashboards",
+          "query": "select * from dashboards where id in ({{dashboard_id}})",
           "chart_type": "line",
           "name": "Dashboards 2",
           "options": {
