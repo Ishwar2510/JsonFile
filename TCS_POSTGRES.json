@@ -39,7 +39,7 @@
               "value": 1
             }
           ],
-          "data_source_name": "postgres"
+          "data_source_name": "coffee"
         },
         {
           "query": "select * from dashboards where id in ({{dashboard_id}})",
@@ -74,7 +74,7 @@
               "value": 1
             }
           ],
-          "data_source_name": "postgres"
+          "data_source_name": "coffee"
         }
       ]
     }
@@ -87,14 +87,14 @@
         "id": {
           "query": "select distinct id from queries order by id",
           "name": "Runtime selection",
-          "data_source_name": "postgres"
+          "data_source_name": "coffee"
         }
       },
       {
         "dashboard_id": {
           "query": "select distinct id as dashboard_id from dashboards order by id",
           "name": "Runtime selection",
-          "data_source_name": "postgres"
+          "data_source_name": "coffee"
         }
       }
     ]
