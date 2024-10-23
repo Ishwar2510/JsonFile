@@ -86,14 +86,14 @@
       {
         "id": {
           "query": "select distinct id from queries order by id",
-          "name": "Runtime selection",
+          "name": "Runtime selection1",
           "data_source_name": "coffee"
         }
       },
       {
         "dashboard_id": {
           "query": "select distinct id as dashboard_id from dashboards order by id",
-          "name": "Runtime selection",
+          "name": "Runtime selection2",
           "data_source_name": "coffee"
         }
       }
