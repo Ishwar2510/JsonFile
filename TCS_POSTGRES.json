@@ -1,487 +1,512 @@
 {
-  "tabs": [
-    {
-      "key": "Testing",
-      "title": "TEsting Title",
-      "order": "1",
-      "type": "metrics",
-      "queriesList": [
+    "tabs": [
         {
-          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
-          "chart_type": "Table",
-          "name": "Dashboards",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
-        },
-        {
-          "query": "select * from dashboards where id in ({{dashboard_id}})",
-          "chart_type": "line",
-          "name": "Dashboards 2",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
-        },
-         {
-          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
-          "chart_type": "Table",
-          "name": "Dashboards",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
-        },
-         {
-          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
-          "chart_type": "Table",
-          "name": "Dashboards",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
-        },
-         {
-          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
-          "chart_type": "Table",
-          "name": "Dashboards",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
-        },
-         {
-          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
-          "chart_type": "Table",
-          "name": "Dashboards",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
-        },
-         {
-          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
-          "chart_type": "Table",
-          "name": "Dashboards",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
-        },
-         {
-          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
-          "chart_type": "Table",
-          "name": "Dashboards",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
-        },
-         {
-          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
-          "chart_type": "Table",
-          "name": "Dashboards",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
-        },
-         {
-          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
-          "chart_type": "Table",
-          "name": "Dashboards",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
-        },
-         {
-          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
-          "chart_type": "Table",
-          "name": "Dashboards",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
-        },
-         {
-          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
-          "chart_type": "Table",
-          "name": "Dashboards",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
-        },
-         {
-          "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
-          "chart_type": "Table",
-          "name": "Dashboards",
-          "options": {
-            "label": "Actual",
-            "order": 1,
-            "description": "Atom Status",
-            "plot": {
-              "xLabel": "Timestamp",
-              "yLabel": "value",
-              "x": "Timestamp",
-              "y": ["value"],
-              "groupBy": "",
-              "errorColumn": ""
-            }
-          },
-          "parameters": [
-            {
-              "title": "dash",
-              "name": "dash",
-              "type": "text",
-              "global": false,
-              "value": "dashboards"
-            },
-            {
-              "title": "id",
-              "name": "id",
-              "type": "text",
-              "global": false,
-              "value": 1
-            }
-          ],
-          "data_source_name": "postgres"
+            "key": "Testing",
+            "title": "TEsting Title",
+            "order": "1",
+            "type": "metrics",
+            "queriesList": [
+                {
+                    "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
+                    "chart_type": "Table",
+                    "name": "Dashboards",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                },
+                {
+                    "query": "select * from dashboards where id in ({{dashboard_id}})",
+                    "chart_type": "line",
+                    "name": "Dashboards 2",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                },
+                {
+                    "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
+                    "chart_type": "Table",
+                    "name": "Dashboards",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                },
+                {
+                    "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
+                    "chart_type": "Table",
+                    "name": "Dashboards",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                },
+                {
+                    "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
+                    "chart_type": "Table",
+                    "name": "Dashboards",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                },
+                {
+                    "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
+                    "chart_type": "Table",
+                    "name": "Dashboards",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                },
+                {
+                    "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
+                    "chart_type": "Table",
+                    "name": "Dashboards",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                },
+                {
+                    "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
+                    "chart_type": "Table",
+                    "name": "Dashboards",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                },
+                {
+                    "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
+                    "chart_type": "Table",
+                    "name": "Dashboards",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                },
+                {
+                    "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
+                    "chart_type": "Table",
+                    "name": "Dashboards",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                },
+                {
+                    "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
+                    "chart_type": "Table",
+                    "name": "Dashboards",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                },
+                {
+                    "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
+                    "chart_type": "Table",
+                    "name": "Dashboards",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                },
+                {
+                    "query": "select * from queries where id in ({{id}}) and dashboard_id in ({{dashboard_id}})",
+                    "chart_type": "Table",
+                    "name": "Dashboards",
+                    "options": {
+                        "label": "Actual",
+                        "order": 1,
+                        "description": "Atom Status",
+                        "plot": {
+                            "xLabel": "Timestamp",
+                            "yLabel": "value",
+                            "x": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "groupBy": "",
+                            "errorColumn": ""
+                        }
+                    },
+                    "parameters": [
+                        {
+                            "title": "dash",
+                            "name": "dash",
+                            "type": "text",
+                            "global": false,
+                            "value": "dashboards"
+                        },
+                        {
+                            "title": "id",
+                            "name": "id",
+                            "type": "text",
+                            "global": false,
+                            "value": 1
+                        }
+                    ],
+                    "data_source_name": "Coffee"
+                }
+            ]
         }
-      ]
+    ],
+    "header": {
+        "dateTimeRange": false,
+        "dropdowns": [
+            {
+                "id": {
+                    "query": "select distinct id from queries order by id",
+                    "name": "id",
+                    "data_source_name": "Coffee"
+                }
+            },
+            {
+                "dashboard_id": {
+                    "query": "select distinct id as dashboard_id from dashboards order by id",
+                    "name": "dashboard_id",
+                    "data_source_name": "Coffee"
+                }
+            }
+        ]
     }
-  ],
-  "header": {
-    "dateTimeRange": false,
-    "dropdowns": [
-      
-      {
-        "id": {
-          "query": "select distinct id from queries order by id",
-          "name": "Runtime selection1",
-          "data_source_name": "postgres"
-        }
-      },
-      {
-        "dashboard_id": {
-          "query": "select distinct id as dashboard_id from dashboards order by id",
-          "name": "Runtime selection2",
-          "data_source_name": "postgres"
-        }
-      }
-    ]
-  }
 }
