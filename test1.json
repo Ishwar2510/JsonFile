@@ -1,0 +1,32 @@
+{
+    "tabs": [
+        {
+            "key": "Statefulset",
+            "title": "Statefulset",
+            "order": "1",
+            "type": "metrics",
+            "queriesList": [
+                {
+                    "chart_type": "line",
+                    "data_source_name": "Ascent Metrics",
+                    "name": "Node Exporter Scrape - Scrape success query",
+                    "options": {
+                        "description": "Node Exporter Scrape - Scrape success query",
+                        "order": 2,
+                        "plot": {
+                            "errorColumn": "",
+                            "groupBy": ["instance"],
+                            "x": "timestamp",
+                            "xLabel": "Timestamp",
+                            "y": ["value"],
+                            "yLabel": "value"
+                        },
+                        "upperLimit": ""
+                    },
+                    "query": "node_scrape_collector_success{instance=~'.*'}&duration=1h&step=5m",
+                    "schema": "node_scrape_collector_success"
+                }
+            ]
+        }
+    ]
+}
