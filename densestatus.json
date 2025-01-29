@@ -6,18 +6,28 @@
             "order": "1",
             "type": "metrics",
             "queriesList": [
-                {
-                    "chart_type": "densestatus",
+{
+                    "chart_type": "line",
                     "data_source_name": "Ascent Metrics",
-                    "name": "CPU Cores - auto query",
+                    "name": "Node Exporter Scrape - Scrape success query",
                     "options": {
-                        "description": "CPU Cores - auto query",
-                        "label": "CPU Cores",
-                        "order": "10"
+                        "description": "Node Exporter Scrape - Scrape success query",
+                        "order": 2,
+                        "plot": {
+                            "errorColumn": "",
+                            "groupBy": ["instance"],
+                            "x": "timestamp",
+                            "xLabel": "Timestamp",
+                            "y": [
+                                "value"
+                            ],
+                            "yLabel": "value"
+                        },
+                        "upperLimit": ""
                     },
-                    "query": "count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu))&duration=1h&step=5m",
-                    "schema": "node_cpu_seconds_total"
-                }
+                    "query": "node_scrape_collector_success{instance=~'.*'}&duration=1h&step=5m",
+                    "schema": "node_scrape_collector_success"
+                },
             ]
         }
     ]
