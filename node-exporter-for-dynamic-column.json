@@ -36,16 +36,7 @@
                     "options": {
                         "description": "Pressure - CPU query",
                         "order": 1,
-                        "plot": {
-                            "errorColumn": "",
-                            "groupBy": "",
-                            "x": "timestamp",
-                            "xLabel": "Timestamp",
-                            "y": [
-                                "value"
-                            ],
-                            "yLabel": "value"
-                        },
+                        
                         "upperLimit": ""
                     },
                     "query": "irate(node_pressure_cpu_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
@@ -58,17 +49,7 @@
                     "options": {
                         "description": "Pressure - Mem query",
                         "order": 2,
-                        "plot": {
-                            "errorColumn": "",
-                            "datatype": "mb",
-                            "groupBy": "",
-                            "x": "timestamp",
-                            "xLabel": "Timestamp",
-                            "y": [
-                                "value"
-                            ],
-                            "yLabel": "value"
-                        },
+                       
                         "upperLimit": ""
                     },
                     "query": "irate(node_pressure_memory_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
