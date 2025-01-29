@@ -6,7 +6,7 @@
             "order": "1",
             "type": "metrics",
             "queriesList": [
-{
+                {
                     "chart_type": "line",
                     "data_source_name": "Ascent Metrics",
                     "name": "Node Exporter Scrape - Scrape success query",
@@ -18,16 +18,14 @@
                             "groupBy": ["instance"],
                             "x": "timestamp",
                             "xLabel": "Timestamp",
-                            "y": [
-                                "value"
-                            ],
+                            "y": ["value"],
                             "yLabel": "value"
                         },
                         "upperLimit": ""
                     },
                     "query": "node_scrape_collector_success{instance=~'.*'}&duration=1h&step=5m",
                     "schema": "node_scrape_collector_success"
-                },
+                }
             ]
         }
     ]
