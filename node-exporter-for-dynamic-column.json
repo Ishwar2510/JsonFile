@@ -50,6 +50,7 @@
                     "options": {
                         "description": "Pressure - Mem query",
                         "order": 2,
+                        "datatype": "bytes",
                        
                         "upperLimit": ""
                     },
