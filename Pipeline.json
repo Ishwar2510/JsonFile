@@ -46,7 +46,10 @@
                     "options": {
                         "description": "Total Memory",
                         "order": 3,
-                        "label": "Total Memory"
+                        "label": "Total Memory",
+                        "plot": {
+                            "datatype" : "bytes"
+                        }
                     },
                     "query": "node_memory_MemTotal_bytes",
                     "schema": "node_memory_MemTotal_bytes"
