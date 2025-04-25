@@ -7,14 +7,16 @@
                 "instance": {
                     "query": "sum by (instance) (node_disk_info{})",
                     "name": "Atom Selection",
-                    "data_source_name": "Ascent Metrics"
+                    "data_source_name": "Ascent Metrics",
+                    "order":1
                 }
             },
             {
                 "device": {
                     "query": "sum by (device) (node_disk_info{})",
                     "name": "device Selection",
-                    "data_source_name": "Ascent Metrics"
+                    "data_source_name": "Ascent Metrics",
+                    "order": 2
                 }
             }
         ]
