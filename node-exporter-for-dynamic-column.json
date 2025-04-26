@@ -13,7 +13,7 @@
             },
             {
                 "device": {
-                    "query": "sum by (device) (node_disk_info{})",
+                    "query": "sum by (device) (node_disk_info{instance=~'.*'})",
                     "name": "device Selection",
                     "data_source_name": "Ascent Metrics",
                     "order": 2
