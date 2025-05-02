@@ -1,0 +1,59 @@
+{
+  "header": {
+    "dateTimeRange": true,
+    "data_source_type": "apica_ascent_prometheus",
+    "dropdowns": []
+  },
+  "tabs": [
+    {
+      "key": "Overview",
+      "order": "1",
+      "title": "Overview",
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "name": "Pipeline Savings (MB)",
+          "options": {
+            "description": "Total log volume saved after rule-based filtering, grouped by pipeline and rule.",
+            "order": 1,
+            "plot": {
+              "errorColumn": "",
+              "groupBy": [
+                "pipelineName",
+                "ruleName"
+              ],
+              "x": "timestamp",
+              "xLabel": "Timestamp",
+              "y": [
+                "value"
+              ],
+              "yLabel": "MB"
+            },
+            "upperLimit": ""
+          },
+          "alert": {
+            "active": "True",
+            "name": "Number of active pipelines",
+            "options": {
+              "alertType": "simple alert",
+              "anomalySwitch": false,
+              "column": "value",
+              "op": ">",
+              "selectionCondition": "all",
+              "timeColumn": "",
+              "muted": false,
+              "trackDuration": 15,
+              "value": 20,
+              "severityType": "warning"
+            },
+            "rearm": 300
+          },
+          "query": "sum by(pipelineName,ruleName)(increase(apica_pipeline_savings_bytes{pipelineName=~'.*', exported_namespace=~'.*', app=~'.*', service='logiq-flash'}[1h]))/1048576&duration=1.000h&step=5m",
+          "schema": "apica_pipeline_savings_bytes"
+        }
+      ]
+    }
+  ]
+}
