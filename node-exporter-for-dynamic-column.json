@@ -80,8 +80,25 @@
                         },
                         "upperLimit": ""
                     },
+                     "alert": {
+            "active": "True",
+            "options": {
+              "alertType": "simple alert",
+              "anomalySwitch": false,
+              "column": "value",
+              "op": ">",
+              "selectionCondition": "all",
+              "timeColumn": "",
+              "muted": false,
+              "trackDuration": 15,
+              "value": 20,
+              "severityType": "warning"
+            },
+            "rearm": 300
+          },
                     "query": "(time() - node_boot_time_seconds{instance=~'.*'})",
-                    "schema": "node_boot_time_seconds"
+                    "schema": "node_boot_time_seconds",
+                    
                 },
                 {
                     "chart_type": "status",
