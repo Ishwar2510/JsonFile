@@ -114,7 +114,7 @@
             "rearm": 300
           },
                     "query": "(time() - node_boot_time_seconds{instance=~'.*'})",
-                    "schema": "node_boot_time_seconds",
+                    "schema": "node_boot_time_seconds"
                     
                 },
                 {
