@@ -42,6 +42,23 @@
                         
                         "upperLimit": ""
                     },
+                    "alert": {
+            "active": "True",
+            "name": "Number of active pipelines",
+            "options": {
+              "alertType": "simple alert",
+              "anomalySwitch": false,
+              "column": "value",
+              "op": ">",
+              "selectionCondition": "all",
+              "timeColumn": "",
+              "muted": false,
+              "trackDuration": 15,
+              "value": 20,
+              "severityType": "warning"
+            },
+            "rearm": 300
+          },
                     "query": "irate(node_pressure_cpu_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
                     "schema": "node_pressure_cpu_waiting_seconds_total"
                 },
