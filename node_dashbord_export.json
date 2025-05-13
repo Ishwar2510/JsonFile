@@ -1,0 +1,2599 @@
+{
+  "header": {
+    "dateTimeRange": true,
+    "data_source_type": "",
+    "dropdowns": [
+      {
+        "instance": {
+          "order": 0,
+          "query_type": null,
+          "query": "sum by (instance) (node_disk_info{})",
+          "name": "Atom Selection",
+          "data_source_name": "Ascent Metrics"
+        }
+      },
+      {
+        "device": {
+          "order": 1,
+          "query_type": null,
+          "query": "sum by (device) (node_disk_info{instance=~'.*'})",
+          "name": "device Selection",
+          "data_source_name": "Ascent Metrics"
+        }
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "key": "Quick CPU / Mem / Disk",
+      "order": "1",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "gauge",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_pressure_cpu_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_pressure_cpu_waiting_seconds_total",
+          "name": "Pressure - CPU query",
+          "position": {
+            "w": 2,
+            "h": 5,
+            "x": 0,
+            "y": 0,
+            "i": "571",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "size",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_pressure_memory_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_pressure_memory_waiting_seconds_total",
+          "name": "Pressure - Mem query",
+          "position": {
+            "w": 2,
+            "h": 4,
+            "x": 2,
+            "y": 0,
+            "i": "573",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "datetime",
+          "data_source_name": "Ascent Metrics",
+          "query": "(time() - node_boot_time_seconds{instance=~'.*'})",
+          "order": 3,
+          "schema": "node_boot_time_seconds",
+          "name": "Up Time",
+          "position": {
+            "w": 2,
+            "h": 5,
+            "x": 4,
+            "y": 0,
+            "i": "574",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "status",
+          "data_source_name": "Ascent Metrics",
+          "query": "up{job='node',instance=~'.*'}",
+          "order": 4,
+          "schema": "up",
+          "name": "Check Status",
+          "position": {
+            "w": 2,
+            "h": 4,
+            "x": 6,
+            "y": 0,
+            "i": "576",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "stat",
+          "data_source_name": "Ascent Metrics",
+          "query": "scalar(node_load1{instance=~'.*'}) * 100 / count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu))&duration=1h&step=5m",
+          "order": 5,
+          "schema": "node_load1",
+          "name": "Sys Load query",
+          "position": {
+            "w": 2,
+            "h": 4,
+            "x": 8,
+            "y": 0,
+            "i": "577",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "gauge",
+          "data_source_name": "Ascent Metrics",
+          "query": "((node_memory_MemTotal_bytes{instance=~'.*'} - node_memory_MemFree_bytes{instance=~'.*'}) / node_memory_MemTotal_bytes{instance=~'.*'}) * 100&duration=1h&step=5m",
+          "order": 6,
+          "schema": "node_memory_MemTotal_bytes",
+          "name": "RAM Used query",
+          "position": {
+            "w": 2,
+            "h": 4,
+            "x": 10,
+            "y": 0,
+            "i": "578",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "gauge",
+          "data_source_name": "Ascent Metrics",
+          "query": "(1 - (node_memory_MemAvailable_bytes{instance=~'.*'} / node_memory_MemTotal_bytes{instance=~'.*'})) * 100&duration=1h&step=5m",
+          "order": 7,
+          "schema": "node_memory_MemAvailable_bytes",
+          "name": "RAM Used query",
+          "position": {
+            "w": 2,
+            "h": 4,
+            "x": 0,
+            "y": 5,
+            "i": "579",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "gauge",
+          "data_source_name": "Ascent Metrics",
+          "query": "((node_memory_SwapTotal_bytes{instance=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*'}) / (node_memory_SwapTotal_bytes{instance=~'.*'})) * 100&duration=1h&step=5m",
+          "order": 8,
+          "schema": "node_memory_SwapTotal_bytes",
+          "name": "SWAP Used query",
+          "position": {
+            "w": 2,
+            "h": 5,
+            "x": 2,
+            "y": 4,
+            "i": "580",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "gauge",
+          "data_source_name": "Ascent Metrics",
+          "query": "100 - ((node_filesystem_avail_bytes{fstype!='rootfs',instance=~'.*'} * 100) / node_filesystem_size_bytes{fstype!='rootfs',instance=~'.*'})&duration=1h&step=5m",
+          "order": 9,
+          "schema": "node_filesystem_avail_bytes",
+          "name": "Root FS Used query",
+          "position": {
+            "w": 2,
+            "h": 4,
+            "x": 4,
+            "y": 5,
+            "i": "581",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu))&duration=1h&step=5m",
+          "order": 10,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU Cores - auto query",
+          "position": {
+            "w": 3,
+            "h": 10,
+            "x": 6,
+            "y": 4,
+            "i": "582",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 15,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_time_seconds{instance=~'.*'} - node_boot_time_seconds{instance=~'.*'}&duration=1h&step=5m",
+          "order": 11,
+          "schema": "node_time_seconds",
+          "name": "Uptime query",
+          "position": {
+            "w": 3,
+            "h": 10,
+            "x": 9,
+            "y": 4,
+            "i": "583",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 15,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_filesystem_size_bytes{fstype!='rootfs',instance=~'.*'}&duration=1h&step=5m",
+          "order": 12,
+          "schema": "node_filesystem_size_bytes",
+          "name": "RootFS Total query",
+          "position": {
+            "w": 3,
+            "h": 10,
+            "x": 0,
+            "y": 9,
+            "i": "584",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 15,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_MemTotal_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 13,
+          "schema": "node_memory_MemTotal_bytes",
+          "name": "RAM Total query",
+          "position": {
+            "w": 3,
+            "h": 10,
+            "x": 3,
+            "y": 9,
+            "i": "585",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 15,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_SwapTotal_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 14,
+          "schema": "node_memory_SwapTotal_bytes",
+          "name": "SWAP Total query",
+          "position": {
+            "w": 6,
+            "h": 5,
+            "x": 6,
+            "y": 14,
+            "i": "586",
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 15,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Basic CPU / Mem / Net / Disk",
+      "order": "2",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU Basic - Busy System query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU Basic - Busy User query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 3,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU Basic - Busy Iowait query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 4,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU Basic - Busy IRQs query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 5,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU Basic - Busy Other query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 6,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU Basic - Idle query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_MemTotal_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 7,
+          "schema": "node_memory_MemTotal_bytes",
+          "name": "Memory Basic - RAM Total query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_MemTotal_bytes{instance=~'.*'} - node_memory_MemFree_bytes{instance=~'.*'} - (node_memory_Cached_bytes{instance=~'.*'} + node_memory_Buffers_bytes{instance=~'.*'} + node_memory_SReclaimable_bytes{instance=~'.*'})&duration=1h&step=5m",
+          "order": 8,
+          "schema": "node_memory_MemTotal_bytes",
+          "name": "Memory Basic - RAM Used query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Cached_bytes{instance=~'.*'} + node_memory_Buffers_bytes{instance=~'.*'} + node_memory_SReclaimable_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 9,
+          "schema": "node_memory_Cached_bytes",
+          "name": "Memory Basic - RAM Cache   Buffer query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_MemFree_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 10,
+          "schema": "node_memory_MemFree_bytes",
+          "name": "Memory Basic - RAM Free query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "(node_memory_SwapTotal_bytes{instance=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*'})&duration=1h&step=5m",
+          "order": 11,
+          "schema": "node_memory_SwapTotal_bytes",
+          "name": "Memory Basic - SWAP Used query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_receive_bytes_total{instance=~'.*'}[1h])*8&duration=1h&step=5m",
+          "order": 12,
+          "schema": "node_network_receive_bytes_total",
+          "name": "Network Traffic Basic - recv query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_transmit_bytes_total{instance=~'.*'}[1h])*8&duration=1h&step=5m",
+          "order": 13,
+          "schema": "node_network_transmit_bytes_total",
+          "name": "Network Traffic Basic - trans query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "100 - ((node_filesystem_avail_bytes{instance=~'.*'} * 100) / node_filesystem_size_bytes{instance=~'.*'})&duration=1h&step=5m",
+          "order": 14,
+          "schema": "node_filesystem_avail_bytes",
+          "name": "Disk Space Used Basic query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "CPU / Memory / Net / Disk",
+      "order": "3",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU - System   Processes executing in kernel mode query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU - User   Normal processes executing in user mode query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 3,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU - Nice   Niced processes executing in user mode query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by(instance) (irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 4,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU - Iowait   Waiting for I O to complete query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 5,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU - Irq   Servicing interrupts query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 6,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU - Softirq   Servicing softirqs query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 7,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU - Steal   Time spent in other operating systems when running in a virtualized environment query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(irate(node_cpu_seconds_total{instance=~'.*'}[1h])) / scalar(count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu)))&duration=1h&step=5m",
+          "order": 8,
+          "schema": "node_cpu_seconds_total",
+          "name": "CPU - Idle   Waiting for something to happen query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_MemTotal_bytes{instance=~'.*'} - node_memory_MemFree_bytes{instance=~'.*'} - node_memory_Buffers_bytes{instance=~'.*'} - node_memory_Cached_bytes{instance=~'.*'} - node_memory_Slab_bytes{instance=~'.*'} - node_memory_PageTables_bytes{instance=~'.*'} - node_memory_SwapCached_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 9,
+          "schema": "node_memory_MemTotal_bytes",
+          "name": "Memory Stack - Apps   Memory used by user space applications query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_PageTables_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 10,
+          "schema": "node_memory_PageTables_bytes",
+          "name": "Memory Stack - PageTables   Memory used to map between virtual and physical memory addresses query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_SwapCached_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 11,
+          "schema": "node_memory_SwapCached_bytes",
+          "name": "Memory Stack - SwapCache   Memory that keeps track of pages that have been fetched from swap but not yet been modified query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Slab_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 12,
+          "schema": "node_memory_Slab_bytes",
+          "name": "Memory Stack - Slab   Memory used by the kernel to cache data structures for its own use  caches like inode  dentry  etc query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Cached_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 13,
+          "schema": "node_memory_Cached_bytes",
+          "name": "Memory Stack - Cache   Parked file data  file content  cache query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Buffers_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 14,
+          "schema": "node_memory_Buffers_bytes",
+          "name": "Memory Stack - Buffers   Block device  e g  harddisk  cache query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_MemFree_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 15,
+          "schema": "node_memory_MemFree_bytes",
+          "name": "Memory Stack - Unused   Free memory unassigned query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "(node_memory_SwapTotal_bytes{instance=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*'})&duration=1h&step=5m",
+          "order": 16,
+          "schema": "node_memory_SwapTotal_bytes",
+          "name": "Memory Stack - Swap   Swap space used query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_HardwareCorrupted_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 17,
+          "schema": "node_memory_HardwareCorrupted_bytes",
+          "name": "Memory Stack - Hardware Corrupted   Amount of RAM that the kernel identified as corrupted   not working query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_receive_bytes_total{instance=~'.*'}[1h])*8&duration=1h&step=5m",
+          "order": 18,
+          "schema": "node_network_receive_bytes_total",
+          "name": "Network Traffic - Receive query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_transmit_bytes_total{instance=~'.*'}[1h])*8&duration=1h&step=5m",
+          "order": 19,
+          "schema": "node_network_transmit_bytes_total",
+          "name": "Network Traffic - Transmit query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_filesystem_size_bytes{instance=~'.*'} - node_filesystem_avail_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 20,
+          "schema": "node_filesystem_size_bytes",
+          "name": "Disk Space Used query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_reads_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 21,
+          "schema": "node_disk_reads_completed_total",
+          "name": "Disk IOps - Reads completed query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_writes_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 22,
+          "schema": "node_disk_writes_completed_total",
+          "name": "Disk IOps - Writes completed query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_read_bytes_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 23,
+          "schema": "node_disk_read_bytes_total",
+          "name": "I/O Usage Read / Write - Successfully read bytes query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_written_bytes_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 24,
+          "schema": "node_disk_written_bytes_total",
+          "name": "I/O Usage Read / Write - Successfully written bytes query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_io_time_seconds_total{instance=~'.*'} [1h])&duration=1h&step=5m",
+          "order": 25,
+          "schema": "node_disk_io_time_seconds_total",
+          "name": "I/O Utilization query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by(instance) (irate(node_cpu_guest_seconds_total{instance=~'.*'}[1m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{instance=~'.*'}[1m])))&duration=1h&step=5m",
+          "order": 26,
+          "schema": "node_cpu_guest_seconds_total",
+          "name": "CPU spent seconds in guests (VMs) - Guest   Time spent running a virtual CPU for a guest operating system query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by(instance) (irate(node_cpu_guest_seconds_total{instance=~'.*'}[1m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{instance=~'.*'}[1m])))&duration=1h&step=5m",
+          "order": 27,
+          "schema": "node_cpu_guest_seconds_total",
+          "name": "CPU spent seconds in guests (VMs) - GuestNice   Time spent running a niced guest   virtual CPU for guest operating system query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Memory Meminfo",
+      "order": "4",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Inactive_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_memory_Inactive_bytes",
+          "name": "Memory Active / Inactive - Inactive   Memory which has been less recently used   It is more eligible to be reclaimed for other purposes query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Active_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_memory_Active_bytes",
+          "name": "Memory Active / Inactive - Active   Memory that has been used more recently and usually not reclaimed unless absolutely necessary query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Committed_AS_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 3,
+          "schema": "node_memory_Committed_AS_bytes",
+          "name": "Memory Committed - Committed AS   Amount of memory presently allocated on the system query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_CommitLimit_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 4,
+          "schema": "node_memory_CommitLimit_bytes",
+          "name": "Memory Committed - CommitLimit   Amount of  memory currently available to be allocated on the system query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Inactive_file_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 5,
+          "schema": "node_memory_Inactive_file_bytes",
+          "name": "Memory Active / Inactive Detail - Inactive file   File backed memory on inactive LRU list query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Inactive_anon_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 6,
+          "schema": "node_memory_Inactive_anon_bytes",
+          "name": "Memory Active / Inactive Detail - Inactive anon   Anonymous and swap cache on inactive LRU list  including tmpfs  shmem query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Active_file_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 7,
+          "schema": "node_memory_Active_file_bytes",
+          "name": "Memory Active / Inactive Detail - Active file   File backed memory on active LRU list query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Active_anon_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 8,
+          "schema": "node_memory_Active_anon_bytes",
+          "name": "Memory Active / Inactive Detail - Active anon   Anonymous and swap cache on active least recently used  LRU  list  including tmpfs query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Writeback_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 9,
+          "schema": "node_memory_Writeback_bytes",
+          "name": "Memory Writeback and Dirty - Writeback   Memory which is actively being written back to disk query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_WritebackTmp_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 10,
+          "schema": "node_memory_WritebackTmp_bytes",
+          "name": "Memory Writeback and Dirty - WritebackTmp   Memory used by FUSE for temporary writeback buffers query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Dirty_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 11,
+          "schema": "node_memory_Dirty_bytes",
+          "name": "Memory Writeback and Dirty - Dirty   Memory which is waiting to get written back to the disk query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Mapped_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 12,
+          "schema": "node_memory_Mapped_bytes",
+          "name": "Memory Shared and Mapped - Mapped   Used memory in mapped pages files which have been mapped  such as libraries query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Shmem_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 13,
+          "schema": "node_memory_Shmem_bytes",
+          "name": "Memory Shared and Mapped - Shmem   Used shared memory  shared between several processes  thus including RAM disks query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_ShmemHugePages_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 14,
+          "schema": "node_memory_ShmemHugePages_bytes",
+          "name": "Memory Shared and Mapped - ShmemHugePages   Memory used by shared memory  shmem  and tmpfs allocated  with huge pages query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_ShmemPmdMapped_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 15,
+          "schema": "node_memory_ShmemPmdMapped_bytes",
+          "name": "Memory Shared and Mapped - ShmemPmdMapped   Amount of shared  shmem tmpfs  memory backed by huge pages query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_SUnreclaim_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 16,
+          "schema": "node_memory_SUnreclaim_bytes",
+          "name": "Memory Slab - SUnreclaim   Part of Slab  that cannot be reclaimed on memory pressure query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_SReclaimable_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 17,
+          "schema": "node_memory_SReclaimable_bytes",
+          "name": "Memory Slab - SReclaimable   Part of Slab  that might be reclaimed  such as caches query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_VmallocChunk_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 18,
+          "schema": "node_memory_VmallocChunk_bytes",
+          "name": "Memory Vmalloc - VmallocChunk   Largest contiguous block of vmalloc area which is free query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_VmallocTotal_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 19,
+          "schema": "node_memory_VmallocTotal_bytes",
+          "name": "Memory Vmalloc - VmallocTotal   Total size of vmalloc memory area query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_VmallocUsed_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 20,
+          "schema": "node_memory_VmallocUsed_bytes",
+          "name": "Memory Vmalloc - VmallocUsed   Amount of vmalloc area which is used query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Bounce_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 21,
+          "schema": "node_memory_Bounce_bytes",
+          "name": "Memory Bounce - Bounce   Memory used for block device bounce buffers query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_AnonHugePages_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 22,
+          "schema": "node_memory_AnonHugePages_bytes",
+          "name": "Memory Anonymous - AnonHugePages   Memory in anonymous huge pages query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_AnonPages_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 23,
+          "schema": "node_memory_AnonPages_bytes",
+          "name": "Memory Anonymous - AnonPages   Memory in user pages not backed by files query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_KernelStack_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 24,
+          "schema": "node_memory_KernelStack_bytes",
+          "name": "Memory Kernel / CPU - KernelStack   Kernel memory stack  This is not reclaimable query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Percpu_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 25,
+          "schema": "node_memory_Percpu_bytes",
+          "name": "Memory Kernel / CPU - PerCPU   Per CPU memory allocated dynamically by loadable modules query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_HugePages_Free{instance=~'.*'}&duration=1h&step=5m",
+          "order": 26,
+          "schema": "node_memory_HugePages_Free",
+          "name": "Memory HugePages Counter - HugePages Free   Huge pages in the pool that are not yet allocated query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_HugePages_Rsvd{instance=~'.*'}&duration=1h&step=5m",
+          "order": 27,
+          "schema": "node_memory_HugePages_Rsvd",
+          "name": "Memory HugePages Counter - HugePages Rsvd   Huge pages for which a commitment to allocate from the pool has been made  but no allocation has yet been made query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_HugePages_Surp{instance=~'.*'}&duration=1h&step=5m",
+          "order": 28,
+          "schema": "node_memory_HugePages_Surp",
+          "name": "Memory HugePages Counter - HugePages Surp   Huge pages in the pool above the value in  proc sys vm nr hugepages query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_HugePages_Total{instance=~'.*'}&duration=1h&step=5m",
+          "order": 29,
+          "schema": "node_memory_HugePages_Total",
+          "name": "Memory HugePages Size - HugePages   Total size of the pool of huge pages query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Hugepagesize_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 30,
+          "schema": "node_memory_Hugepagesize_bytes",
+          "name": "Memory HugePages Size - Hugepagesize   Huge Page size query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_DirectMap1G_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 31,
+          "schema": "node_memory_DirectMap1G_bytes",
+          "name": "Memory DirectMap - DirectMap1G   Amount of pages mapped as this size query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_DirectMap2M_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 32,
+          "schema": "node_memory_DirectMap2M_bytes",
+          "name": "Memory DirectMap - DirectMap2M   Amount of pages mapped as this size query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_DirectMap4k_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 33,
+          "schema": "node_memory_DirectMap4k_bytes",
+          "name": "Memory DirectMap - DirectMap4K   Amount of pages mapped as this size query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Unevictable_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 34,
+          "schema": "node_memory_Unevictable_bytes",
+          "name": "Memory Unevictable and MLocked - Unevictable   Amount of unevictable memory that can t be swapped out for a variety of reasons query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_Mlocked_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 35,
+          "schema": "node_memory_Mlocked_bytes",
+          "name": "Memory Unevictable and MLocked - MLocked   Size of pages locked to memory using the mlock   system call query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_memory_NFS_Unstable_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 36,
+          "schema": "node_memory_NFS_Unstable_bytes",
+          "name": "Memory NFS - NFS Unstable   Memory in NFS pages sent to the server  but not yet committed to the storage query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Memory Vmstat",
+      "order": "5",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_vmstat_pgpgin{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_vmstat_pgpgin",
+          "name": "Memory Pages In / Out - Pagesin   Page in operations query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_vmstat_pgpgout{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_vmstat_pgpgout",
+          "name": "Memory Pages In / Out - Pagesout   Page out operations query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_vmstat_pswpin{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 3,
+          "schema": "node_vmstat_pswpin",
+          "name": "Memory Pages Swap In / Out - Pswpin   Pages swapped in query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_vmstat_pswpout{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 4,
+          "schema": "node_vmstat_pswpout",
+          "name": "Memory Pages Swap In / Out - Pswpout   Pages swapped out query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_vmstat_pgfault{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 5,
+          "schema": "node_vmstat_pgfault",
+          "name": "Memory Page Faults - Pgfault   Page major and minor fault operations query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_vmstat_pgmajfault{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 6,
+          "schema": "node_vmstat_pgmajfault",
+          "name": "Memory Page Faults - Pgmajfault   Major page fault operations query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_vmstat_pgfault{instance=~'.*'}[1h])  - irate(node_vmstat_pgmajfault{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 7,
+          "schema": "node_vmstat_pgfault",
+          "name": "Memory Page Faults - Pgminfault   Minor page fault operations query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_vmstat_oom_kill{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 8,
+          "schema": "node_vmstat_oom_kill",
+          "name": "OOM Killer - oom killer invocations query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "System Timesync",
+      "order": "6",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_timex_estimated_error_seconds{instance=~'.*'}&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_timex_estimated_error_seconds",
+          "name": "Time Synchronized Drift - Estimated error in seconds query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_timex_offset_seconds{instance=~'.*'}&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_timex_offset_seconds",
+          "name": "Time Synchronized Drift - Time offset in between local system and reference clock query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_timex_maxerror_seconds{instance=~'.*'}&duration=1h&step=5m",
+          "order": 3,
+          "schema": "node_timex_maxerror_seconds",
+          "name": "Time Synchronized Drift - Maximum error in seconds query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_timex_loop_time_constant{instance=~'.*'}&duration=1h&step=5m",
+          "order": 4,
+          "schema": "node_timex_loop_time_constant",
+          "name": "Time PLL Adjust - Phase locked loop time adjust query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_timex_sync_status{instance=~'.*'}&duration=1h&step=5m",
+          "order": 5,
+          "schema": "node_timex_sync_status",
+          "name": "Time Synchronized Status - Is clock synchronized to a reliable server  1   yes  0   no query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_timex_frequency_adjustment_ratio{instance=~'.*'}&duration=1h&step=5m",
+          "order": 6,
+          "schema": "node_timex_frequency_adjustment_ratio",
+          "name": "Time Synchronized Status - Local clock frequency adjustment query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_timex_tick_seconds{instance=~'.*'}&duration=1h&step=5m",
+          "order": 7,
+          "schema": "node_timex_tick_seconds",
+          "name": "Time Misc - Seconds between clock ticks query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_timex_tai_offset_seconds{instance=~'.*'}&duration=1h&step=5m",
+          "order": 8,
+          "schema": "node_timex_tai_offset_seconds",
+          "name": "Time Misc - International Atomic Time  TAI  offset query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "System Processes",
+      "order": "7",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_procs_blocked{instance=~'.*'}&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_procs_blocked",
+          "name": "Processes Status - Processes blocked waiting for I O to complete query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_procs_running{instance=~'.*'}&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_procs_running",
+          "name": "Processes Status - Processes in runnable state query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_processes_state{instance=~'.*'}&duration=1h&step=5m",
+          "order": 3,
+          "schema": "node_processes_state",
+          "name": "Processes State query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_forks_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 4,
+          "schema": "node_forks_total",
+          "name": "Processes  Forks - Processes forks second query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(process_virtual_memory_bytes{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 5,
+          "schema": "process_virtual_memory_bytes",
+          "name": "Processes Memory - Processes virtual memory size in bytes query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "process_resident_memory_max_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 6,
+          "schema": "process_resident_memory_max_bytes",
+          "name": "Processes Memory - Maximum amount of virtual memory available in bytes query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(process_virtual_memory_bytes{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 7,
+          "schema": "process_virtual_memory_bytes",
+          "name": "Processes Memory - Processes virtual memory size in bytes query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(process_virtual_memory_max_bytes{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 8,
+          "schema": "process_virtual_memory_max_bytes",
+          "name": "Processes Memory - Maximum amount of virtual memory available in bytes query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_processes_pids{instance=~'.*'}&duration=1h&step=5m",
+          "order": 9,
+          "schema": "node_processes_pids",
+          "name": "PIDs Number and Limit - Number of PIDs query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_processes_max_processes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 10,
+          "schema": "node_processes_max_processes",
+          "name": "PIDs Number and Limit - PIDs limit query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_schedstat_running_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 11,
+          "schema": "node_schedstat_running_seconds_total",
+          "name": "Process schedule stats Running / Waiting - CPU   seconds spent running a process query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_schedstat_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 12,
+          "schema": "node_schedstat_waiting_seconds_total",
+          "name": "Process schedule stats Running / Waiting - CPU   seconds spent by processing waiting for this CPU query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_processes_threads{instance=~'.*'}&duration=1h&step=5m",
+          "order": 13,
+          "schema": "node_processes_threads",
+          "name": "Threads Number and Limit - Allocated threads query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_processes_max_threads{instance=~'.*'}&duration=1h&step=5m",
+          "order": 14,
+          "schema": "node_processes_max_threads",
+          "name": "Threads Number and Limit - Threads limit query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "System Misc",
+      "order": "8",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_context_switches_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 15,
+          "schema": "node_context_switches_total",
+          "name": "Context Switches / Interrupts - Context switches query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_intr_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 16,
+          "schema": "node_intr_total",
+          "name": "Context Switches / Interrupts - Interrupts query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_load1{instance=~'.*'}&duration=1h&step=5m",
+          "order": 17,
+          "schema": "node_load1",
+          "name": "System Load - Load 1m query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_load5{instance=~'.*'}&duration=1h&step=5m",
+          "order": 18,
+          "schema": "node_load5",
+          "name": "System Load - Load 5m query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_load15{instance=~'.*'}&duration=1h&step=5m",
+          "order": 19,
+          "schema": "node_load15",
+          "name": "System Load - Load 15m query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_cpu_scaling_frequency_hertz{instance=~'.*'}&duration=1h&step=5m",
+          "order": 20,
+          "schema": "node_cpu_scaling_frequency_hertz",
+          "name": "CPU Frequency Scaling - CPU query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "avg(node_cpu_scaling_frequency_max_hertz{instance=~'.*'})&duration=1h&step=5m",
+          "order": 21,
+          "schema": "node_cpu_scaling_frequency_max_hertz",
+          "name": "CPU Frequency Scaling - Max query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "avg(node_cpu_scaling_frequency_min_hertz{instance=~'.*'})&duration=1h&step=5m",
+          "order": 22,
+          "schema": "node_cpu_scaling_frequency_min_hertz",
+          "name": "CPU Frequency Scaling - Min query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "rate(node_pressure_cpu_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 23,
+          "schema": "node_pressure_cpu_waiting_seconds_total",
+          "name": "Pressure Stall Information - CPU some query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "rate(node_pressure_memory_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 24,
+          "schema": "node_pressure_memory_waiting_seconds_total",
+          "name": "Pressure Stall Information - Memory some query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "rate(node_pressure_memory_stalled_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 25,
+          "schema": "node_pressure_memory_stalled_seconds_total",
+          "name": "Pressure Stall Information - Memory full query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "rate(node_pressure_io_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 26,
+          "schema": "node_pressure_io_waiting_seconds_total",
+          "name": "Pressure Stall Information - I O some query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "rate(node_pressure_io_stalled_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 27,
+          "schema": "node_pressure_io_stalled_seconds_total",
+          "name": "Pressure Stall Information - I O full query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_interrupts_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 28,
+          "schema": "node_interrupts_total",
+          "name": "Interrupts Detail query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_schedstat_timeslices_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 29,
+          "schema": "node_schedstat_timeslices_total",
+          "name": "Schedule timeslices executed by each cpu - CPU query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_entropy_available_bits{instance=~'.*'}&duration=1h&step=5m",
+          "order": 30,
+          "schema": "node_entropy_available_bits",
+          "name": "Entropy - Entropy available to random number generators query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(process_cpu_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 31,
+          "schema": "process_cpu_seconds_total",
+          "name": "CPU time spent in user and system contexts - Time spent query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "process_max_fds{instance=~'.*'}&duration=1h&step=5m",
+          "order": 32,
+          "schema": "process_max_fds",
+          "name": "File Descriptors - Maximum open file descriptors query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "process_open_fds{instance=~'.*'}&duration=1h&step=5m",
+          "order": 33,
+          "schema": "process_open_fds",
+          "name": "File Descriptors - Open file descriptors query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Hardware Misc",
+      "order": "9",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_hwmon_temp_celsius{instance=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*'}&duration=1h&step=5m",
+          "order": 34,
+          "schema": "node_hwmon_temp_celsius",
+          "name": "Hardware temperature monitor - temp query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_hwmon_temp_crit_alarm_celsius{instance=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*'}&duration=1h&step=5m",
+          "order": 35,
+          "schema": "node_hwmon_temp_crit_alarm_celsius",
+          "name": "Hardware temperature monitor - Critical Alarm query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_hwmon_temp_crit_celsius{instance=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*'}&duration=1h&step=5m",
+          "order": 36,
+          "schema": "node_hwmon_temp_crit_celsius",
+          "name": "Hardware temperature monitor - Critical query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_hwmon_temp_crit_hyst_celsius{instance=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*'}&duration=1h&step=5m",
+          "order": 37,
+          "schema": "node_hwmon_temp_crit_hyst_celsius",
+          "name": "Hardware temperature monitor - Critical Historical query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_hwmon_temp_max_celsius{instance=~'.*'} * on(chip) group_left(chip_name) node_hwmon_chip_names{instance=~'.*'}&duration=1h&step=5m",
+          "order": 38,
+          "schema": "node_hwmon_temp_max_celsius",
+          "name": "Hardware temperature monitor - Max query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_cooling_device_cur_state{instance=~'.*'}&duration=1h&step=5m",
+          "order": 39,
+          "schema": "node_cooling_device_cur_state",
+          "name": "Throttle cooling device - Current in query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_cooling_device_max_state{instance=~'.*'}&duration=1h&step=5m",
+          "order": 40,
+          "schema": "node_cooling_device_max_state",
+          "name": "Throttle cooling device - Max in query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_power_supply_online{instance=~'.*'}&duration=1h&step=5m",
+          "order": 41,
+          "schema": "node_power_supply_online",
+          "name": "Power supply - online query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Systemd",
+      "order": "10",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_systemd_socket_accepted_connections_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_systemd_socket_accepted_connections_total",
+          "name": "Systemd Sockets - Connections query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_systemd_units{instance=~'.*'}&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_systemd_units",
+          "name": "Systemd Units State - Activating query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_systemd_units{instance=~'.*'}&duration=1h&step=5m",
+          "order": 3,
+          "schema": "node_systemd_units",
+          "name": "Systemd Units State - Active query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_systemd_units{instance=~'.*'}&duration=1h&step=5m",
+          "order": 4,
+          "schema": "node_systemd_units",
+          "name": "Systemd Units State - Deactivating query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_systemd_units{instance=~'.*'}&duration=1h&step=5m",
+          "order": 5,
+          "schema": "node_systemd_units",
+          "name": "Systemd Units State - Failed query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_systemd_units{instance=~'.*'}&duration=1h&step=5m",
+          "order": 6,
+          "schema": "node_systemd_units",
+          "name": "Systemd Units State - Inactive query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Storage Disk",
+      "order": "11",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_reads_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_disk_reads_completed_total",
+          "name": "Disk IOps Completed - Reads completed query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_writes_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_disk_writes_completed_total",
+          "name": "Disk IOps Completed - Writes completed query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_read_bytes_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 3,
+          "schema": "node_disk_read_bytes_total",
+          "name": "Disk R/W Data - Read bytes query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_written_bytes_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 4,
+          "schema": "node_disk_written_bytes_total",
+          "name": "Disk R/W Data - Written bytes query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_read_time_seconds_total{instance=~'.*'}[1h]) / irate(node_disk_reads_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 5,
+          "schema": "node_disk_read_time_seconds_total",
+          "name": "Disk Average Wait Time - Read wait time avg query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_write_time_seconds_total{instance=~'.*'}[1h]) / irate(node_disk_writes_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 6,
+          "schema": "node_disk_write_time_seconds_total",
+          "name": "Disk Average Wait Time - Write wait time avg query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_io_time_weighted_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 7,
+          "schema": "node_disk_io_time_weighted_seconds_total",
+          "name": "Average Queue Size query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_reads_merged_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 8,
+          "schema": "node_disk_reads_merged_total",
+          "name": "Disk R/W Merged - Read merged query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_writes_merged_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 9,
+          "schema": "node_disk_writes_merged_total",
+          "name": "Disk R/W Merged - Write merged query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_io_time_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 10,
+          "schema": "node_disk_io_time_seconds_total",
+          "name": "Time Spent Doing I/Os - IO query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_discard_time_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 11,
+          "schema": "node_disk_discard_time_seconds_total",
+          "name": "Time Spent Doing I/Os - discard query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_disk_io_now{instance=~'.*'}&duration=1h&step=5m",
+          "order": 12,
+          "schema": "node_disk_io_now",
+          "name": "Instantaneous Queue Size - IO now query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_discards_completed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 13,
+          "schema": "node_disk_discards_completed_total",
+          "name": "Disk IOps Discards completed / merged - Discards completed query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_disk_discards_merged_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 14,
+          "schema": "node_disk_discards_merged_total",
+          "name": "Disk IOps Discards completed / merged - Discards merged query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Storage Filesystem",
+      "order": "12",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_filesystem_avail_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 15,
+          "schema": "node_filesystem_avail_bytes",
+          "name": "Filesystem space available - Available query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_filesystem_free_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 16,
+          "schema": "node_filesystem_free_bytes",
+          "name": "Filesystem space available - Free query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_filesystem_size_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 17,
+          "schema": "node_filesystem_size_bytes",
+          "name": "Filesystem space available - Size query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_filesystem_files_free{instance=~'.*'}&duration=1h&step=5m",
+          "order": 18,
+          "schema": "node_filesystem_files_free",
+          "name": "File Nodes Free - Free file nodes query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_filefd_maximum{instance=~'.*'}&duration=1h&step=5m",
+          "order": 19,
+          "schema": "node_filefd_maximum",
+          "name": "File Descriptor - Max open files query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_filefd_allocated{instance=~'.*'}&duration=1h&step=5m",
+          "order": 20,
+          "schema": "node_filefd_allocated",
+          "name": "File Descriptor - Open files query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_filesystem_files{instance=~'.*'}&duration=1h&step=5m",
+          "order": 21,
+          "schema": "node_filesystem_files",
+          "name": "File Nodes Size - File nodes total query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_filesystem_readonly{instance=~'.*'}&duration=1h&step=5m",
+          "order": 22,
+          "schema": "node_filesystem_readonly",
+          "name": "Filesystem in ReadOnly / Error - ReadOnly query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_filesystem_device_error{fstype!~'tmpfs',,instance=~'.*'}&duration=1h&step=5m",
+          "order": 23,
+          "schema": "node_filesystem_device_error",
+          "name": "Filesystem in ReadOnly / Error - Device error query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Network Traffic",
+      "order": "13",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_receive_packets_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_network_receive_packets_total",
+          "name": "Network Traffic by Packets - Receive query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_transmit_packets_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_network_transmit_packets_total",
+          "name": "Network Traffic by Packets - Transmit query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_receive_errs_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 3,
+          "schema": "node_network_receive_errs_total",
+          "name": "Network Traffic Errors - Receive errors query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_transmit_errs_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 4,
+          "schema": "node_network_transmit_errs_total",
+          "name": "Network Traffic Errors - Transmit errors query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_receive_drop_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 5,
+          "schema": "node_network_receive_drop_total",
+          "name": "Network Traffic Drop - Receive drop query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_transmit_drop_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 6,
+          "schema": "node_network_transmit_drop_total",
+          "name": "Network Traffic Drop - Transmit drop query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_receive_compressed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 7,
+          "schema": "node_network_receive_compressed_total",
+          "name": "Network Traffic Compressed - Receive compressed query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_transmit_compressed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 8,
+          "schema": "node_network_transmit_compressed_total",
+          "name": "Network Traffic Compressed - Transmit compressed query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_receive_multicast_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 9,
+          "schema": "node_network_receive_multicast_total",
+          "name": "Network Traffic Multicast - Receive multicast query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_receive_fifo_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 10,
+          "schema": "node_network_receive_fifo_total",
+          "name": "Network Traffic Fifo - Receive fifo query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_transmit_fifo_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 11,
+          "schema": "node_network_transmit_fifo_total",
+          "name": "Network Traffic Fifo - Transmit fifo query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_receive_frame_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 12,
+          "schema": "node_network_receive_frame_total",
+          "name": "Network Traffic Frame - Receive frame query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_transmit_carrier_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 13,
+          "schema": "node_network_transmit_carrier_total",
+          "name": "Network Traffic Carrier - Statistic transmit carrier query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_network_transmit_colls_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 14,
+          "schema": "node_network_transmit_colls_total",
+          "name": "Network Traffic Colls - Transmit colls query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_nf_conntrack_entries{instance=~'.*'}&duration=1h&step=5m",
+          "order": 15,
+          "schema": "node_nf_conntrack_entries",
+          "name": "NF Conntrack - NF conntrack entries query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_nf_conntrack_entries_limit{instance=~'.*'}&duration=1h&step=5m",
+          "order": 16,
+          "schema": "node_nf_conntrack_entries_limit",
+          "name": "NF Conntrack - NF conntrack limit query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_arp_entries{instance=~'.*'}&duration=1h&step=5m",
+          "order": 17,
+          "schema": "node_arp_entries",
+          "name": "ARP Entries - ARP entries query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_network_mtu_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 18,
+          "schema": "node_network_mtu_bytes",
+          "name": "MTU - Bytes query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_network_speed_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 19,
+          "schema": "node_network_speed_bytes",
+          "name": "Speed - Speed query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_network_transmit_queue_length{instance=~'.*'}&duration=1h&step=5m",
+          "order": 20,
+          "schema": "node_network_transmit_queue_length",
+          "name": "Queue Length - Interface transmit queue length query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_softnet_processed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 21,
+          "schema": "node_softnet_processed_total",
+          "name": "Softnet Packets - CPU   Processed query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_softnet_dropped_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 22,
+          "schema": "node_softnet_dropped_total",
+          "name": "Softnet Packets - CPU   Dropped query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_softnet_times_squeezed_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 23,
+          "schema": "node_softnet_times_squeezed_total",
+          "name": "Softnet Out of Quota - CPU   Squeezed query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_network_up{operstate='up',,instance=~'.*'}&duration=1h&step=5m",
+          "order": 24,
+          "schema": "node_network_up",
+          "name": "Network Operational Status - Operational state UP query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_network_carrier{instance=~'.*'}&duration=1h&step=5m",
+          "order": 25,
+          "schema": "node_network_carrier",
+          "name": "Network Operational Status - Physical link state query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Network Sockstat",
+      "order": "14",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_TCP_alloc{instance=~'.*'}&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_sockstat_TCP_alloc",
+          "name": "Sockstat TCP - TCP alloc   Allocated sockets query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_TCP_inuse{instance=~'.*'}&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_sockstat_TCP_inuse",
+          "name": "Sockstat TCP - TCP inuse   Tcp sockets currently in use query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_TCP_mem{instance=~'.*'}&duration=1h&step=5m",
+          "order": 3,
+          "schema": "node_sockstat_TCP_mem",
+          "name": "Sockstat TCP - TCP mem   Used memory for tcp query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_TCP_orphan{instance=~'.*'}&duration=1h&step=5m",
+          "order": 4,
+          "schema": "node_sockstat_TCP_orphan",
+          "name": "Sockstat TCP - TCP orphan   Orphan sockets query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_TCP_tw{instance=~'.*'}&duration=1h&step=5m",
+          "order": 5,
+          "schema": "node_sockstat_TCP_tw",
+          "name": "Sockstat TCP - TCP tw   Sockets waiting close query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_UDPLITE_inuse{instance=~'.*'}&duration=1h&step=5m",
+          "order": 6,
+          "schema": "node_sockstat_UDPLITE_inuse",
+          "name": "Sockstat UDP - UDPLITE inuse   Udplite sockets currently in use query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_UDP_inuse{instance=~'.*'}&duration=1h&step=5m",
+          "order": 7,
+          "schema": "node_sockstat_UDP_inuse",
+          "name": "Sockstat UDP - UDP inuse   Udp sockets currently in use query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_UDP_mem{instance=~'.*'}&duration=1h&step=5m",
+          "order": 8,
+          "schema": "node_sockstat_UDP_mem",
+          "name": "Sockstat UDP - UDP mem   Used memory for udp query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_FRAG_inuse{instance=~'.*'}&duration=1h&step=5m",
+          "order": 9,
+          "schema": "node_sockstat_FRAG_inuse",
+          "name": "Sockstat FRAG / RAW - FRAG inuse   Frag sockets currently in use query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_RAW_inuse{instance=~'.*'}&duration=1h&step=5m",
+          "order": 10,
+          "schema": "node_sockstat_RAW_inuse",
+          "name": "Sockstat FRAG / RAW - RAW inuse   Raw sockets currently in use query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_TCP_mem_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 11,
+          "schema": "node_sockstat_TCP_mem_bytes",
+          "name": "Sockstat Memory Size - mem bytes   TCP sockets in that state query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_UDP_mem_bytes{instance=~'.*'}&duration=1h&step=5m",
+          "order": 12,
+          "schema": "node_sockstat_UDP_mem_bytes",
+          "name": "Sockstat Memory Size - mem bytes   UDP sockets in that state query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_FRAG_memory{instance=~'.*'}&duration=1h&step=5m",
+          "order": 13,
+          "schema": "node_sockstat_FRAG_memory",
+          "name": "Sockstat Memory Size - FRAG memory   Used memory for frag query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_sockstat_sockets_used{instance=~'.*'}&duration=1h&step=5m",
+          "order": 14,
+          "schema": "node_sockstat_sockets_used",
+          "name": "Sockstat Used - Sockets used   Sockets currently in use query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Network Netstat",
+      "order": "15",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_IpExt_InOctets{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_netstat_IpExt_InOctets",
+          "name": "Netstat IP In / Out Octets - InOctets   Received octets query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_IpExt_OutOctets{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_netstat_IpExt_OutOctets",
+          "name": "Netstat IP In / Out Octets - OutOctets   Sent octets query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Ip_Forwarding{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 3,
+          "schema": "node_netstat_Ip_Forwarding",
+          "name": "Netstat IP Forwarding - Forwarding   IP forwarding query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Icmp_InMsgs{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 4,
+          "schema": "node_netstat_Icmp_InMsgs",
+          "name": "ICMP In / Out - InMsgs    Messages which the entity received  Note that this counter includes all those counted by icmpInErrors query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Icmp_OutMsgs{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 5,
+          "schema": "node_netstat_Icmp_OutMsgs",
+          "name": "ICMP In / Out - OutMsgs   Messages which this entity attempted to send  Note that this counter includes all those counted by icmpOutErrors query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Icmp_InErrors{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 6,
+          "schema": "node_netstat_Icmp_InErrors",
+          "name": "ICMP Errors - InErrors   Messages which the entity received but determined as having ICMP specific errors  bad ICMP checksums  bad length  etc query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Udp_InDatagrams{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 7,
+          "schema": "node_netstat_Udp_InDatagrams",
+          "name": "UDP In / Out - InDatagrams   Datagrams received query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Udp_OutDatagrams{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 8,
+          "schema": "node_netstat_Udp_OutDatagrams",
+          "name": "UDP In / Out - OutDatagrams   Datagrams sent query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Udp_InErrors{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 9,
+          "schema": "node_netstat_Udp_InErrors",
+          "name": "UDP Errors - InErrors   UDP Datagrams that could not be delivered to an application query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Udp_NoPorts{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 10,
+          "schema": "node_netstat_Udp_NoPorts",
+          "name": "UDP Errors - NoPorts   UDP Datagrams received on a port with no listener query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_UdpLite_InErrors{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 11,
+          "schema": "node_netstat_UdpLite_InErrors",
+          "name": "UDP Errors - InErrors Lite   UDPLite Datagrams that could not be delivered to an application query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Udp_RcvbufErrors{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 12,
+          "schema": "node_netstat_Udp_RcvbufErrors",
+          "name": "UDP Errors - RcvbufErrors   UDP buffer errors received query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Udp_SndbufErrors{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 13,
+          "schema": "node_netstat_Udp_SndbufErrors",
+          "name": "UDP Errors - SndbufErrors   UDP buffer errors send query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Tcp_InSegs{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 14,
+          "schema": "node_netstat_Tcp_InSegs",
+          "name": "TCP In / Out - InSegs   Segments received  including those received in error  This count includes segments received on currently established connections query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Tcp_OutSegs{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 15,
+          "schema": "node_netstat_Tcp_OutSegs",
+          "name": "TCP In / Out - OutSegs   Segments sent  including those on current connections but excluding those containing only retransmitted octets query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_TcpExt_ListenOverflows{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 16,
+          "schema": "node_netstat_TcpExt_ListenOverflows",
+          "name": "TCP Errors - ListenOverflows   Times the listen queue of a socket overflowed query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_TcpExt_ListenDrops{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 17,
+          "schema": "node_netstat_TcpExt_ListenDrops",
+          "name": "TCP Errors - ListenDrops   SYNs to LISTEN sockets ignored query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_TcpExt_TCPSynRetrans{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 18,
+          "schema": "node_netstat_TcpExt_TCPSynRetrans",
+          "name": "TCP Errors - TCPSynRetrans   SYN SYN ACK retransmits to break down retransmissions in SYN  fast timeout retransmits query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Tcp_RetransSegs{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 19,
+          "schema": "node_netstat_Tcp_RetransSegs",
+          "name": "TCP Errors - RetransSegs   Segments retransmitted   that is  the number of TCP segments transmitted containing one or more previously transmitted octets query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Tcp_InErrs{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 20,
+          "schema": "node_netstat_Tcp_InErrs",
+          "name": "TCP Errors - InErrs   Segments received in error  e g   bad TCP checksums query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Tcp_OutRsts{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 21,
+          "schema": "node_netstat_Tcp_OutRsts",
+          "name": "TCP Errors - OutRsts   Segments sent with RST flag query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_TcpExt_TCPRcvQDrop{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 22,
+          "schema": "node_netstat_TcpExt_TCPRcvQDrop",
+          "name": "TCP Errors - TCPRcvQDrop   Packets meant to be queued in rcv queue but dropped because socket rcvbuf limit hit query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_TcpExt_TCPOFOQueue{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 23,
+          "schema": "node_netstat_TcpExt_TCPOFOQueue",
+          "name": "TCP Errors - TCPOFOQueue   TCP layer receives an out of order packet and has enough memory to queue it query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_netstat_Tcp_CurrEstab{instance=~'.*'}&duration=1h&step=5m",
+          "order": 24,
+          "schema": "node_netstat_Tcp_CurrEstab",
+          "name": "TCP Connections - CurrEstab   TCP connections for which the current state is either ESTABLISHED or CLOSE  WAIT query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_netstat_Tcp_MaxConn{instance=~'.*'}&duration=1h&step=5m",
+          "order": 25,
+          "schema": "node_netstat_Tcp_MaxConn",
+          "name": "TCP Connections - MaxConn   Limit on the total number of TCP connections the entity can support  Dynamic is   1 query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_TcpExt_SyncookiesFailed{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 26,
+          "schema": "node_netstat_TcpExt_SyncookiesFailed",
+          "name": "TCP SynCookie - SyncookiesFailed   Invalid SYN cookies received query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_TcpExt_SyncookiesRecv{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 27,
+          "schema": "node_netstat_TcpExt_SyncookiesRecv",
+          "name": "TCP SynCookie - SyncookiesRecv   SYN cookies received query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_TcpExt_SyncookiesSent{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 28,
+          "schema": "node_netstat_TcpExt_SyncookiesSent",
+          "name": "TCP SynCookie - SyncookiesSent   SYN cookies sent query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Tcp_ActiveOpens{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 29,
+          "schema": "node_netstat_Tcp_ActiveOpens",
+          "name": "TCP Direct Transition - ActiveOpens   TCP connections that have made a direct transition to the SYN SENT state from the CLOSED state query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "irate(node_netstat_Tcp_PassiveOpens{instance=~'.*'}[1h])&duration=1h&step=5m",
+          "order": 30,
+          "schema": "node_netstat_Tcp_PassiveOpens",
+          "name": "TCP Direct Transition - PassiveOpens   TCP connections that have made a direct transition to the SYN RCVD state from the LISTEN state query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_tcp_connection_states{state='established',,instance=~'.*'}&duration=1h&step=5m",
+          "order": 31,
+          "schema": "node_tcp_connection_states",
+          "name": "TCP Stat - established   TCP sockets in established state query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_tcp_connection_states{state='fin_wait2',,instance=~'.*'}&duration=1h&step=5m",
+          "order": 32,
+          "schema": "node_tcp_connection_states",
+          "name": "TCP Stat - fin wait2   TCP sockets in fin wait2 state query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_tcp_connection_states{state='listen',,instance=~'.*'}&duration=1h&step=5m",
+          "order": 33,
+          "schema": "node_tcp_connection_states",
+          "name": "TCP Stat - listen   TCP sockets in listen state query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_tcp_connection_states{state='time_wait',,instance=~'.*'}&duration=1h&step=5m",
+          "order": 34,
+          "schema": "node_tcp_connection_states",
+          "name": "TCP Stat - time wait   TCP sockets in time wait state query",
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Node Exporter",
+      "order": "16",
+      "type": "metrics",
+      "queryList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_scrape_collector_duration_seconds{instance=~'.*'}&duration=1h&step=5m",
+          "order": 1,
+          "schema": "node_scrape_collector_duration_seconds",
+          "name": "Node Exporter Scrape Time - Scrape duration query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_scrape_collector_success{instance=~'.*'}&duration=1h&step=5m",
+          "order": 2,
+          "schema": "node_scrape_collector_success",
+          "name": "Node Exporter Scrape - Scrape success query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "node_textfile_scrape_error{instance=~'.*'}&duration=1h&step=5m",
+          "order": 3,
+          "schema": "node_textfile_scrape_error",
+          "name": "Node Exporter Scrape - Scrape textfile error  1   true query",
+          "baseliningOptions": {}
+        }
+      ]
+    }
+  ]
+}
