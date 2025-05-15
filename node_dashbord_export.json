@@ -32,7 +32,7 @@
         {
           "chart_type": "gauge",
           "data_source_name": "Ascent Metrics",
-          "query": "irate(node_pressure_cpu_waiting_seconds_total{instance=~'.*'}[1h])&duration=1.000h&step=5m",
+          "query": "irate(node_pressure_cpu_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "order": 1,
           "schema": "node_pressure_cpu_waiting_seconds_total",
           "options": {
@@ -41,25 +41,6 @@
             "upperLimit": ""
           },
           "name": "Pressure - CPU query",
-          "alert": {
-            "active": true,
-            "options": [
-              {
-                "alertType": "simple alert",
-                "anomalySwitch": false,
-                "column": "value",
-                "op": ">",
-                "selectionCondition": "all",
-                "timeColumn": "",
-                "muted": false,
-                "trackDuration": 15,
-                "value": 20,
-                "severityType": "warning"
-              }
-            ],
-            "query": "irate(node_pressure_cpu_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
-            "rearm": 300
-          },
           "position": {
             "x": 0,
             "y": 0,
@@ -69,28 +50,14 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 20,
-            "i": "2116"
+            "i": "2376"
           },
-          "baseliningOptions": {
-            "timeColumn": "timestamp",
-            "valueColumn": "value",
-            "operations": [],
-            "windowSize": 12,
-            "stdFraction": 1,
-            "errorPercentage": 50,
-            "mawindow": 384,
-            "forecastDays": 1,
-            "forecastHours": 5,
-            "weekComparision": false,
-            "weekComparisionTime": 24,
-            "weekComparisionPercentage": 20,
-            "anomaly_group_by": []
-          }
+          "baseliningOptions": {}
         },
         {
           "chart_type": "size",
           "data_source_name": "Ascent Metrics",
-          "query": "irate(node_pressure_memory_waiting_seconds_total{instance=~'.*'}[1h])&duration=1.000h&step=5m",
+          "query": "irate(node_pressure_memory_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
           "order": 2,
           "schema": "node_pressure_memory_waiting_seconds_total",
           "options": {
@@ -111,23 +78,9 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 20,
-            "i": "2118"
+            "i": "2378"
           },
-          "baseliningOptions": {
-            "timeColumn": "timestamp",
-            "valueColumn": "value",
-            "operations": [],
-            "windowSize": 12,
-            "stdFraction": 1,
-            "errorPercentage": 50,
-            "mawindow": 384,
-            "forecastDays": 1,
-            "forecastHours": 5,
-            "weekComparision": false,
-            "weekComparisionTime": 24,
-            "weekComparisionPercentage": 20,
-            "anomaly_group_by": []
-          }
+          "baseliningOptions": {}
         },
         {
           "chart_type": "datetime",
@@ -151,25 +104,6 @@
             "upperLimit": ""
           },
           "name": "Up Time",
-          "alert": {
-            "active": true,
-            "options": [
-              {
-                "alertType": "simple alert",
-                "anomalySwitch": false,
-                "column": "value",
-                "op": ">",
-                "selectionCondition": "all",
-                "timeColumn": "",
-                "muted": false,
-                "trackDuration": 15,
-                "value": 20,
-                "severityType": "warning"
-              }
-            ],
-            "query": "(time() - node_boot_time_seconds{instance=~'.*'})",
-            "rearm": 300
-          },
           "position": {
             "x": 4,
             "y": 0,
@@ -179,23 +113,9 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 20,
-            "i": "2119"
+            "i": "2379"
           },
-          "baseliningOptions": {
-            "timeColumn": "timestamp",
-            "valueColumn": "value",
-            "operations": [],
-            "windowSize": 12,
-            "stdFraction": 1,
-            "errorPercentage": 50,
-            "mawindow": 384,
-            "forecastDays": 1,
-            "forecastHours": 5,
-            "weekComparision": false,
-            "weekComparisionTime": 24,
-            "weekComparisionPercentage": 20,
-            "anomaly_group_by": []
-          }
+          "baseliningOptions": {}
         },
         {
           "chart_type": "status",
@@ -228,28 +148,14 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 20,
-            "i": "2121"
+            "i": "2381"
           },
-          "baseliningOptions": {
-            "timeColumn": "timestamp",
-            "valueColumn": "value",
-            "operations": [],
-            "windowSize": 12,
-            "stdFraction": 1,
-            "errorPercentage": 50,
-            "mawindow": 384,
-            "forecastDays": 1,
-            "forecastHours": 5,
-            "weekComparision": false,
-            "weekComparisionTime": 24,
-            "weekComparisionPercentage": 20,
-            "anomaly_group_by": []
-          }
+          "baseliningOptions": {}
         },
         {
           "chart_type": "stat",
           "data_source_name": "Ascent Metrics",
-          "query": "scalar(node_load1{instance=~'.*'}) * 100 / count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu))&duration=1.000h&step=5m",
+          "query": "scalar(node_load1{instance=~'.*'}) * 100 / count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu))&duration=1h&step=5m",
           "order": 5,
           "schema": "node_load1",
           "options": {
@@ -277,28 +183,14 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 20,
-            "i": "2122"
+            "i": "2382"
           },
-          "baseliningOptions": {
-            "timeColumn": "timestamp",
-            "valueColumn": "value",
-            "operations": [],
-            "windowSize": 12,
-            "stdFraction": 1,
-            "errorPercentage": 50,
-            "mawindow": 384,
-            "forecastDays": 1,
-            "forecastHours": 5,
-            "weekComparision": false,
-            "weekComparisionTime": 24,
-            "weekComparisionPercentage": 20,
-            "anomaly_group_by": []
-          }
+          "baseliningOptions": {}
         },
         {
           "chart_type": "gauge",
           "data_source_name": "Ascent Metrics",
-          "query": "((node_memory_MemTotal_bytes{instance=~'.*'} - node_memory_MemFree_bytes{instance=~'.*'}) / node_memory_MemTotal_bytes{instance=~'.*'}) * 100&duration=1.000h&step=5m",
+          "query": "((node_memory_MemTotal_bytes{instance=~'.*'} - node_memory_MemFree_bytes{instance=~'.*'}) / node_memory_MemTotal_bytes{instance=~'.*'}) * 100&duration=1h&step=5m",
           "order": 6,
           "schema": "node_memory_MemTotal_bytes",
           "options": {
@@ -326,28 +218,14 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 20,
-            "i": "2123"
+            "i": "2383"
           },
-          "baseliningOptions": {
-            "timeColumn": "timestamp",
-            "valueColumn": "value",
-            "operations": [],
-            "windowSize": 12,
-            "stdFraction": 1,
-            "errorPercentage": 50,
-            "mawindow": 384,
-            "forecastDays": 1,
-            "forecastHours": 5,
-            "weekComparision": false,
-            "weekComparisionTime": 24,
-            "weekComparisionPercentage": 20,
-            "anomaly_group_by": []
-          }
+          "baseliningOptions": {}
         },
         {
           "chart_type": "gauge",
           "data_source_name": "Ascent Metrics",
-          "query": "(1 - (node_memory_MemAvailable_bytes{instance=~'.*'} / node_memory_MemTotal_bytes{instance=~'.*'})) * 100&duration=1.000h&step=5m",
+          "query": "(1 - (node_memory_MemAvailable_bytes{instance=~'.*'} / node_memory_MemTotal_bytes{instance=~'.*'})) * 100&duration=1h&step=5m",
           "order": 7,
           "schema": "node_memory_MemAvailable_bytes",
           "options": {
@@ -375,14 +253,14 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 20,
-            "i": "2124"
+            "i": "2384"
           },
           "baseliningOptions": {}
         },
         {
           "chart_type": "gauge",
           "data_source_name": "Ascent Metrics",
-          "query": "((node_memory_SwapTotal_bytes{instance=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*'}) / (node_memory_SwapTotal_bytes{instance=~'.*'})) * 100&duration=1.000h&step=5m",
+          "query": "((node_memory_SwapTotal_bytes{instance=~'.*'} - node_memory_SwapFree_bytes{instance=~'.*'}) / (node_memory_SwapTotal_bytes{instance=~'.*'})) * 100&duration=1h&step=5m",
           "order": 8,
           "schema": "node_memory_SwapTotal_bytes",
           "options": {
@@ -410,14 +288,14 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 20,
-            "i": "2125"
+            "i": "2385"
           },
           "baseliningOptions": {}
         },
         {
           "chart_type": "gauge",
           "data_source_name": "Ascent Metrics",
-          "query": "100 - ((node_filesystem_avail_bytes{fstype!='rootfs',instance=~'.*'} * 100) / node_filesystem_size_bytes{fstype!='rootfs',instance=~'.*'})&duration=1.000h&step=5m",
+          "query": "100 - ((node_filesystem_avail_bytes{fstype!='rootfs',instance=~'.*'} * 100) / node_filesystem_size_bytes{fstype!='rootfs',instance=~'.*'})&duration=1h&step=5m",
           "order": 9,
           "schema": "node_filesystem_avail_bytes",
           "options": {
@@ -445,14 +323,14 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 20,
-            "i": "2126"
+            "i": "2386"
           },
           "baseliningOptions": {}
         },
         {
           "chart_type": "counter",
           "data_source_name": "Ascent Metrics",
-          "query": "count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu))&duration=1.000h&step=5m",
+          "query": "count(count(node_cpu_seconds_total{instance=~'.*'}) by (cpu))&duration=1h&step=5m",
           "order": 10,
           "schema": "node_cpu_seconds_total",
           "options": {
@@ -480,14 +358,14 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 15,
-            "i": "2127"
+            "i": "2387"
           },
           "baseliningOptions": {}
         },
         {
           "chart_type": "counter",
           "data_source_name": "Ascent Metrics",
-          "query": "node_time_seconds{instance=~'.*'} - node_boot_time_seconds{instance=~'.*'}&duration=1.000h&step=5m",
+          "query": "node_time_seconds{instance=~'.*'} - node_boot_time_seconds{instance=~'.*'}&duration=1h&step=5m",
           "order": 11,
           "schema": "node_time_seconds",
           "options": {
@@ -515,14 +393,14 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 15,
-            "i": "2128"
+            "i": "2388"
           },
           "baseliningOptions": {}
         },
         {
           "chart_type": "counter",
           "data_source_name": "Ascent Metrics",
-          "query": "node_filesystem_size_bytes{fstype!='rootfs',instance=~'.*'}&duration=1.000h&step=5m",
+          "query": "node_filesystem_size_bytes{fstype!='rootfs',instance=~'.*'}&duration=1h&step=5m",
           "order": 12,
           "schema": "node_filesystem_size_bytes",
           "options": {
@@ -550,14 +428,14 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 15,
-            "i": "2129"
+            "i": "2389"
           },
           "baseliningOptions": {}
         },
         {
           "chart_type": "counter",
           "data_source_name": "Ascent Metrics",
-          "query": "node_memory_MemTotal_bytes{instance=~'.*'}&duration=1.000h&step=5m",
+          "query": "node_memory_MemTotal_bytes{instance=~'.*'}&duration=1h&step=5m",
           "order": 13,
           "schema": "node_memory_MemTotal_bytes",
           "options": {
@@ -585,14 +463,14 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 15,
-            "i": "2130"
+            "i": "2390"
           },
           "baseliningOptions": {}
         },
         {
           "chart_type": "counter",
           "data_source_name": "Ascent Metrics",
-          "query": "node_memory_SwapTotal_bytes{instance=~'.*'}&duration=1.000h&step=5m",
+          "query": "node_memory_SwapTotal_bytes{instance=~'.*'}&duration=1h&step=5m",
           "order": 14,
           "schema": "node_memory_SwapTotal_bytes",
           "options": {
@@ -620,7 +498,7 @@
             "maxW": 12,
             "minH": 4,
             "maxH": 15,
-            "i": "2131"
+            "i": "2391"
           },
           "baseliningOptions": {}
         }
