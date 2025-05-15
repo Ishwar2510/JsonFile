@@ -41,6 +41,25 @@
             "upperLimit": ""
           },
           "name": "Pressure - CPU query",
+          "alert": {
+            "active": true,
+            "options": [
+              {
+                "alertType": "simple alert",
+                "anomalySwitch": false,
+                "column": "value",
+                "op": ">",
+                "selectionCondition": "all",
+                "timeColumn": "",
+                "muted": false,
+                "trackDuration": 15,
+                "value": 20,
+                "severityType": "warning"
+              }
+            ],
+            "query": "irate(node_pressure_cpu_waiting_seconds_total{instance=~'.*'}[1h])&duration=1h&step=5m",
+            "rearm": 300
+          },
           "position": {
             "w": 2,
             "h": 6,
@@ -136,6 +155,25 @@
             "upperLimit": ""
           },
           "name": "Up Time",
+          "alert": {
+            "active": true,
+            "options": [
+              {
+                "alertType": "simple alert",
+                "anomalySwitch": false,
+                "column": "value",
+                "op": ">",
+                "selectionCondition": "all",
+                "timeColumn": "",
+                "muted": false,
+                "trackDuration": 15,
+                "value": 20,
+                "severityType": "warning"
+              }
+            ],
+            "query": "(time() - node_boot_time_seconds{instance=~'.*'})",
+            "rearm": 300
+          },
           "position": {
             "w": 2,
             "h": 10,
