@@ -8,6 +8,7 @@
     {
       "key": "test",
       "type": "metrics",
+      "order": 1, 
       "queriesList": [
         {
           "chart_type": "line",
