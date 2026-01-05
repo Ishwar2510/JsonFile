@@ -1,32 +1,73 @@
 {
-    "tabs": [
+  "header": {
+    "dateTimeRange": true,
+    "data_source_type": "apica_ascent_prometheus",
+    "dropdowns": []
+  },
+  "tabs": [
+    {
+      "key": "test",
+      "type": "metrics",
+      "queriesList": [
         {
-            "key": "Statefulset",
-            "title": "Statefulset",
-            "order": "1",
-            "type": "metrics",
-            "queriesList": [
-                {
-                    "chart_type": "line",
-                    "data_source_name": "Ascent Metrics",
-                    "name": "Node Exporter Scrape - Scrape success query",
-                    "options": {
-                        "description": "Node Exporter Scrape - Scrape success query",
-                        "order": 2,
-                        "plot": {
-                            "errorColumn": "",
-                            "groupBy": ["instance"],
-                            "x": "timestamp",
-                            "xLabel": "Timestamp",
-                            "y": ["value"],
-                            "yLabel": "value"
-                        },
-                        "upperLimit": ""
-                    },
-                    "query": "node_scrape_collector_success{instance=~'.*'}&duration=1h&step=5m",
-                    "schema": "node_scrape_collector_success"
-                }
-            ]
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "go_memstats_alloc_bytes{app=~'test'}&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {},
+          "name": "go_memstats_alloc_bytes",
+          "position": {
+            "w": 6,
+            "h": 12,
+            "x": 0,
+            "y": 0,
+            "i": "329",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "go_gc_duration_seconds{}&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {},
+          "name": "go_gc_duration_seconds",
+          "position": {
+            "w": 6,
+            "h": 12,
+            "x": 6,
+            "y": 0,
+            "i": "379",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {
+            "timeColumn": "timestamp",
+            "valueColumn": "value",
+            "operations": [],
+            "windowSize": 12,
+            "stdFraction": 1,
+            "errorPercentage": 50,
+            "mawindow": 384,
+            "forecastDays": 1,
+            "forecastHours": 5,
+            "weekComparision": false,
+            "weekComparisionTime": 24,
+            "weekComparisionPercentage": 20,
+            "anomaly_group_by": []
+          }
         }
-    ]
+      ]
+    }
+  ]
 }
