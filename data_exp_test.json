@@ -1,0 +1,38 @@
+{
+  "header": {
+    "dateTimeRange": true,
+    "data_source_type": "apica_ascent_prometheus",
+    "dropdowns": []
+  },
+  "tabs": [
+    {
+      "key": "test",
+      "order": 1,
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "go_gc_duration_seconds{}&duration=1h&step=5m",
+          "order": 1,
+          "schema": "",
+          "options": {
+            "order": 1
+          },
+          "name": "go_gc_duration_seconds",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "1023"
+          }
+        }
+      ]
+    }
+  ]
+}
