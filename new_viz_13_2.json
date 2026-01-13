@@ -720,7 +720,7 @@
           }
         },
         {
-          "chart_type": "sankey",
+          "chart_type": "line",
           "data_source_name": "Ascent Metrics",
           "query": "logiq_logflow_forwards_count{app!~\"checks-.*|oi.*\", exported_namespace!~\"oci.*\"}",
           "schema": "",
