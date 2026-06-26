@@ -1,0 +1,248 @@
+{
+  "header": {
+    "dateTimeRange": true,
+    "data_source_type": "apica_ascent_prometheus",
+    "dropdowns": []
+  },
+  "tabs": [
+    {
+      "key": "goroutines",
+      "order": "0",
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "area",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_goroutines)&duration=3.000h&step=10m",
+          "schema": "",
+          "options": {
+            "plot": {
+              "groupBy": "job",
+              "x": "timestamp",
+              "y": [
+                "value"
+              ],
+              "xLabel": "timestamp",
+              "yLabel": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": true,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "order": 1
+          },
+          "name": "Total Goroutines (All Services)",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 0,
+            "y": 0,
+            "i": "56030",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "area",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_goroutines) by (job)&duration=3.000h&step=10m",
+          "schema": "",
+          "options": {
+            "plot": {
+              "groupBy": "job"
+            },
+            "order": 1
+          },
+          "name": "Goroutines by Job",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 6,
+            "y": 0,
+            "i": "56031",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "area",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_goroutines) by (pod)&duration=3.000h&step=10m",
+          "schema": "",
+          "options": {
+            "plot": {
+              "groupBy": "pod"
+            },
+            "order": 2
+          },
+          "name": "Goroutines by Pod",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 0,
+            "y": 10,
+            "i": "56032",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "area",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_goroutines) by (container)&duration=3.000h&step=10m",
+          "schema": "",
+          "options": {
+            "order": 3,
+            "plot": {
+              "x": "timestamp",
+              "y": [
+                "value"
+              ],
+              "groupBy": [
+                "container"
+              ],
+              "xLabel": "timestamp",
+              "yLabel": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            }
+          },
+          "name": "Goroutines by Container",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 6,
+            "y": 10,
+            "i": "56033",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        }
+      ]
+    }
+  ]
+}
