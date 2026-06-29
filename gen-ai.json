@@ -1,0 +1,670 @@
+{
+  "header": {
+    "dateTimeRange": true,
+    "data_source_type": "apica_ascent_prometheus",
+    "dropdowns": []
+  },
+  "tabs": [
+    {
+      "key": "Tokens",
+      "order": 1,
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (gen_ai_request_model) (increase(gen_ai_client_token_usage_sum[1h]))&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "description": "Total tokens",
+            "plot": {
+              "x": "timestamp",
+              "y": [
+                "value"
+              ],
+              "groupBy": [
+                "gen_ai_request_model"
+              ],
+              "xLabel": "timestamp",
+              "yLabel": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "order": 1
+          },
+          "name": "Total Tokens Used (by Model)",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 0,
+            "y": 0,
+            "i": "179",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (user) (increase(gen_ai_client_token_usage_sum[1h]))&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "plot": {
+              "x": "timestamp",
+              "y": [
+                "value"
+              ],
+              "groupBy": [
+                "user"
+              ],
+              "xLabel": "timestamp",
+              "yLabel": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "order": 1
+          },
+          "name": "Total Tokens Used (by User)",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 6,
+            "y": 0,
+            "i": "180",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (gen_ai_request_model) (rate(gen_ai_client_token_usage_sum[5m]))&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "plot": {
+              "x": "timestamp",
+              "y": [
+                "value"
+              ],
+              "groupBy": [
+                "gen_ai_request_model"
+              ],
+              "xLabel": "timestamp",
+              "yLabel": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "order": 2
+          },
+          "name": "Token Usage Rate Over Time (by Model)",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 0,
+            "y": 10,
+            "i": "181",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (gen_ai_request_model) (rate(gen_ai_client_token_usage_sum[5m])) / sum by (gen_ai_request_model) (rate(gen_ai_client_token_usage_count[5m]))&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "plot": {
+              "x": "timestamp",
+              "y": [
+                "value"
+              ],
+              "groupBy": [
+                "gen_ai_request_model"
+              ],
+              "xLabel": "timestamp",
+              "yLabel": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "order": 3
+          },
+          "name": "Avg Tokens per Request (by Model)",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 6,
+            "y": 10,
+            "i": "182",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Cost",
+      "order": "1",
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (gen_ai_request_model) (increase(gen_ai_client_cost_nanodollars_total[1h])) / 1e9&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 1
+          },
+          "name": "Total Cost in USD (by Model)",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "183"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (user) (increase(gen_ai_client_cost_nanodollars_total[1h])) / 1e9&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 1
+          },
+          "name": "Total Cost in USD (by User)",
+          "position": {
+            "x": 6,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "184"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (gen_ai_request_model) (rate(gen_ai_client_cost_nanodollars_total[5m])) / 1e9&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 2
+          },
+          "name": "Cost Rate Over Time (by Model)",
+          "position": {
+            "x": 0,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "185"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(gen_ai_client_cost_nanodollars_total) / 1e9&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 3
+          },
+          "name": "Cumulative Cost (All Models)",
+          "position": {
+            "x": 6,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "186"
+          },
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Operations",
+      "order": "2",
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (gen_ai_request_model) (rate(gen_ai_client_operation_duration_seconds_count[5m]))&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 1
+          },
+          "name": "Request Rate (by Model)",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "187"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (gen_ai_request_model) (rate(gen_ai_client_operation_duration_seconds_sum[5m])) / sum by (gen_ai_request_model) (rate(gen_ai_client_operation_duration_seconds_count[5m]))&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 1
+          },
+          "name": "Avg Operation Duration (by Model)",
+          "position": {
+            "x": 6,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "188"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (user) (rate(gen_ai_client_operation_duration_seconds_count[5m]))&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 2
+          },
+          "name": "Request Rate (by User)",
+          "position": {
+            "x": 0,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "189"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (gen_ai_request_model) (increase(gen_ai_client_operation_duration_seconds_count[1h]))&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 3
+          },
+          "name": "Total Operations (by Model)",
+          "position": {
+            "x": 6,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "190"
+          },
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "Tools",
+      "order": "3",
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (user, tool_name) (rate(gen_ai_tool_invocations_total[5m]))&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 1
+          },
+          "name": "Tool Invocations Rate (by Tool)",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 0,
+            "y": 10,
+            "i": "191",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (tool_name,user) (increase(gen_ai_tool_invocations_total[5m]))&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 1
+          },
+          "name": "Total Tool Invocations (by Tool)",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 6,
+            "y": 0,
+            "i": "192",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "(sum by (user, tool_name) (rate(gen_ai_tool_duration_seconds_sum[5m])) / sum by (user, tool_name) (rate(gen_ai_tool_duration_seconds_count[5m])))&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 2
+          },
+          "name": "Avg Tool Duration (by Tool)",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 6,
+            "y": 10,
+            "i": "193",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (user, tool_name) (rate(gen_ai_tool_result_bytes_sum[5m]))&duration=1.000h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 3
+          },
+          "name": "Tool Result Size (bytes/sec by Tool)",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 0,
+            "y": 0,
+            "i": "194",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        }
+      ]
+    }
+  ]
+}
