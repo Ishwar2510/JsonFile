@@ -1,0 +1,60 @@
+{
+  "header": {
+    "dateTimeRange": true,
+    "data_source_type": "apica_ascent_prometheus",
+    "dropdowns": [
+      {
+        "duration": {
+          "title": "duration",
+          "key": "duration",
+          "query_id": "",
+          "query": "",
+          "type": "enum",
+          "queryColumn": "duration",
+          "enumOptions": "1h\n2h",
+          "multiValuesOptions": null
+        }
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "key": "Metrics",
+      "order": 1,
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "table",
+          "data_source_name": "Ascent Metrics",
+          "query": "go_gc_duration_seconds_count&duration=2h&step=5m",
+          "schema": "",
+          "options": {
+            "order": 2,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": [],
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Fork of query (#4816) widget add",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "5047"
+          }
+        }
+      ]
+    }
+  ]
+}
