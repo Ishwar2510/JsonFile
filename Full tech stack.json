@@ -1,0 +1,845 @@
+{
+  "header": {
+    "dateTimeRange": true,
+    "data_source_type": "",
+    "dropdowns": [
+      {
+        "duration": {
+          "title": "duration",
+          "key": "duration",
+          "query_id": "",
+          "type": "text",
+          "queryColumn": "duration",
+          "enumOptions": "",
+          "multiValuesOptions": true,
+          "order": 1
+        }
+      },
+      {
+        "step": {
+          "title": "step",
+          "key": "step",
+          "query_id": "",
+          "query": "",
+          "type": "text",
+          "queryColumn": "duration",
+          "enumOptions": "",
+          "multiValuesOptions": null
+        }
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "key": "http",
+      "order": "0",
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "bar",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (job) (rate(http_requests_total[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 1,
+            "plot": {
+              "groupBy": "job"
+            }
+          },
+          "name": "Request Rate",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "270"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "area",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(rate(http_requests_total[5m])) by (code)&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 1,
+            "plot": {
+              "groupBy": "code"
+            }
+          },
+          "name": "Error Rate",
+          "position": {
+            "x": 6,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "271"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket[5m])))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 2,
+            "plot": {
+              "groupBy": "le"
+            }
+          },
+          "name": "Request Latency (p95)",
+          "position": {
+            "x": 0,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "272"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "gauge",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(http_inflight_requests)&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 3,
+            "plot": {}
+          },
+          "name": "In-Flight Requests",
+          "position": {
+            "x": 6,
+            "y": 1,
+            "w": 2,
+            "h": 10,
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "i": "273"
+          },
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "postgres",
+      "order": "1",
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "area",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (datname) (pg_stat_database_numbackends)&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 1,
+            "plot": {
+              "groupBy": "datname"
+            }
+          },
+          "name": "Active Connections",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "274"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "bar",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (datname) (rate(pg_stat_database_deadlocks[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 1,
+            "plot": {
+              "groupBy": "datname"
+            }
+          },
+          "name": "Deadlocks",
+          "position": {
+            "x": 6,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "275"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "stat",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(rate(pg_stat_database_blks_hit[5m])) / (sum(rate(pg_stat_database_blks_hit[5m])) + sum(rate(pg_stat_database_blks_read[5m])))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 2,
+            "plot": {}
+          },
+          "name": "Cache Hit Ratio",
+          "position": {
+            "x": 0,
+            "y": 1,
+            "w": 2,
+            "h": 10,
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "i": "276"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (datname) (rate(pg_stat_database_tup_inserted[5m]) + rate(pg_stat_database_tup_updated[5m]) + rate(pg_stat_database_tup_deleted[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 3,
+            "plot": {
+              "groupBy": "datname"
+            }
+          },
+          "name": "Tuple Throughput (Insert/Update/Delete)",
+          "position": {
+            "x": 2,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "277"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "gauge",
+          "data_source_name": "Ascent Metrics",
+          "query": "max(pg_stat_activity_max_tx_duration)&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 4,
+            "plot": {}
+          },
+          "name": "Max Transaction Duration (s)",
+          "position": {
+            "x": 8,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "278"
+          },
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "redis",
+      "order": "2",
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (addr) (redis_connected_clients)&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 1,
+            "plot": {
+              "groupBy": "addr"
+            }
+          },
+          "name": "Connected Clients",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "279"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "area",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (addr) (redis_memory_used_bytes)&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 1,
+            "plot": {
+              "groupBy": "addr"
+            }
+          },
+          "name": "Memory Used (bytes)",
+          "position": {
+            "x": 6,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "280"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "gauge",
+          "data_source_name": "Ascent Metrics",
+          "query": "rate(redis_keyspace_hits_total[5m]) / (rate(redis_keyspace_hits_total[5m]) + rate(redis_keyspace_misses_total[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 2,
+            "plot": {}
+          },
+          "name": "Cache Hit Ratio",
+          "position": {
+            "x": 0,
+            "y": 1,
+            "w": 2,
+            "h": 10,
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "i": "281"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "bar",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (cmd) (rate(redis_commands_processed_total[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 3,
+            "plot": {
+              "groupBy": "cmd"
+            }
+          },
+          "name": "Commands Processed Rate",
+          "position": {
+            "x": 2,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "282"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "stat",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (addr) (rate(redis_rejected_connections_total[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 4,
+            "plot": {
+              "groupBy": "addr"
+            }
+          },
+          "name": "Rejected Connections",
+          "position": {
+            "x": 8,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "283"
+          },
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "go_runtime",
+      "order": "3",
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (job) (go_goroutines)&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 1,
+            "plot": {
+              "groupBy": "job"
+            }
+          },
+          "name": "Goroutines",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 0,
+            "y": 0,
+            "i": "284",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "area",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (job) (go_memstats_heap_alloc_bytes)&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 1,
+            "plot": {
+              "groupBy": "job"
+            }
+          },
+          "name": "Heap Memory Allocated (bytes)",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 6,
+            "y": 0,
+            "i": "285",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "scatter",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (job) (rate(go_gc_duration_seconds_sum[5m])) / sum by (job) (rate(go_gc_duration_seconds_count[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 2,
+            "plot": {
+              "groupBy": "job"
+            }
+          },
+          "name": "GC Duration (avg, seconds)",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 0,
+            "y": 10,
+            "i": "286",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "bar",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (job) (rate(process_cpu_seconds_total[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 3,
+            "plot": {
+              "groupBy": "job"
+            }
+          },
+          "name": "CPU Usage (seconds/sec)",
+          "position": {
+            "w": 6,
+            "h": 10,
+            "x": 6,
+            "y": 10,
+            "i": "287",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "area",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (job) (process_resident_memory_bytes)&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 4,
+            "plot": {
+              "groupBy": "job",
+              "smooth": false,
+              "stats": [],
+              "x": "timestamp",
+              "y": [
+                "value",
+                "anomaly"
+              ],
+              "xLabel": "timestamp",
+              "yLabel": "",
+              "label": "",
+              "datatype": "bytes",
+              "legendVisibility": true,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              },
+              "baseliningOptions": {
+                "anomalyGroupBy": [
+                  "job"
+                ],
+                "errorPercentage": 80,
+                "operations": [
+                  "anomaly_detection"
+                ],
+                "timeColumn": "timestamp",
+                "valueColumn": "value"
+              }
+            }
+          },
+          "name": "Resident Memory (bytes)",
+          "position": {
+            "w": 7,
+            "h": 11,
+            "x": 0,
+            "y": 20,
+            "i": "288",
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "moved": false,
+            "static": false
+          },
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "grpc",
+      "order": "4",
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "area",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (grpc_method) (rate(grpc_server_handled_total[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 1,
+            "plot": {
+              "groupBy": "grpc_method"
+            }
+          },
+          "name": "Server Request Rate",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "289"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "bar",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (grpc_code) (rate(grpc_server_handled_total[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 1,
+            "plot": {
+              "groupBy": "grpc_code"
+            }
+          },
+          "name": "Server Error Rate",
+          "position": {
+            "x": 6,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "290"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "scatter",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (grpc_service) (rate(grpc_server_handling_seconds_sum[5m])) / sum by (grpc_service) (rate(grpc_server_handling_seconds_count[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 2,
+            "plot": {
+              "groupBy": "grpc_service"
+            }
+          },
+          "name": "Server Avg Latency (seconds)",
+          "position": {
+            "x": 0,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "291"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (grpc_method) (rate(grpc_client_handled_total[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 3,
+            "plot": {
+              "groupBy": "grpc_method"
+            }
+          },
+          "name": "Client Request Rate",
+          "position": {
+            "x": 6,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "292"
+          },
+          "baseliningOptions": {}
+        }
+      ]
+    },
+    {
+      "key": "ascent",
+      "order": "5",
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "area",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (namespace) (rate(apica_ingest_pipeline_bytes_in[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 1,
+            "plot": {
+              "groupBy": "namespace"
+            }
+          },
+          "name": "Ingest Pipeline Bytes In",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "293"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (namespace) (rate(apica_ingest_pipeline_bytes_out[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 1,
+            "plot": {
+              "groupBy": "namespace"
+            }
+          },
+          "name": "Ingest Pipeline Bytes Out",
+          "position": {
+            "x": 6,
+            "y": 0,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "294"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "bar",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (namespace) (rate(logiq_message_count[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 2,
+            "plot": {
+              "groupBy": "namespace"
+            }
+          },
+          "name": "Message Count Rate",
+          "position": {
+            "x": 0,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "295"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "gauge",
+          "data_source_name": "Ascent Metrics",
+          "query": "logiq_back_pressure_percent&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 3,
+            "plot": {}
+          },
+          "name": "Back Pressure (%)",
+          "position": {
+            "x": 6,
+            "y": 1,
+            "w": 2,
+            "h": 10,
+            "minW": 1,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 20,
+            "i": "296"
+          },
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "scatter",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum by (namespace) (rate(logiq_failed_message_count[5m]))&duration={{duration}}&step={{step}}",
+          "schema": "",
+          "options": {
+            "order": 4,
+            "plot": {
+              "groupBy": "namespace"
+            }
+          },
+          "name": "Failed Message Rate",
+          "position": {
+            "x": 8,
+            "y": 1,
+            "w": 6,
+            "h": 10,
+            "minW": 4,
+            "maxW": 12,
+            "minH": 4,
+            "maxH": 1000,
+            "i": "297"
+          },
+          "baseliningOptions": {}
+        }
+      ]
+    }
+  ]
+}
