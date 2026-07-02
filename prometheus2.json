@@ -1,0 +1,3116 @@
+{
+  "header": {
+    "dateTimeRange": true,
+    "data_source_type": "apica_ascent_prometheus",
+    "dropdowns": [
+      {
+        "duration": {
+          "title": "duration",
+          "key": "duration",
+          "query_id": "",
+          "query": "",
+          "type": "enum",
+          "queryColumn": "duration",
+          "enumOptions": "1h\n2h\n3h",
+          "multiValuesOptions": null
+        }
+      },
+      {
+        "step": {
+          "title": "step",
+          "key": "step",
+          "query_id": "",
+          "query": "",
+          "type": "enum",
+          "queryColumn": "duration",
+          "enumOptions": "5m\n10m",
+          "multiValuesOptions": null
+        }
+      },
+      {
+        "interval": {
+          "title": "interval",
+          "key": "interval",
+          "query_id": "",
+          "query": "",
+          "type": "enum",
+          "queryColumn": "interval",
+          "enumOptions": "2m\n5m",
+          "multiValuesOptions": null
+        }
+      }
+    ]
+  },
+  "tabs": [
+    {
+      "key": "Metrics",
+      "order": 1,
+      "type": "metrics",
+      "queriesList": [
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "avg(avg_over_time(up{}[{{interval}}]) * 100)&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 2,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Uptime [$interval] query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "table",
+          "data_source_name": "Ascent Metrics",
+          "query": "up{} < 1&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 3,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Currently Down query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(prometheus_tsdb_head_series{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 4,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Total Series query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(prometheus_tsdb_head_chunks{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 5,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Memory Chunks query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(sum_over_time(prometheus_evaluator_iterations_missed_total{}[{{interval}}]))&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 7,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Missed Iterations [$interval] query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(sum_over_time(prometheus_evaluator_iterations_skipped_total{}[{{interval}}]))&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 8,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Skipped Iterations [$interval] query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(sum_over_time(prometheus_target_scrapes_exceeded_sample_limit_total{}[{{interval}}]))&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 9,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Tardy Scrapes [$interval] query",
+          "baseliningOptions": {}
+        },
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(sum_over_time(prometheus_tsdb_reloads_failures_total{}[{{interval}}]))&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 10,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Reload Failures [$interval] query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "prometheus_tsdb_head_series{}&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 12,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Series Count query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "prometheus_tsdb_head_chunks{}&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 13,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": [
+                "prometheus"
+              ],
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Storage Memory Chunks query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "rate(prometheus_tsdb_head_samples_appended_total{}[1m])&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 15,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": [
+                "container"
+              ],
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Appended Samples per Second query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(prometheus_target_scrape_pool_sync_total{}) by (scrape_job)&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 17,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Scrape Sync Total query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(prometheus_target_scrapes_exceeded_sample_limit_total{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 18,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Rejected Scrapes - exceeded sample limit query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(prometheus_target_scrapes_sample_duplicate_timestamp_total{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 19,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Rejected Scrapes - duplicate timestamp query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(prometheus_target_scrapes_sample_out_of_bounds_total{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 20,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Rejected Scrapes - out of bounds query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(prometheus_target_scrapes_sample_out_of_order_total{}) &duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 21,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Rejected Scrapes - out of order query"
+        },
+        {
+          "chart_type": "counter",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(sum_over_time(prometheus_target_scrapes_exceeded_sample_limit_total{}[{{interval}}])) + \nsum(sum_over_time(prometheus_target_scrapes_sample_duplicate_timestamp_total{}[{{interval}}])) + \nsum(sum_over_time(prometheus_target_scrapes_sample_out_of_bounds_total{}[{{interval}}])) + \nsum(sum_over_time(prometheus_target_scrapes_sample_out_of_order_total{}[{{interval}}])) &duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 24,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Skipped Scrapes [$interval] query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(rate(prometheus_target_sync_length_seconds_sum{}[2m])) by (scrape_job) * 1000&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 25,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Target Sync query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(prometheus_engine_query_duration_seconds_sum{}) by (slice)&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 26,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Prometheus Engine Query Duration Seconds query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(rate(go_gc_duration_seconds_sum{}[2m])) by (instance)&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 27,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "GC Rate / 2m query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_heap_sys_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 28,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - heap system query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "prometheus_target_interval_length_seconds{}&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 29,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Scrape Duration query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(rate(prometheus_evaluator_iterations_total{}[5m]))&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 32,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Rule Evaluator Iterations - Total query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_mcache_inuse_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 34,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - mcache in use query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(rate(prometheus_target_interval_length_seconds_count{}[5m])) by (interval)&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 35,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Target Scrapes / 5m query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "up{}&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 36,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Upness (stacked) query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "scrape_duration_seconds{}&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 37,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Scrape Duration query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(rate(prometheus_evaluator_iterations_missed_total{}[5m]))&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 38,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Rule Evaluator Iterations - Missed query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_alloc_bytes_total{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 39,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - alloc bytes total query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_mcache_sys_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 40,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - mcache sys query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "1000 * rate(prometheus_evaluator_duration_seconds_sum{}[5m]) / rate(prometheus_evaluator_duration_seconds_count{}[5m])&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 41,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Average Rule Evaluation Duration query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "prometheus_config_last_reload_successful{}&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 42,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Successful Config Reload query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_heap_inuse_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 43,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - heap in use query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_stack_sys_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 44,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - stack sys query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(rate(http_request_duration_microseconds_count{}[1m])) by (handler) > 0&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 45,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "HTTP Request Duration query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_heap_released_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 47,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - heap released query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_sys_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 48,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - sys query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(rate(prometheus_evaluator_iterations_skipped_total{}[5m]))&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 49,
+            "plot": {
+              "x": "",
+              "y": [],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": ""
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Rule Evaluator Iterations - Skipped query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_alloc_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 50,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - allocated query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_mspan_inuse_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 51,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - mspan in use query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "rate(prometheus_notifications_sent_total[5m])&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 52,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Notifications Sent query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_gc_sys_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 53,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - GC metadata query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_next_gc_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 54,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - heap next gc query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_heap_alloc_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 56,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - heap in use query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_other_sys_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 57,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - other sys query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "(time() - prometheus_config_last_reload_success_timestamp_seconds{}) / 60&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 58,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Minutes Since Successful Config Reload query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_heap_idle_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 59,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - heap idle query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_stack_inuse_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 60,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - stack in use query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_buck_hash_sys_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 61,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - profiling bucket hash table query"
+        },
+        {
+          "chart_type": "line",
+          "data_source_name": "Ascent Metrics",
+          "query": "sum(go_memstats_mspan_sys_bytes{})&duration={{duration}}&step=5m",
+          "schema": "",
+          "options": {
+            "order": 62,
+            "plot": {
+              "x": "",
+              "y": [
+                "value"
+              ],
+              "groupBy": "",
+              "xLabel": "",
+              "yLabel": "",
+              "errorColumn": "",
+              "label": "",
+              "datatype": "bytes",
+              "stats": [
+                "Count",
+                "Max",
+                "Avg"
+              ],
+              "legendVisibility": true,
+              "smooth": false,
+              "stacked": false,
+              "statusConfig": {
+                "enable": false,
+                "column": "value",
+                "conditions": [
+                  {
+                    "condition": "",
+                    "threshold": "",
+                    "text": "",
+                    "color": "green"
+                  }
+                ]
+              },
+              "colorSetting": {
+                "enable": false,
+                "data": []
+              },
+              "pielabel": "",
+              "pievalue": "",
+              "hierarchy_keys": [],
+              "value_key": "",
+              "funnelConfig": {
+                "stepColumn": "timestamp",
+                "stepColumnTitle": "step",
+                "valueColumn": "value",
+                "valueColumnTitle": "value",
+                "sorting": {
+                  "enable": false,
+                  "sortColumn": "",
+                  "sortOrder": 1
+                }
+              },
+              "bubbleConfig": {
+                "sizeColumn": "",
+                "minSize": 5,
+                "maxSize": 30
+              },
+              "sankeyConfig": {
+                "flowColumns": [],
+                "valueColumn": "value"
+              },
+              "heatmapConfig": {
+                "xColumn": "",
+                "yColumn": "",
+                "valueColumn": "value"
+              }
+            },
+            "description": "",
+            "upperLimit": ""
+          },
+          "name": "Go Memory Usage (FIXME) - mspan sys query"
+        }
+      ]
+    }
+  ]
+}
